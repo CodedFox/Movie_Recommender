@@ -1,2 +1,2 @@
-# Database_Group
+# Movie_Recommender
 CSI 2132 final group project.
