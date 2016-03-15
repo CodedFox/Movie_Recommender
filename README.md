@@ -2,7 +2,7 @@
 CSI 2132 final group project.
 
 
-Schema
+-Schema-
 
 User(UserID, password, last‐name, first‐name, email, city, province, country…)
 
@@ -38,33 +38,33 @@ We are free to use any front-end software desired. Wordpress and Wix are not exc
 
 
 -Genres-
-Horror
-Romance
-Comedy
-Animation
-Anime
-Action
-Science Fiction (Sci-fi)
-Mystery
-Thriller
-Musical
-War
-History
-Documentary
-Drama
-Film Noir
-Family
-Crime
-Sport
-Fantasy
-Biography
-Adventure
-Western
-Adult
-Space
-Political
-LGBT
-Faith
-Independent
-Video Game
-Novel
+Horror,
+Romance,
+Comedy,
+Animation,
+Anime,
+Action,
+Science Fiction (Sci-fi),
+Mystery,
+Thriller,
+Musical,
+War,
+History,
+Documentary, 
+Drama,
+Film Noir,
+Family,
+Crime,
+Sport,
+Fantasy,
+Biography,
+Adventure,
+Western,
+Adult,
+Space,
+Political,
+LGBT,
+Faith,
+Independent,
+Video Game,
+Novel,
