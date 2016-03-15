@@ -1,112 +1,137 @@
 --All the schema for the Movie Recommendation system
 
 CREATE TABLE user(
-  userID
-  password
-  first-name
-  last-name
-  email
-  city
-  province
-  country
+  userID int NOT NULL AUTO_INCREMENT,
+  password varchar(255) NOT NULL,
+  first-name varchar(255) NOT NULL,
+  last-name varchar(255) NOT NULL,
+  email varchar(255),
+  city varchar(255),
+  province varchar(255),
+  country varchar(255),
+  PRIMARY KEY (userID)
 )
 
 CREATE TABLE profile(
-  userID
-  age-range
-  year-born
-  gender
-  occupation
+  userID int NOT NULL AUTO_INCREMENT,
+  age-range varchar(255),
+  year-born DATE,
+  gender CHAR(1),
+  occupation varchar(255),
+  FOREIGN KEY (userID) REFERENCES user(userID)
 )
 
 CREATE TABLE device(
-  deviceID
-  device-name
+  deviceID int NOT NULL AUTO_INCREMENT,
+  device-name varchar(255),
+  PRIMARY KEY (deviceID)
 )
 
 CREATE TABLE deviceUsed(
-  deviceID
-  userID
+  deviceID int NOT NULL,
+  userID int NOT NULL,
+  FOREIGN KEY (userID) REFERENCES user(userID),
+  FOREIGN KEY (deviceID) REFERENCES device(deviceID)
 )
 
 CREATE TABLE topics(
-  topidID
-  genre
+  topicID int NOT NULL AUTO_INCREMENT,
+  genre varchar(255)
+  PRIMARY KEY (topicID)
 )
 
 CREATE TABLE movie(
-  movieID
-  name
-  description
-  date-released
-  duration
-  language
-  subtitles
-  country
-  age-rating
+  movieID int NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
+  date-released date,
+  duration time,
+  language varchar(255),  
+  subtitles CHAR(1), 
+  country varchar(255), 
+  age-rating varchar(255), 
+  PRIMARY KEY (movieID)
 )
 
 CREATE TABLE watches(
-  userID
-  movieID
-  date-watched
-  user-rating
+  userID int,
+  movieID int,
+  date-watched date,
+  user-rating int,
+  FOREIGN KEY (userID) REFERENCES user(userID),
+  FOREIGN KEY (movieID) REFERENCES movie(movieID)
 )
 
 CREATE TABLE movieTopics(
-  topicID
-  movieID
+  topicID int,
+  movieID int,
+  FOREIGN KEY (topicID) REFERENCES topic(topicID),
+  FOREIGN KEY (movieID) REFERENCES movie(movieID)
 )
 
 CREATE TABLE actor(
-  actorID
-  first-name
-  last-name
-  DateOfBirth
-  nationality
-  gender
+  actorID int NOT NULL AUTO_INCREMENT,
+  first-name varchar(255) NOT NULL,
+  last-name varchar(255) NOT NULL,
+  DateOfBirth date,
+  nationality varchar(255),
+  gender CHAR(1),
+  PRIMARY KEY (actorID)
 )
 
 CREATE TABLE role(
-  roleID
-  character-name
+  roleID int NOT NULL AUTO_INCREMENT,
+  character-name varchar(255),
+  PRIMARY KEY (roleID)
 )
 
 CREATE TABLE movieCast(
-  movieID
-  actorID
-  castingRole       --lead, support, extra, etc...
+  movieID int,
+  actorID int,
+  castingRole varchar(255)   --lead, support, extra, etc...
+  FOREIGN KEY (actorID) REFERENCES actor(actorID),
+  FOREIGN KEY (movieID) REFERENCES movie(movieID)
 )
 
 CREATE TABLE actorRoles(
-  actorID
-  roleID
+  actorID int,
+  roleID int,
+  FOREIGN KEY (actorID) REFERENCES actor(actorID),
+  FOREIGN KEY (roleID) REFERENCES role(roleID)
 )
 
-CREATE TABLE movieRoles(
-  movieID
-  roleID
+CREATE TABLE movieRoles( 
+  movieID int,
+  roleID int,
+  FOREIGN KEY (movieID) REFERENCES movie(movieID),
+  FOREIGN KEY (roleID) REFERENCES role(roleID)
 )
 
 CREATE TABLE director(
-  directorID
-  first-name
-  last-name
-  country
+  directorID int NOT NULL AUTO_INCREMENT,
+  first-name varchar(255) NOT NULL,
+  last-name varchar(255) NOT NULL,
+  country varchar(255),
+  PRIMARY KEY (directorID)
 )
 
 CREATE TABLE directs(
-  directorID
-  movieID
+  directorID int,
+  movieID int,
+  FOREIGN KEY (movieID) REFERENCES movie(movieID),
+  FOREIGN KEY (directorID) REFERENCES director(directorID)
 )
 
 CREATE TABLE studio(
-  studioID
-  studio-name
-  country
+  studioID int NOT NULL AUTO_INCREMENT,
+  studio-name varchar(255) NOT NULL,
+  country varchar(255) NOT NULL,
+  PRIMARY KEY (studioID)
 )
 
 CREATE TABLE sponsors(
-  studioID
-  movieID
+  studioID int,
+  movieID int,
+  FOREIGN KEY (movieID) REFERENCES movie(movieID),
+  FOREIGN KEY (studioID) REFERENCES studio(studioID)
 )
