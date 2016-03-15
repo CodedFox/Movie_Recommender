@@ -17,3 +17,5 @@ Director(DirectorID, lastname, firstname, country, …)
 Directs(DirectorID, MovieID, …)
 Studio(StudioID, name, country, …)
 Sponsors(StudioID, MovieID, …)
+
+We are free to use any front-end software desired. Wordpress and Wix are not excluded.
