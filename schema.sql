@@ -5,7 +5,7 @@ CREATE TABLE user(
   password varchar(255) NOT NULL,
   first-name varchar(255) NOT NULL,
   last-name varchar(255) NOT NULL,
-  email varchar(255),
+  email varchar(255) UNIQUE,
   city varchar(255),
   province varchar(255),
   country varchar(255),
@@ -15,8 +15,8 @@ CREATE TABLE user(
 CREATE TABLE profile(
   userID int NOT NULL AUTO_INCREMENT,
   age-range varchar(255),
-  year-born DATE,
-  gender CHAR(1),
+  year-born int,
+  gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
   FOREIGN KEY (userID) REFERENCES user(userID)
 )
@@ -47,7 +47,7 @@ CREATE TABLE movie(
   date-released date,
   duration time,
   language varchar(255),  
-  subtitles CHAR(1), 
+  subtitles char(1) CHECK (subtitles in ('Y','N')), 
   country varchar(255), 
   age-rating varchar(255), 
   PRIMARY KEY (movieID)
@@ -57,7 +57,7 @@ CREATE TABLE watches(
   userID int,
   movieID int,
   date-watched date,
-  user-rating int,
+  user-rating int CHECK (user-rating BETWEEN 0 AND 10),
   FOREIGN KEY (userID) REFERENCES user(userID),
   FOREIGN KEY (movieID) REFERENCES movie(movieID)
 )
@@ -75,7 +75,7 @@ CREATE TABLE actor(
   last-name varchar(255) NOT NULL,
   DateOfBirth date,
   nationality varchar(255),
-  gender CHAR(1),
+  gender char(1) CHECK (gender in ('M','F')),
   PRIMARY KEY (actorID)
 )
 
