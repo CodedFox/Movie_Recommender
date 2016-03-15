@@ -1,11 +1,11 @@
 --All the schema for the Movie Recommendation system
 
-CREATE TABLE user(
-  userID int NOT NULL AUTO_INCREMENT,
+CREATE TABLE userAccount(
+  userID SERIAL,
   password varchar(255) NOT NULL,
-  first-name varchar(255) NOT NULL,
-  last-name varchar(255) NOT NULL,
-  year-born int,
+  firstName varchar(255) NOT NULL,
+  lastName varchar(255) NOT NULL,
+  yearBorn int,
   email varchar(255) UNIQUE,
   city varchar(255),
   province varchar(255),
@@ -14,51 +14,51 @@ CREATE TABLE user(
 )
 
 CREATE TABLE profile(
-  userID int NOT NULL AUTO_INCREMENT,
-  age-range varchar(255),
+  userID SERIAL,
+  ageRange varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
-  FOREIGN KEY (userID) REFERENCES user(userID) ON DELETE CASCADE
+  FOREIGN KEY (userID) REFERENCES userAccount(userID) ON DELETE CASCADE
 )
 
 CREATE TABLE device(
-  deviceID int NOT NULL AUTO_INCREMENT,
-  device-name varchar(255),
+  deviceID SERIAL,
+  deviceName varchar(255),
   PRIMARY KEY (deviceID)
 )
 
 CREATE TABLE deviceUsed(
   deviceID int NOT NULL,
   userID int NOT NULL,
-  FOREIGN KEY (userID) REFERENCES user(userID) ON DELETE CASCADE,
+  FOREIGN KEY (userID) REFERENCES userAccount(userID) ON DELETE CASCADE,
   FOREIGN KEY (deviceID) REFERENCES device(deviceID)
 )
 
 CREATE TABLE topics(
-  topicID int NOT NULL AUTO_INCREMENT,
+  topicID SERIAL,
   genre varchar(255)
   PRIMARY KEY (topicID)
 )
 
 CREATE TABLE movie(
-  movieID int NOT NULL AUTO_INCREMENT,
+  movieID SERIAL,
   name varchar(255) NOT NULL,
   description varchar(255) NOT NULL,
-  date-released date,
+  dateReleased date,
   duration time,
   language varchar(255),  
   subtitles char(1) CHECK (subtitles in ('Y','N')), 
   country varchar(255), 
-  age-rating varchar(255), 
+  ageRating varchar(255), 
   PRIMARY KEY (movieID)
 )
 
 CREATE TABLE watches(
   userID int,
   movieID int,
-  date-watched date,
-  user-rating int CHECK (user-rating BETWEEN 0 AND 10),
-  FOREIGN KEY (userID) REFERENCES user(userID) ON DELETE CASCADE,
+  dateWatched date,
+  userRating int CHECK (user-rating BETWEEN 0 AND 10),
+  FOREIGN KEY (userID) REFERENCES userAccount(userID) ON DELETE CASCADE,
   FOREIGN KEY (movieID) REFERENCES movie(movieID) -- TODO: should we cascade delete from 'movie'? or keep record of viewing?
 )
 
@@ -70,9 +70,9 @@ CREATE TABLE movieTopics(
 )
 
 CREATE TABLE actor(
-  actorID int NOT NULL AUTO_INCREMENT,
-  first-name varchar(255) NOT NULL,
-  last-name varchar(255) NOT NULL,
+  actorID SERIAL,
+  firstName varchar(255) NOT NULL,
+  lastName varchar(255) NOT NULL,
   DateOfBirth date,
   nationality varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
@@ -80,8 +80,8 @@ CREATE TABLE actor(
 )
 
 CREATE TABLE role(
-  roleID int NOT NULL AUTO_INCREMENT,
-  character-name varchar(255),
+  roleID SERIAL,
+  characterName varchar(255),
   PRIMARY KEY (roleID)
 )
 
@@ -108,9 +108,9 @@ CREATE TABLE movieRoles(
 )
 
 CREATE TABLE director(
-  directorID int NOT NULL AUTO_INCREMENT,
-  first-name varchar(255) NOT NULL,
-  last-name varchar(255) NOT NULL,
+  directorID SERIAL,
+  firstName varchar(255) NOT NULL,
+  lastName varchar(255) NOT NULL,
   country varchar(255),
   PRIMARY KEY (directorID)
 )
@@ -123,8 +123,8 @@ CREATE TABLE directs(
 )
 
 CREATE TABLE studio(
-  studioID int NOT NULL AUTO_INCREMENT,
-  studio-name varchar(255) NOT NULL,
+  studioID SERIAL,
+  studioName varchar(255) NOT NULL,
   country varchar(255) NOT NULL,
   PRIMARY KEY (studioID)
 )
