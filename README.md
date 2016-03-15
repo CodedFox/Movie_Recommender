@@ -74,4 +74,4 @@ LGBT,
 Faith,
 Independent,
 Video Game,
-Novel,
+Novel.
