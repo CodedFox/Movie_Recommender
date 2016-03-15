@@ -5,6 +5,7 @@ CREATE TABLE user(
   password varchar(255) NOT NULL,
   first-name varchar(255) NOT NULL,
   last-name varchar(255) NOT NULL,
+  year-born int,
   email varchar(255) UNIQUE,
   city varchar(255),
   province varchar(255),
@@ -15,10 +16,9 @@ CREATE TABLE user(
 CREATE TABLE profile(
   userID int NOT NULL AUTO_INCREMENT,
   age-range varchar(255),
-  year-born int,
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
-  FOREIGN KEY (userID) REFERENCES user(userID)
+  FOREIGN KEY (userID) REFERENCES user(userID) ON DELETE CASCADE
 )
 
 CREATE TABLE device(
@@ -30,7 +30,7 @@ CREATE TABLE device(
 CREATE TABLE deviceUsed(
   deviceID int NOT NULL,
   userID int NOT NULL,
-  FOREIGN KEY (userID) REFERENCES user(userID),
+  FOREIGN KEY (userID) REFERENCES user(userID) ON DELETE CASCADE,
   FOREIGN KEY (deviceID) REFERENCES device(deviceID)
 )
 
@@ -58,15 +58,15 @@ CREATE TABLE watches(
   movieID int,
   date-watched date,
   user-rating int CHECK (user-rating BETWEEN 0 AND 10),
-  FOREIGN KEY (userID) REFERENCES user(userID),
-  FOREIGN KEY (movieID) REFERENCES movie(movieID)
+  FOREIGN KEY (userID) REFERENCES user(userID) ON DELETE CASCADE,
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) -- TODO: should we cascade delete from 'movie'? or keep record of viewing?
 )
 
 CREATE TABLE movieTopics(
   topicID int,
   movieID int,
-  FOREIGN KEY (topicID) REFERENCES topic(topicID),
-  FOREIGN KEY (movieID) REFERENCES movie(movieID)
+  FOREIGN KEY (topicID) REFERENCES topic(topicID) ON DELETE CASCADE,
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE
 )
 
 CREATE TABLE actor(
@@ -89,22 +89,22 @@ CREATE TABLE movieCast(
   movieID int,
   actorID int,
   castingRole varchar(255)   --lead, support, extra, etc...
-  FOREIGN KEY (actorID) REFERENCES actor(actorID),
-  FOREIGN KEY (movieID) REFERENCES movie(movieID)
+  FOREIGN KEY (actorID) REFERENCES actor(actorID) ON DELETE SET NULL,
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE
 )
 
 CREATE TABLE actorRoles(
   actorID int,
   roleID int,
-  FOREIGN KEY (actorID) REFERENCES actor(actorID),
-  FOREIGN KEY (roleID) REFERENCES role(roleID)
+  FOREIGN KEY (actorID) REFERENCES actor(actorID) ON DELETE CASCADE,
+  FOREIGN KEY (roleID) REFERENCES role(roleID) ON DELETE CASCADE
 )
 
 CREATE TABLE movieRoles( 
   movieID int,
   roleID int,
-  FOREIGN KEY (movieID) REFERENCES movie(movieID),
-  FOREIGN KEY (roleID) REFERENCES role(roleID)
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE,
+  FOREIGN KEY (roleID) REFERENCES role(roleID) ON DELETE CASCADE
 )
 
 CREATE TABLE director(
@@ -118,8 +118,8 @@ CREATE TABLE director(
 CREATE TABLE directs(
   directorID int,
   movieID int,
-  FOREIGN KEY (movieID) REFERENCES movie(movieID),
-  FOREIGN KEY (directorID) REFERENCES director(directorID)
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE,
+  FOREIGN KEY (directorID) REFERENCES director(directorID) ON DELETE CASCADE
 )
 
 CREATE TABLE studio(
@@ -132,6 +132,6 @@ CREATE TABLE studio(
 CREATE TABLE sponsors(
   studioID int,
   movieID int,
-  FOREIGN KEY (movieID) REFERENCES movie(movieID),
-  FOREIGN KEY (studioID) REFERENCES studio(studioID)
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE,
+  FOREIGN KEY (studioID) REFERENCES studio(studioID) ON DELETE CASCADE
 )
