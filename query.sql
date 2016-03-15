@@ -1,0 +1,1 @@
+--All queris required for the Movie Recommendation system

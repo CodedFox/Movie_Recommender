@@ -1,0 +1,1 @@
+--All the schema for the Movie Recommendation system
