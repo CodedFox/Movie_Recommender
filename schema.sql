@@ -46,10 +46,10 @@ CREATE TABLE movie(
   description varchar(255) NOT NULL,
   dateReleased date,
   duration time,
-  language varchar(255),  
-  subtitles char(1) CHECK (subtitles in ('Y','N')), 
-  country varchar(255), 
-  ageRating varchar(255), 
+  language varchar(255),
+  subtitles char(1) CHECK (subtitles in ('Y','N')),
+  country varchar(255),
+  ageRating varchar(255),
   PRIMARY KEY (movieID)
 );
 
@@ -100,7 +100,7 @@ CREATE TABLE actorRoles(
   FOREIGN KEY (roleID) REFERENCES role(roleID) ON DELETE CASCADE
 );
 
-CREATE TABLE movieRoles( 
+CREATE TABLE movieRoles(
   movieID int,
   roleID int,
   FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE,
