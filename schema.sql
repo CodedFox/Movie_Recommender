@@ -14,7 +14,7 @@ CREATE TABLE userAccount(
 );
 
 CREATE TABLE profile(
-  userID SERIAL,
+  userID int,
   ageRange varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
