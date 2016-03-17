@@ -629,11 +629,11 @@ INSERT INTO directs(directorID,movieID) VALUES
 (11,13),
 (12,14),
 (13,15),
-(14,16),
-(15,17),
-(15,18),
-(16,19),
-(16,20);
+(15,16),
+(16,17),
+(16,18),
+(17,19),
+(17,20);
 
 INSERT INTO studio(studioID,studioName,country) VALUES
 (DEFAULT,'New Line Cinema','New Zealand'),
