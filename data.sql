@@ -597,13 +597,43 @@ INSERT INTO movieRoles(movieID,roleID) VALUES -- Hmmm
 
 INSERT INTO director(directorID,firstName,lastName,country) VALUES
 (DEFAULT,'Peter','Jackson','New Zealand'),
-(DEFAULT,'Hayao','Miyazaki','Japan');
+(DEFAULT,'Hayao','Miyazaki','Japan'),
+(DEFAULT,'Jerry','Zucker','USA'),
+(DEFAULT,'Nick','Cassavetees','USA'),
+(DEFAULT,'Adam','Shankman','USA'),
+(DEFAULT,'Emile','Ardolino','USA'),
+(DEFAULT,'Roger','Michell','South Africa'),
+(DEFAULT,'Garry','Marshall','USA'),
+(DEFAULT,'Cameron','Crowe','USA'),
+(DEFAULT,'James','Cameron','Canada'),
+(DEFAULT,'Richard','LaGravenese','USA'),
+(DEFAULT,'Edward','Zwick','USA'),
+(DEFAULT,'Wolfgang','Peterson','Germany'),
+(DEFAULT,'David','Fincher','USA'),
+(DEFAULT,'Yimou','Zhang','China'),
+(DEFAULT,'John','Woo','China'),
 
 INSERT INTO directs(directorID,movieID) VALUES
 (1,1),
 (1,2),
 (1,3),
-(2,4);
+(2,4),
+(3,5),
+(4,6),
+(5,7),
+(6,8),
+(7,9),
+(8,10),
+(9,11),
+(10,12),
+(11,13),
+(12,14),
+(13,15),
+(15,16),
+(16,17),
+(16,18),
+(17,19),
+(17,20);
 
 INSERT INTO studio(studioID,studioName,country) VALUES
 (DEFAULT,'New Line Cinema','New Zealand'),
