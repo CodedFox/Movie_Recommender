@@ -304,13 +304,53 @@ INSERT INTO movieTopic(topicID,movieID) VALUES -- switch?
 (12,20);
 
 INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VALUES -- 'D' to 'd'
-(DEFAULT,'Elijah','Wood','1981-01-28','American','M'),
-(DEFAULT,'Ian','McKellen','1939-05-25','English','M'),
-(DEFAULT,'Orlando','Bloom','1977-01-13','English','M'),
-(DEFAULT,'Viggo','Mortensen','1958-10-20','American','M'),
-(DEFAULT,'Chieko','Baishou','1941-06-29','Japanese','F'),
-(DEFAULT,'Takuya','Kimura','1972-11-13','Japanese','M'),
-(DEFAULT,'Tatsuya','Gashuuin','1950-12-10','Japanese','M'); -- Date for actor but not user? Nationality or should it be place of birth for consistency?
+(DEFAULT,'Elijah','Wood','1981-01-28','American','M'), -- 1
+(DEFAULT,'Ian','McKellen','1939-05-25','English','M'), -- 2
+(DEFAULT,'Orlando','Bloom','1977-01-13','English','M'), -- 3
+(DEFAULT,'Viggo','Mortensen','1958-10-20','American','M'), -- 4
+(DEFAULT,'Chieko','Baishou','1941-06-29','Japanese','F'), -- 5
+(DEFAULT,'Takuya','Kimura','1972-11-13','Japanese','M'), --6
+(DEFAULT,'Tatsuya','Gashuuin','1950-12-10','Japanese','M'), -- 7  Date for actor but not user? Nationality or should it be place of birth for consistency?
+(DEFAULT,'Patrick','Swayze','1952-09-14','American','M'), -- 8
+(DEFAULT,'Demi','Moore','1962-11-11','American','F'), -- 9
+(DEFAULT,'Tony','Goldwyn','1960-05-20','American','M'), -- 10
+(DEFAULT,'Rachel','McAdams','1978-11-17','Canadian','F'), -- 11
+(DEFAULT,'Ryan','Gosling','1980-11-12','Canadian','M'), -- 12
+(DEFAULT,'James','Marsden','1973-09-18','American','M'), -- 13
+(DEFAULT,'Shane','West','1978-06-10','American','M'), -- 14
+(DEFAULT,'Mandy','Moore','1984-04-10','American','F'), -- 15
+(DEFAULT,'Jennifer','Grey','1960-03-26','American','F'), -- 16
+(DEFAULT,'Julia','Roberts','1967-10-28','American','F'), -- 17
+(DEFAULT,'Hugh','Grant','1960-09-09','English','M'), -- 18
+(DEFAULT,'Richard','Gere','1949-08-31','American','M'), -- 19
+(DEFAULT,'John','Cusack','1966-06-28','American','M'), -- 20
+(DEFAULT,'Patrick','Swayze','1952-09-14','American','M'), -- 21
+(DEFAULT,'Ione','Skye','1970-09-04','English','F'), -- 22
+(DEFAULT,'Leonardo','DiCaprio','1974-11-11','American','M'), -- 23
+(DEFAULT,'Kate','Winslet','1975-10-05','English','F'), -- 24
+(DEFAULT,'Gerald','Butler','1969-11-13','Scottish','M'), -- 25
+(DEFAULT,'Hillary','Swank','1974-07-30','American','F'), -- 26
+(DEFAULT,'Brad','Pitt','1963-12-18','American','M'), --27
+(DEFAULT,'Anthony','Hopkins','1937-12-31','English','M'), -- 28
+(DEFAULT,'Julia','Ormond','1965-01-04','English','F'), -- 29
+(DEFAULT,'Aiden','Quinn','1959-03-08','American','M'), -- 30
+(DEFAULT,'Henry','Thomas','1971-09-09','American','M'), -- 31
+(DEFAULT,'Eric','Bana','1968-08-09','Austrailian','M'), -- 32
+(DEFAULT,'Diane','Kruger','1976-07-15','German','F'), -- 33
+(DEFAULT,'Brian','Cox','1946-06-01','Scottish','M'), -- 34
+(DEFAULT,'Sean','Bean','1959-04-17','English','M'), -- 35
+(DEFAULT,'Rose','Byrne','1979-07-24','Austrailian','F'), -- 36
+(DEFAULT,'Morgan','Freeman','1937-06-01','American','M'), -- 37
+(DEFAULT,'Gwyneth','Paltrow','1972-09-27','American','F'), -- 38
+(DEFAULT,'Takeshi','Kaneshiro','1973-10-11','Japanese/Taiwanese','M'), -- 39 -? two nationalities
+(DEFAULT,'Andy','Lau','1961-09-27','Chinese','M'), -- 40
+(DEFAULT,'ZiYi','Zhang','1979-02-09','Chinese','F'), -- 41
+(DEFAULT,'Gwyneth','Paltrow','1972-09-27','American','F'), -- 42
+(DEFAULT,'Jet','Li','1963-04-26','Chinese','M'), -- 43
+(DEFAULT,'Tony','Leung','1962-06-27','Chinese','M'), -- 44
+(DEFAULT,'Maggie','Cheung','1964-09-20','Chinese','F'), -- 45
+(DEFAULT,'Fengyi','Zhang','1956-09-01','Chinese','M'), -- 46
+(DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 47
 
 INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Frodo'),
