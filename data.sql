@@ -324,38 +324,38 @@ INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VAL
 (DEFAULT,'Hugh','Grant','1960-09-09','English','M'), -- 18
 (DEFAULT,'Richard','Gere','1949-08-31','American','M'), -- 19
 (DEFAULT,'John','Cusack','1966-06-28','American','M'), -- 20
-(DEFAULT,'Patrick','Swayze','1952-09-14','American','M'), -- 21
-(DEFAULT,'Ione','Skye','1970-09-04','English','F'), -- 22
-(DEFAULT,'Leonardo','DiCaprio','1974-11-11','American','M'), -- 23
-(DEFAULT,'Kate','Winslet','1975-10-05','English','F'), -- 24
-(DEFAULT,'Gerald','Butler','1969-11-13','Scottish','M'), -- 25
-(DEFAULT,'Hillary','Swank','1974-07-30','American','F'), -- 26
-(DEFAULT,'Brad','Pitt','1963-12-18','American','M'), --27
-(DEFAULT,'Anthony','Hopkins','1937-12-31','English','M'), -- 28
-(DEFAULT,'Julia','Ormond','1965-01-04','English','F'), -- 29
-(DEFAULT,'Aiden','Quinn','1959-03-08','American','M'), -- 30
-(DEFAULT,'Henry','Thomas','1971-09-09','American','M'), -- 31
-(DEFAULT,'Eric','Bana','1968-08-09','Austrailian','M'), -- 32
-(DEFAULT,'Diane','Kruger','1976-07-15','German','F'), -- 33
-(DEFAULT,'Brian','Cox','1946-06-01','Scottish','M'), -- 34
-(DEFAULT,'Sean','Bean','1959-04-17','English','M'), -- 35
-(DEFAULT,'Rose','Byrne','1979-07-24','Austrailian','F'), -- 36
-(DEFAULT,'Morgan','Freeman','1937-06-01','American','M'), -- 37
-(DEFAULT,'Gwyneth','Paltrow','1972-09-27','American','F'), -- 38
-(DEFAULT,'Takeshi','Kaneshiro','1973-10-11','Japanese/Taiwanese','M'), -- 39 -? two nationalities
-(DEFAULT,'Andy','Lau','1961-09-27','Chinese','M'), -- 40
-(DEFAULT,'ZiYi','Zhang','1979-02-09','Chinese','F'), -- 41
-(DEFAULT,'Jet','Li','1963-04-26','Chinese','M'), -- 42
-(DEFAULT,'Tony','Leung','1962-06-27','Chinese','M'), -- 43
-(DEFAULT,'Maggie','Cheung','1964-09-20','Chinese','F'), -- 44
-(DEFAULT,'Fengyi','Zhang','1956-09-01','Chinese','M'), -- 45
-(DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 46
+(DEFAULT,'Ione','Skye','1970-09-04','English','F'), -- 21
+(DEFAULT,'Leonardo','DiCaprio','1974-11-11','American','M'), -- 22
+(DEFAULT,'Kate','Winslet','1975-10-05','English','F'), -- 23
+(DEFAULT,'Gerald','Butler','1969-11-13','Scottish','M'), -- 24
+(DEFAULT,'Hillary','Swank','1974-07-30','American','F'), -- 25
+(DEFAULT,'Brad','Pitt','1963-12-18','American','M'), --26
+(DEFAULT,'Anthony','Hopkins','1937-12-31','English','M'), -- 27
+(DEFAULT,'Julia','Ormond','1965-01-04','English','F'), -- 28
+(DEFAULT,'Aiden','Quinn','1959-03-08','American','M'), -- 29
+(DEFAULT,'Henry','Thomas','1971-09-09','American','M'), -- 30
+(DEFAULT,'Eric','Bana','1968-08-09','Austrailian','M'), -- 31
+(DEFAULT,'Diane','Kruger','1976-07-15','German','F'), -- 32
+(DEFAULT,'Brian','Cox','1946-06-01','Scottish','M'), -- 33
+(DEFAULT,'Sean','Bean','1959-04-17','English','M'), -- 34
+(DEFAULT,'Rose','Byrne','1979-07-24','Austrailian','F'), -- 35
+(DEFAULT,'Morgan','Freeman','1937-06-01','American','M'), -- 36
+(DEFAULT,'Gwyneth','Paltrow','1972-09-27','American','F'), -- 37
+(DEFAULT,'Takeshi','Kaneshiro','1973-10-11','Japanese/Taiwanese','M'), -- 38 -? two nationalities
+(DEFAULT,'Andy','Lau','1961-09-27','Chinese','M'), -- 39
+(DEFAULT,'ZiYi','Zhang','1979-02-09','Chinese','F'), -- 40
+(DEFAULT,'Jet','Li','1963-04-26','Chinese','M'), -- 41
+(DEFAULT,'Tony','Leung','1962-06-27','Chinese','M'), -- 42
+(DEFAULT,'Maggie','Cheung','1964-09-20','Chinese','F'), -- 43
+(DEFAULT,'Fengyi','Zhang','1956-09-01','Chinese','M'), -- 44
+(DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 45
 
 INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Frodo'),
 (DEFAULT,'Gandalf'),
 (DEFAULT,'Legolas'),
 (DEFAULT,'Aragorn'),
+(DEFAULT,'Boromir'),
 (DEFAULT,'Sofie'),
 (DEFAULT,'Howl'),
 (DEFAULT,'Calcifer'),
@@ -388,6 +388,7 @@ INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Helen'),
 (DEFAULT,'Paris'),
 (DEFAULT,'Agamemnon'),
+(DEFAULT,'Briseis'),
 (DEFAULT,'Mills'),
 (DEFAULT,'Somerset'),
 (DEFAULT,'Tracy'),
@@ -407,6 +408,7 @@ INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (1,1,'Star'),
 (1,2,'Star'),
 (1,3,'Star'),
+(1,34,'Supporting'),
 (2,1,'Star'),
 (2,2,'Star'),
 (2,4,'Star'),
@@ -415,7 +417,57 @@ INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (3,2,'Star'),
 (4,5,'Star'),
 (4,6,'Star'),
-(4,7,'Star'); -- Star? Main? Lead? Then supporting? bit? extra?
+(4,7,'Star'), -- Star? Main? Lead? Then supporting? bit? extra?
+(5,8,'Star'),
+(5,9,'Star'),
+(5,10,'Supporting'),
+(6,11,'Star'),
+(6,12,'Star'),
+(6,13,'Supporting'),
+(7,14,'Star'),
+(7,15,'Star'),
+(8,8,'Star'),
+(8,16,'Star'),
+(9,17,'Star'),
+(9,18,'Star'),
+(10,17,'Star'),
+(10,19,'Star'),
+(11,20,'Star'),
+(11,21,'Star'),
+(12,22,'Star'),
+(12,23,'Star'),
+(13,24,'Star'),
+(13,25,'Star'),
+(14,26,'Star'),
+(14,27,'Supporting'),
+(14,28,'Supporting'),
+(14,29,'Supporting'),
+(14,30,'Supporting'),
+(15,26,'Star'),
+(15,31,'Supporting'),
+(15,3,'Supporting'),
+(15,32,'Supporting'),
+(15,33,'Supporting'),
+(15,34,'Supporting'),
+(15,35,'Supporting'),
+(16,26,'Star'),
+(16,36,'Star'),
+(16,37,'Supporting'),
+(17,38,'Star'),
+(17,39,'Star'),
+(17,40,'Star'),
+(18,41,'Star'),
+(18,42,'Star'),
+(18,43,'Star'),
+(18,40,'Supporting'),
+(19,42,'Star'),
+(19,38,'Star'),
+(19,44,'Star'),
+(19,45,'Supporting'),
+(20,42,'Star'),
+(20,38,'Star'),
+(20,44,'Star'),
+(20,45,'Supporting');
 
 INSERT INTO actorRoles(actorID,roleID) VALUES -- Hmmm
 (1,1),
