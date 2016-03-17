@@ -84,8 +84,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'After an accident leaves a young man dead, his spirit stays behind to warn his lover of impending danger, with the help of a reluctant psychic.',
 '1990-07-13',
 '2:07:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
 'PG-13'),
 
@@ -94,8 +94,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'A poor and passionate young man falls in love with a rich young woman and gives her a sense of freedom. They soon are separated by their social differences.',
 '2004-06-25',
 '2:03:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
 'PG-13'),
 
@@ -104,8 +104,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'The story of two North Carolina teens, Landon Carter and Jamie Sullivan, who are thrown together after Landon gets into trouble and is made to do community service.',
 '2002-01-25',
 '1:41:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
 'PG'),
 
@@ -114,8 +114,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'Spending the summer at a Catskills resort with her family, Frances "Baby" Houseman falls in love with the camp''s dance instructor, Johnny Castle.',
 '1987-08-21',
 '1:40:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
 'PG-13'),
 
@@ -124,8 +124,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'The life of a simple bookshop owner changes when he meets the most famous film star in the world.',
 '1999-05-28',
 '2:04:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
 'PG-13'),
 
@@ -134,8 +134,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'A man in a legal but hurtful business needs an escort for some social events, and hires a beautiful prostitute he meets... only to fall in love.',
 '1990-03-23',
 '1:59:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
 'R'),
 
@@ -144,10 +144,100 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'A noble underachiever and a beautiful valedictorian fall in love the summer before she goes off to college.',
 '1989-04-14',
 '1:40:00',
-'English', -- ?
-'N', -- ?
+'English',
+'N',
 'USA',
-'PG-13');
+'PG-13'),
+
+(DEFAULT,
+'Titanic',
+'A seventeen-year-old aristocrat falls in love with a kind, but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.',
+'1997-12-19',
+'3:14:00',
+'English',
+'N',
+'USA',
+'PG-13'),
+
+(DEFAULT,
+'P.S. I Love You',
+'A young widow discovers that her late husband has left her 10 messages intended to help ease her pain and start a new life.',
+'2007-12-21',
+'2:06:00',
+'English',
+'N',
+'USA',
+'PG-13'),
+
+(DEFAULT,
+'Legends of the Fall',
+'Epic tale of three brothers and their father living in the remote wilderness of 1900s USA and how their lives are affected by nature, history, war, love and betrayal.',
+'1995-01-13',
+'2:13:00',
+'English',
+'N',
+'USA',
+'R'),
+
+(DEFAULT,
+'Troy',
+'An adaptation of Homer''s great epic, the film follows the assault on Troy by the united Greek forces and chronicles the fates of the men involved.',
+'2004-05-14',
+'2:43:00',
+'English',
+'N',
+'USA',
+'R'),
+
+(DEFAULT,
+'Se7en',
+'Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his modus operandi.',
+'1995-09-22',
+'2:07:00',
+'English',
+'N',
+'USA',
+'R'),
+
+(DEFAULT,
+'House of Flying Daggers',
+'A romantic police captain breaks a beautiful member of a rebel group out of prison to help her rejoin her fellows, but things are not what they seem.',
+'2004-07-16',
+'1:59:00',
+'Mandarin', -- ?
+'Y',
+'China', --? 
+'PG-13'),
+
+(DEFAULT,
+'Hero',
+'A defense officer, Nameless, was summoned by the King of Qin regarding his success of terminating three warriors.',
+'2002-10-24',
+'1:39:00',
+'Mandarin', -- ?
+'Y',
+'China', --?
+'PG-13'),
+
+(DEFAULT,
+'Red Cliff',
+'The first chapter of a two-part story centered on a battle fought in China''s Three Kingdoms period (220-280 A.D.).',
+'2008-07-10',
+'2:28:00',
+'Mandarin', -- ?
+'Y',
+'China', --?
+'R'),
+
+(DEFAULT,
+'Red Cliff II',
+'In this sequel to Red Cliff, Chancellor Cao Cao convinces Emperor Xian of the Han to initiate a battle against the two Kingdoms of Shu and Wu, who have become allied forces, against all expectations. Red Cliff will be the site for the gigantic battle.',
+'2009-01-07',
+'1:39:00',
+'Mandarin', -- ?
+'Y', -- ?
+'China',
+'R'); --?
 
 INSERT INTO watches(userID,movieID,dateWatched,userRating) VALUES
 (1,1,'2001-12-19',10),
