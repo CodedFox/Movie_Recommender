@@ -351,58 +351,60 @@ INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VAL
 (DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 45
 
 INSERT INTO role(roleID,characterName) VALUES
-(DEFAULT,'Frodo'),
-(DEFAULT,'Gandalf'),
-(DEFAULT,'Legolas'),
-(DEFAULT,'Aragorn'),
-(DEFAULT,'Boromir'),
-(DEFAULT,'Sofie'),
-(DEFAULT,'Howl'),
-(DEFAULT,'Calcifer'),
-(DEFAULT,'Sam Wheat'),
-(DEFAULT,'Molly Jensen'),
-(DEFAULT,'Allie'),
-(DEFAULT,'Noah'),
-(DEFAULT,'Lon Hammond'),
-(DEFAULT,'Landon Carter'),
-(DEFAULT,'Jamie Sullivan'),
-(DEFAULT,'Baby Houseman'),
-(DEFAULT,'Johnny Castle'),
-(DEFAULT,'Anna Scott'),
-(DEFAULT,'William Thacker'),
-(DEFAULT,'Edward Lewis'),
-(DEFAULT,'Vivian Ward'),
-(DEFAULT,'Lloyd Dobler'),
-(DEFAULT,'Diane Court'),
-(DEFAULT,'Jack Dawson'),
-(DEFAULT,'Rose DeWitt Bukater'),
-(DEFAULT,'Holly'),
-(DEFAULT,'Gerry'),
-(DEFAULT,'Tristan Ludlow'),
-(DEFAULT,'Col. William Ludlow'),
-(DEFAULT,'Alfred Ludlow'),
-(DEFAULT,'Susannah Fincannon'),
-(DEFAULT,'Samuel Ludlow'),
-(DEFAULT,'Achilles'),
-(DEFAULT,'Hector'),
-(DEFAULT,'Helen'),
-(DEFAULT,'Paris'),
-(DEFAULT,'Agamemnon'),
-(DEFAULT,'Briseis'),
-(DEFAULT,'Mills'),
-(DEFAULT,'Somerset'),
-(DEFAULT,'Tracy'),
-(DEFAULT,'Jin'),
-(DEFAULT,'Leo'),
-(DEFAULT,'Xiao Mei'),
-(DEFAULT,'Nameless'),
-(DEFAULT,'Broken Sword'),
-(DEFAULT,'Flying Snow'),
-(DEFAULT,'Moon'),
-(DEFAULT,'Zhou Yu'),
-(DEFAULT,'Zhuge Liang'),
-(DEFAULT,'Cao Cao'),
-(DEFAULT,'Sun Shangxiang');
+(DEFAULT,'Frodo'), -- 1
+(DEFAULT,'Gandalf'), -- 2
+(DEFAULT,'Legolas'), -- 3
+(DEFAULT,'Aragorn'), -- 4
+(DEFAULT,'Boromir'), -- 5
+(DEFAULT,'Sofie'), -- 6
+(DEFAULT,'Howl'), -- 7
+(DEFAULT,'Calcifer'), -- 8
+(DEFAULT,'Sam Wheat'), -- 9
+(DEFAULT,'Molly Jensen'), -- 10
+(DEFAULT,'Allie'), -- 11
+(DEFAULT,'Noah'), -- 12
+(DEFAULT,'Lon Hammond'), -- 13
+(DEFAULT,'Landon Carter'), -- 14
+(DEFAULT,'Jamie Sullivan'), -- 15
+(DEFAULT,'Baby Houseman'), -- 16
+(DEFAULT,'Johnny Castle'), -- 17
+(DEFAULT,'Anna Scott'), -- 18
+(DEFAULT,'William Thacker'), -- 19
+(DEFAULT,'Edward Lewis'), -- 20
+(DEFAULT,'Vivian Ward'), -- 21
+(DEFAULT,'Lloyd Dobler'), -- 22
+(DEFAULT,'Diane Court'), -- 23
+(DEFAULT,'Jack Dawson'), -- 24
+(DEFAULT,'Rose DeWitt Bukater'), -- 25
+(DEFAULT,'Gerry'), -- 26
+(DEFAULT,'Holly'), -- 27
+(DEFAULT,'Tristan Ludlow'), -- 28
+(DEFAULT,'Col. William Ludlow'), -- 29
+(DEFAULT,'Susannah Fincannon'), -- 30
+(DEFAULT,'Alfred Ludlow'), -- 31
+(DEFAULT,'Samuel Ludlow'), -- 32
+(DEFAULT,'Achilles'), -- 33
+(DEFAULT,'Hector'), -- 34
+(DEFAULT,'Helen'), -- 35
+(DEFAULT,'Paris'), -- 36
+(DEFAULT,'Agamemnon'), -- 37
+(DEFAULT,'Briseis'), -- 38
+(DEFAULT,'Mills'), -- 39
+(DEFAULT,'Somerset'), -- 40
+(DEFAULT,'Tracy'), -- 41
+(DEFAULT,'Jin'), -- 42
+(DEFAULT,'Leo'), -- 43
+(DEFAULT,'Xiao Mei'), -- 44
+(DEFAULT,'Nameless'), -- 45
+(DEFAULT,'Broken Sword'), -- 46
+(DEFAULT,'Flying Snow'), -- 47
+(DEFAULT,'Moon'), -- 48
+(DEFAULT,'Zhou Yu'), -- 49
+(DEFAULT,'Zhuge Liang'), -- 50
+(DEFAULT,'Cao Cao'), -- 51
+(DEFAULT,'Sun Shangxiang'); -- 52
+(DEFAULT,'Carl Bruner'), -- 53
+(DEFAULT,'Odysseus'), -- 54
 
 INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (1,1,'Star'),
@@ -473,10 +475,57 @@ INSERT INTO actorRoles(actorID,roleID) VALUES -- Hmmm
 (1,1),
 (2,2),
 (3,3),
-(4,4),
-(5,5),
-(6,6),
-(7,7);
+(34,4),
+(4,5),
+(5,6),
+(6,7),
+(7,8),
+(8,9),
+(9,10),
+(11,11),
+(12,12),
+(13,13),
+(14,14),
+(15,15),
+(16,16),
+(8,17),
+(17,18),
+(18,19),
+(19,20),
+(17,21),
+(20,22),
+(21,23),
+(22,24),
+(23,25),
+(24,26),
+(25,27),
+(26,28),
+(27,29),
+(28,30),
+(29,31),
+(30,32),
+(26,33),
+(31,34),
+(32,35),
+(3,36),
+(33,37),
+(35,38),
+(26,39),
+(36,40),
+(37,41),
+(38,42),
+(39,43),
+(40,44),
+(41,45),
+(42,46),
+(43,47),
+(40,48),
+(42,49),
+(38,50),
+(44,51),
+(45,52);
+(10,53),
+(34,54);
 
 INSERT INTO movieRoles(movieID,roleID) VALUES -- Hmmm
 (1,1),
