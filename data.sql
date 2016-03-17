@@ -402,9 +402,9 @@ INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Zhou Yu'), -- 49
 (DEFAULT,'Zhuge Liang'), -- 50
 (DEFAULT,'Cao Cao'), -- 51
-(DEFAULT,'Sun Shangxiang'); -- 52
+(DEFAULT,'Sun Shangxiang'), -- 52
 (DEFAULT,'Carl Bruner'), -- 53
-(DEFAULT,'Odysseus'), -- 54
+(DEFAULT,'Odysseus'); -- 54
 
 INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (1,1,'Star'),
@@ -523,7 +523,7 @@ INSERT INTO actorRoles(actorID,roleID) VALUES -- Hmmm
 (42,49),
 (38,50),
 (44,51),
-(45,52);
+(45,52),
 (10,53),
 (34,54);
 
@@ -568,7 +568,7 @@ INSERT INTO movieRoles(movieID,roleID) VALUES -- Hmmm
 (14,29),
 (14,30),
 (14,31),
-(14,32)
+(14,32),
 (15,33),
 (15,34),
 (15,35),
@@ -611,7 +611,7 @@ INSERT INTO director(directorID,firstName,lastName,country) VALUES -- change cou
 (DEFAULT,'Wolfgang','Peterson','Germany'),
 (DEFAULT,'David','Fincher','USA'),
 (DEFAULT,'Yimou','Zhang','China'),
-(DEFAULT,'John','Woo','China'),
+(DEFAULT,'John','Woo','China');
 
 INSERT INTO directs(directorID,movieID) VALUES
 (1,1),
@@ -646,8 +646,8 @@ INSERT INTO studio(studioID,studioName,country) VALUES
 (DEFAULT,'Studio Ghibli','Japan'),
 (DEFAULT,'Tohokushinsha Film Corporation','Japan'),
 (DEFAULT,'Tokuma Shoten','Japan'),
-(DEFAULT,'d-rights','Japan');
-(DEFAULT,'Paramount Pictures','USA'); -- 12
+(DEFAULT,'d-rights','Japan'),
+(DEFAULT,'Paramount Pictures','USA'), -- 12
 (DEFAULT,'New Line Cinema','USA'), -- ? different branch of New Line Cinema?
 (DEFAULT,'Warner Bros','USA'), -- 14
 (DEFAULT,'Pandora Cinema','USA'),
