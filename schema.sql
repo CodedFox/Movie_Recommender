@@ -1,7 +1,7 @@
 --All the schema for the Movie Recommendation system
 
 CREATE TABLE userAccount(
-  userID SERIAL,
+  userID SERIAL UNIQUE,
   password varchar(255) NOT NULL,
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE profile(
 );
 
 CREATE TABLE device(
-  deviceID SERIAL,
+  deviceID SERIAL UNIQUE,
   deviceName varchar(255),
   PRIMARY KEY (deviceID)
 );
@@ -35,13 +35,13 @@ CREATE TABLE deviceUsed(
 );
 
 CREATE TABLE topic(
-  topicID SERIAL,
+  topicID SERIAL UNIQUE,
   genre varchar(255),
   PRIMARY KEY (topicID)
 );
 
 CREATE TABLE movie(
-  movieID SERIAL,
+  movieID SERIAL UNIQUE,
   name varchar(255) NOT NULL,
   description varchar(255) NOT NULL,
   dateReleased date,
@@ -70,7 +70,7 @@ CREATE TABLE movieTopic(
 );
 
 CREATE TABLE actor(
-  actorID SERIAL,
+  actorID SERIAL UNIQUE,
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
   DateOfBirth date,
@@ -80,7 +80,7 @@ CREATE TABLE actor(
 );
 
 CREATE TABLE role(
-  roleID SERIAL,
+  roleID SERIAL UNIQUE,
   characterName varchar(255),
   PRIMARY KEY (roleID)
 );
@@ -108,7 +108,7 @@ CREATE TABLE movieRoles(
 );
 
 CREATE TABLE director(
-  directorID SERIAL,
+  directorID SERIAL UNIQUE,
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
   country varchar(255),
@@ -123,7 +123,7 @@ CREATE TABLE directs(
 );
 
 CREATE TABLE studio(
-  studioID SERIAL,
+  studioID SERIAL UNIQUE,
   studioName varchar(255) NOT NULL,
   country varchar(255) NOT NULL,
   PRIMARY KEY (studioID)
