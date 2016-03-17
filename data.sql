@@ -43,7 +43,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'The Lord of the Rings: The Fellowship of the Ring',
 'A meek Hobbit and eight companions set out on a journey to destroy the One Ring and the Dark Lord Sauron.',
 '2001-12-19',
-'2h 58min', -- hours & minutes split?
+'2:58:00',
 'English',
 'N',
 'New Zealand', -- & USA?
@@ -53,7 +53,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'The Lord of the Rings: The Two Towers',
 'While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron''s new ally, Saruman, and his hordes of Isengard.',
 '2002-12-18',
-'2h 59min', -- hours & minutes split?
+'2:59:00',
 'English',
 'N',
 'New Zealand', -- & USA?
@@ -63,7 +63,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'The Lord of the Rings: The Return of the King',
 'Gandalf and Aragorn lead the World of Men against Sauron''s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.',
 '2003-12-17',
-'3h 21min', -- hours & minutes split?
+'3:21:00',
 'English',
 'N',
 'New Zealand', -- & USA?
@@ -73,7 +73,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'Howl''s Moving Castle',
 'When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.',
 '2005-06-17',
-'1h 59min', -- hours & minutes split?
+'1:59:00',
 'English', -- ?
 'N', -- ?
 'Japan',
