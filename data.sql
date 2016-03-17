@@ -77,7 +77,77 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'English', -- ?
 'N', -- ?
 'Japan',
-'PG');
+'PG'),
+
+(DEFAULT,
+'Ghost',
+'After an accident leaves a young man dead, his spirit stays behind to warn his lover of impending danger, with the help of a reluctant psychic.',
+'1990-07-13',
+'2:07:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'PG-13'),
+
+(DEFAULT,
+'The Notebook',
+'A poor and passionate young man falls in love with a rich young woman and gives her a sense of freedom. They soon are separated by their social differences.',
+'2004-06-25',
+'2:03:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'PG-13'),
+
+(DEFAULT,
+'A Walk to Remember',
+'The story of two North Carolina teens, Landon Carter and Jamie Sullivan, who are thrown together after Landon gets into trouble and is made to do community service.',
+'2002-01-25',
+'1:41:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'PG'),
+
+(DEFAULT,
+'Dirty Dancing',
+'Spending the summer at a Catskills resort with her family, Frances "Baby" Houseman falls in love with the camp''s dance instructor, Johnny Castle.',
+'1987-08-21',
+'1:40:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'PG-13'),
+
+(DEFAULT,
+'Notting Hill',
+'The life of a simple bookshop owner changes when he meets the most famous film star in the world.',
+'1999-05-28',
+'2:04:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'PG-13'),
+
+(DEFAULT,
+'Pretty Woman',
+'A man in a legal but hurtful business needs an escort for some social events, and hires a beautiful prostitute he meets... only to fall in love.',
+'1990-03-23',
+'1:59:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'R'),
+
+(DEFAULT,
+'Say Anything',
+'A noble underachiever and a beautiful valedictorian fall in love the summer before she goes off to college.',
+'1989-04-14',
+'1:40:00',
+'English', -- ?
+'N', -- ?
+'USA',
+'PG-13');
 
 INSERT INTO watches(userID,movieID,dateWatched,userRating) VALUES
 (1,1,'2001-12-19',10),
