@@ -345,12 +345,11 @@ INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VAL
 (DEFAULT,'Takeshi','Kaneshiro','1973-10-11','Japanese/Taiwanese','M'), -- 39 -? two nationalities
 (DEFAULT,'Andy','Lau','1961-09-27','Chinese','M'), -- 40
 (DEFAULT,'ZiYi','Zhang','1979-02-09','Chinese','F'), -- 41
-(DEFAULT,'Gwyneth','Paltrow','1972-09-27','American','F'), -- 42
-(DEFAULT,'Jet','Li','1963-04-26','Chinese','M'), -- 43
-(DEFAULT,'Tony','Leung','1962-06-27','Chinese','M'), -- 44
-(DEFAULT,'Maggie','Cheung','1964-09-20','Chinese','F'), -- 45
-(DEFAULT,'Fengyi','Zhang','1956-09-01','Chinese','M'), -- 46
-(DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 47
+(DEFAULT,'Jet','Li','1963-04-26','Chinese','M'), -- 42
+(DEFAULT,'Tony','Leung','1962-06-27','Chinese','M'), -- 43
+(DEFAULT,'Maggie','Cheung','1964-09-20','Chinese','F'), -- 44
+(DEFAULT,'Fengyi','Zhang','1956-09-01','Chinese','M'), -- 45
+(DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 46
 
 INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Frodo'),
@@ -359,7 +358,50 @@ INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Aragorn'),
 (DEFAULT,'Sofie'),
 (DEFAULT,'Howl'),
-(DEFAULT,'Calcifer');
+(DEFAULT,'Calcifer'),
+(DEFAULT,'Sam Wheat'),
+(DEFAULT,'Molly Jensen'),
+(DEFAULT,'Allie'),
+(DEFAULT,'Noah'),
+(DEFAULT,'Lon Hammond'),
+(DEFAULT,'Landon Carter'),
+(DEFAULT,'Jamie Sullivan'),
+(DEFAULT,'Baby Houseman'),
+(DEFAULT,'Johnny Castle'),
+(DEFAULT,'Anna Scott'),
+(DEFAULT,'William Thacker'),
+(DEFAULT,'Edward Lewis'),
+(DEFAULT,'Vivian Ward'),
+(DEFAULT,'Lloyd Dobler'),
+(DEFAULT,'Diane Court'),
+(DEFAULT,'Jack Dawson'),
+(DEFAULT,'Rose DeWitt Bukater'),
+(DEFAULT,'Holly'),
+(DEFAULT,'Gerry'),
+(DEFAULT,'Tristan Ludlow'),
+(DEFAULT,'Col. William Ludlow'),
+(DEFAULT,'Alfred Ludlow'),
+(DEFAULT,'Susannah Fincannon'),
+(DEFAULT,'Samuel Ludlow'),
+(DEFAULT,'Achilles'),
+(DEFAULT,'Hector'),
+(DEFAULT,'Helen'),
+(DEFAULT,'Paris'),
+(DEFAULT,'Agamemnon'),
+(DEFAULT,'Mills'),
+(DEFAULT,'Somerset'),
+(DEFAULT,'Tracy'),
+(DEFAULT,'Jin'),
+(DEFAULT,'Leo'),
+(DEFAULT,'Xiao Mei'),
+(DEFAULT,'Nameless'),
+(DEFAULT,'Broken Sword'),
+(DEFAULT,'Flying Snow'),
+(DEFAULT,'Moon'),
+(DEFAULT,'Zhou Yu'),
+(DEFAULT,'Zhuge Liang'),
+(DEFAULT,'Cao Cao'),
+(DEFAULT,'Sun Shangxiang');
 
 INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (1,1,'Star'),
