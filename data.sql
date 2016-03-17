@@ -341,7 +341,7 @@ INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VAL
 (DEFAULT,'Rose','Byrne','1979-07-24','Austrailian','F'), -- 35
 (DEFAULT,'Morgan','Freeman','1937-06-01','American','M'), -- 36
 (DEFAULT,'Gwyneth','Paltrow','1972-09-27','American','F'), -- 37
-(DEFAULT,'Takeshi','Kaneshiro','1973-10-11','Japanese/Taiwanese','M'), -- 38 -? two nationalities
+(DEFAULT,'Takeshi','Kaneshiro','1973-10-11','Japanese/Taiwanese','M'), -- 38 -? two nationalities, place of birth would be better?
 (DEFAULT,'Andy','Lau','1961-09-27','Chinese','M'), -- 39
 (DEFAULT,'ZiYi','Zhang','1979-02-09','Chinese','F'), -- 40
 (DEFAULT,'Jet','Li','1963-04-26','Chinese','M'), -- 41
@@ -355,7 +355,7 @@ INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Gandalf'), -- 2
 (DEFAULT,'Legolas'), -- 3
 (DEFAULT,'Aragorn'), -- 4
-(DEFAULT,'Boromir'), -- 5
+(DEFAULT,'Boromir'), -- 5 -added the character boromir to lotr since I added sean bean to the db
 (DEFAULT,'Sofie'), -- 6
 (DEFAULT,'Howl'), -- 7
 (DEFAULT,'Calcifer'), -- 8
@@ -595,7 +595,7 @@ INSERT INTO movieRoles(movieID,roleID) VALUES -- Hmmm
 (20,51),
 (20,52);
 
-INSERT INTO director(directorID,firstName,lastName,country) VALUES
+INSERT INTO director(directorID,firstName,lastName,country) VALUES -- change country to place of birth?
 (DEFAULT,'Peter','Jackson','New Zealand'),
 (DEFAULT,'Hayao','Miyazaki','Japan'),
 (DEFAULT,'Jerry','Zucker','USA'),
@@ -648,7 +648,7 @@ INSERT INTO studio(studioID,studioName,country) VALUES
 (DEFAULT,'Tokuma Shoten','Japan'),
 (DEFAULT,'d-rights','Japan');
 (DEFAULT,'Paramount Pictures','USA'); -- 12
-(DEFAULT,'New Line Cinema','USA'), -- ? different branches of studios?
+(DEFAULT,'New Line Cinema','USA'), -- ? different branch of New Line Cinema?
 (DEFAULT,'Warner Bros','USA'), -- 14
 (DEFAULT,'Pandora Cinema','USA'),
 (DEFAULT,'Great American Films Limited Partnership','USA'),
