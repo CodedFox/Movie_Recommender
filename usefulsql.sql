@@ -45,6 +45,27 @@ DELETE FROM USERACCOUNT;
 
 
 
+-- VIEW TABLES
+SELECT * FROM ACTORROLES;
+SELECT * FROM DEVICEUSED;
+SELECT * FROM DIRECTS;
+SELECT * FROM MOVIECAST;
+SELECT * FROM MOVIEROLES;
+SELECT * FROM MOVIETOPIC;
+SELECT * FROM PROFILE;
+SELECT * FROM SPONSORS;
+SELECT * FROM WATCHES;
+SELECT * FROM ACTOR;
+SELECT * FROM DEVICE;
+SELECT * FROM DIRECTOR;
+SELECT * FROM MOVIE;
+SELECT * FROM ROLE;
+SELECT * FROM STUDIO;
+SELECT * FROM TOPIC;
+SELECT * FROM USERACCOUNT;
+
+
+
 -- INSERT INTO userAccount(userID,password,firstName,lastName,yearBorn,email,city,province,country) VALUES
 (DEFAULT,'password','firstName','lastName',yearBorn,'email','city','province','country')
 
@@ -97,7 +118,7 @@ FROM(
 	VALUES
 	('lotrfan@boy.ca','Desktop'),
 	('lotrfan@boy.ca','Mobile')
-) val(email,deviceName),userAccount UA,device d
+) val(email,deviceName),userAccount uA,device d
 WHERE uA.email = val.email AND d.deviceName = val.deviceName;
 
 /* Replace above with correct values! */
@@ -132,12 +153,12 @@ INSERT INTO watches(userID,movieID,dateWatched,userRating)
 SELECT uA.userID,m.movieID,val.dateWatched,val.userRating
 FROM(
 	VALUES
-	('lotrfan@boy.ca','The Lord of the Rings: The Fellowship of the Ring','year-month-day',userRating),
+	('lotrfan@boy.ca','The Lord of the Rings: The Fellowship of the Ring',cast('year-month-day' as date),userRating),
 	('lotrfan@boy.ca','The Lord of the Rings: The Two Towers','year-month-day',userRating)
-) val(email,name,dateWatched,userRating),userAccount UA,movie m
+) val(email,name,dateWatched,userRating),userAccount uA,movie m
 WHERE uA.email = val.email AND m.name = val.name;
 
-/* Replace above with correct values! 
+/* Replace above with correct values! May need: cast('year-month-day' as date)!!
 Something UNIQUE needed in movie..? */
 
 
@@ -263,8 +284,8 @@ Something UNIQUE needed in movie..? */
 
 
 
--- INSERT INTO sponsors(studioID,movieID) VALUES
-((SELECT studioID FROM studio WHERE studioName = ''),(SELECT movieID FROM movie WHERE name = ''))
+-- INSERT INTO sponsors(movieID,studioID) VALUES
+((SELECT movieID FROM movie WHERE name = ''),(SELECT studioID FROM studio WHERE studioName = ''))
 
 -- OR
 INSERT INTO sponsors(movieID,studioID)
