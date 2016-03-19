@@ -73,7 +73,7 @@ CREATE TABLE actor(
   actorID SERIAL UNIQUE,
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
-  DateOfBirth date,
+  dateOfBirth date,
   nationality varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
   PRIMARY KEY (actorID)
