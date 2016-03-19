@@ -14,7 +14,7 @@ INSERT INTO deviceUsed(userID,deviceID) VALUES
 (1,1),
 (1,2);
 
-INSERT INTO topic(topicID,genre) VALUES -- change to int?
+INSERT INTO topic(topicID,genre) VALUES
 (DEFAULT,'Action'), -- 1
 (DEFAULT,'Adventure'), -- 2
 (DEFAULT,'Animation'), -- 3
@@ -245,7 +245,7 @@ INSERT INTO watches(userID,movieID,dateWatched,userRating) VALUES
 (1,3,'2003-12-17',10),
 (1,4,'2005-06-17',10);
 
-INSERT INTO movieTopic(topicID,movieID) VALUES -- switch?
+INSERT INTO movieTopic(topicID,movieID) VALUES
 (2,1), 
 (8,1),
 (10,1),
@@ -303,14 +303,14 @@ INSERT INTO movieTopic(topicID,movieID) VALUES -- switch?
 (8,20),
 (12,20);
 
-INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VALUES -- 'D' to 'd'
+INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VALUES
 (DEFAULT,'Elijah','Wood','1981-01-28','American','M'), -- 1
 (DEFAULT,'Ian','McKellen','1939-05-25','English','M'), -- 2
 (DEFAULT,'Orlando','Bloom','1977-01-13','English','M'), -- 3
 (DEFAULT,'Viggo','Mortensen','1958-10-20','American','M'), -- 4
 (DEFAULT,'Chieko','Baishou','1941-06-29','Japanese','F'), -- 5
 (DEFAULT,'Takuya','Kimura','1972-11-13','Japanese','M'), --6
-(DEFAULT,'Tatsuya','Gashuuin','1950-12-10','Japanese','M'), -- 7  Date for actor but not user? Nationality or should it be place of birth for consistency?
+(DEFAULT,'Tatsuya','Gashuuin','1950-12-10','Japanese','M'), -- 7
 (DEFAULT,'Patrick','Swayze','1952-09-14','American','M'), -- 8
 (DEFAULT,'Demi','Moore','1962-11-11','American','F'), -- 9
 (DEFAULT,'Tony','Goldwyn','1960-05-20','American','M'), -- 10
@@ -419,7 +419,7 @@ INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (3,2,'Star'),
 (4,5,'Star'),
 (4,6,'Star'),
-(4,7,'Star'), -- Star? Main? Lead? Then supporting? bit? extra?
+(4,7,'Star'),
 (5,8,'Star'),
 (5,9,'Star'),
 (5,10,'Supporting'),
@@ -471,7 +471,7 @@ INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (20,44,'Star'),
 (20,45,'Supporting');
 
-INSERT INTO actorRoles(actorID,roleID) VALUES -- Hmmm
+INSERT INTO actorRoles(actorID,roleID) VALUES
 (1,1),
 (2,2),
 (3,3),
@@ -527,7 +527,7 @@ INSERT INTO actorRoles(actorID,roleID) VALUES -- Hmmm
 (10,53),
 (34,54);
 
-INSERT INTO movieRoles(movieID,roleID) VALUES -- Hmmm
+INSERT INTO movieRoles(movieID,roleID) VALUES
 (1,1),
 (1,2),
 (1,3),
@@ -595,7 +595,7 @@ INSERT INTO movieRoles(movieID,roleID) VALUES -- Hmmm
 (20,51),
 (20,52);
 
-INSERT INTO director(directorID,firstName,lastName,country) VALUES -- change country to place of birth?
+INSERT INTO director(directorID,firstName,lastName,country) VALUES
 (DEFAULT,'Peter','Jackson','New Zealand'),
 (DEFAULT,'Hayao','Miyazaki','Japan'),
 (DEFAULT,'Jerry','Zucker','USA'),
@@ -636,9 +636,9 @@ INSERT INTO directs(directorID,movieID) VALUES
 (16,20);
 
 INSERT INTO studio(studioID,studioName,country) VALUES
-(DEFAULT,'New Line Cinema','New Zealand'),
-(DEFAULT,'WingNut Films','United States of America'),
-(DEFAULT,'The Saul Zaentz Company','United States of America'),
+(DEFAULT,'New Line Cinema','New Zealand'), -- oops, supposed to be USA! will modify this row into another studio!!
+(DEFAULT,'WingNut Films','New Zealand'),
+(DEFAULT,'The Saul Zaentz Company','USA'),
 (DEFAULT,'Buena Vista Home Entertainment','Japan'),
 (DEFAULT,'DENTSU Music and Entertainment','Japan'),
 (DEFAULT,'Mitsubishi','Japan'),
@@ -670,14 +670,14 @@ INSERT INTO studio(studioID,studioName,country) VALUES
 (DEFAULT,'China Film Group','China'),
 (DEFAULT,'Lion Rock Productions','USA');
 
-INSERT INTO sponsors(studioID,movieID) VALUES -- switch?
-(1,1),
+INSERT INTO sponsors(studioID,movieID) VALUES
+(13,1),
 (2,1),
 (3,1),
-(1,2),
+(13,2),
 (2,2),
 (3,2),
-(1,3),
+(13,3),
 (2,3),
 (3,3),
 (4,4),
