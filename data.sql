@@ -1,20 +1,20 @@
 --All data inputs for the Movie Recommendation system
 
-INSERT INTO userAccount(userID,password,firstName,lastName,yearBorn,email,city,province,country) VALUES
+INSERT INTO users(userID,password,firstName,lastName,yearBorn,email,city,province,country) VALUES
 (DEFAULT,'ilovelotr','Jonathan','Buttbutt',1900,'lotrfan@boy.ca','Ottawa','Ontario','Canada');
 
-INSERT INTO profile(userID,ageRange,gender,occupation) VALUES
+INSERT INTO profiles(userID,ageRange,gender,occupation) VALUES
 (1,'100+','M','Student');
 
-INSERT INTO device(deviceID,deviceName) VALUES
+INSERT INTO devices(deviceID,deviceName) VALUES
 (DEFAULT,'Desktop'),
 (DEFAULT,'Mobile');
 
-INSERT INTO deviceUsed(userID,deviceID) VALUES
+INSERT INTO devices_used(userID,deviceID) VALUES
 (1,1),
 (1,2);
 
-INSERT INTO topic(topicID,genre) VALUES
+INSERT INTO topics(topicID,genre) VALUES
 (DEFAULT,'Action'), -- 1
 (DEFAULT,'Adventure'), -- 2
 (DEFAULT,'Animation'), -- 3
@@ -38,7 +38,7 @@ INSERT INTO topic(topicID,genre) VALUES
 (DEFAULT,'War'), -- 21
 (DEFAULT,'Western'); -- 22
 
-INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtitles,dubbed,country,ageRating) VALUES
+INSERT INTO movies(movieID,name,description,dateReleased,duration,language,subtitles,dubbed,country,ageRating) VALUES
 (DEFAULT,
 'The Lord of the Rings: The Fellowship of the Ring',
 'A meek Hobbit and eight companions set out on a journey to destroy the One Ring and the Dark Lord Sauron.',
@@ -265,7 +265,7 @@ INSERT INTO watches(userID,movieID,dateWatched,userRating) VALUES
 (1,3,'2003-12-17',10),
 (1,4,'2005-06-17',10);
 
-INSERT INTO movieTopic(topicID,movieID) VALUES
+INSERT INTO movie_topics(topicID,movieID) VALUES
 (2,1), 
 (8,1),
 (10,1),
@@ -323,7 +323,7 @@ INSERT INTO movieTopic(topicID,movieID) VALUES
 (8,20),
 (12,20);
 
-INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,placeOfBirth,gender) VALUES
+INSERT INTO actors(actorID,firstName,lastName,dateOfBirth,placeOfBirth,gender) VALUES
 (DEFAULT,'Elijah','Wood','1981-01-28','American','M'), -- 1
 (DEFAULT,'Ian','McKellen','1939-05-25','English','M'), -- 2
 (DEFAULT,'Orlando','Bloom','1977-01-13','English','M'), -- 3
@@ -370,7 +370,7 @@ INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,placeOfBirth,gender) VA
 (DEFAULT,'Fengyi','Zhang','1956-09-01','Chinese','M'), -- 44
 (DEFAULT,'Wei','Zhao','1976-03-12','Chinese','F'); -- 45
 
-INSERT INTO role(roleID,characterName) VALUES
+INSERT INTO roles(roleID,characterName) VALUES
 (DEFAULT,'Frodo'), -- 1
 (DEFAULT,'Gandalf'), -- 2
 (DEFAULT,'Legolas'), -- 3
@@ -426,7 +426,7 @@ INSERT INTO role(roleID,characterName) VALUES
 (DEFAULT,'Carl Bruner'), -- 53
 (DEFAULT,'Odysseus'); -- 54
 
-INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
+INSERT INTO movie_casts(movieID,actorID,castingRole) VALUES
 (1,1,'Star'),
 (1,2,'Star'),
 (1,3,'Star'),
@@ -491,7 +491,7 @@ INSERT INTO movieCast(movieID,actorID,castingRole) VALUES
 (20,44,'Star'),
 (20,45,'Supporting');
 
-INSERT INTO actorRoles(actorID,roleID) VALUES
+INSERT INTO actor_roles(actorID,roleID) VALUES
 (1,1),
 (2,2),
 (3,3),
@@ -547,7 +547,7 @@ INSERT INTO actorRoles(actorID,roleID) VALUES
 (10,53),
 (34,54);
 
-INSERT INTO movieRoles(movieID,roleID) VALUES
+INSERT INTO movie_roles(movieID,roleID) VALUES
 (1,1),
 (1,2),
 (1,3),
@@ -615,7 +615,7 @@ INSERT INTO movieRoles(movieID,roleID) VALUES
 (20,51),
 (20,52);
 
-INSERT INTO director(directorID,firstName,lastName,placeOfBirth) VALUES
+INSERT INTO directors(directorID,firstName,lastName,placeOfBirth) VALUES
 (DEFAULT,'Peter','Jackson','New Zealand'),
 (DEFAULT,'Hayao','Miyazaki','Japan'),
 (DEFAULT,'Jerry','Zucker','USA'),
@@ -655,7 +655,7 @@ INSERT INTO directs(directorID,movieID) VALUES
 (16,19),
 (16,20);
 
-INSERT INTO studio(studioID,studioName,country) VALUES
+INSERT INTO studios(studioID,studioName,country) VALUES
 (DEFAULT,'New Line Cinema','New Zealand'), -- oops, supposed to be USA! will modify this row into another studio!!
 (DEFAULT,'WingNut Films','New Zealand'),
 (DEFAULT,'The Saul Zaentz Company','USA'),
