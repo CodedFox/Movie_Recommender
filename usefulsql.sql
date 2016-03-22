@@ -119,13 +119,14 @@ WHERE uA.email = val.email AND d.deviceName = val.deviceName;
 
 
 
--- INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtitles,country,ageRating) VALUES
+-- INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtitles,dubbed,country,ageRating) VALUES
 (DEFAULT,
 'name',
 'description',
 'year-month-day',
 'h:min:00',
 'language',
+'YorN',
 'YorN',
 'country',
 'ageRating')

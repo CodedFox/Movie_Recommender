@@ -38,7 +38,7 @@ INSERT INTO topic(topicID,genre) VALUES
 (DEFAULT,'War'), -- 21
 (DEFAULT,'Western'); -- 22
 
-INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtitles,country,ageRating) VALUES
+INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtitles,dubbed,country,ageRating) VALUES
 (DEFAULT,
 'The Lord of the Rings: The Fellowship of the Ring',
 'A meek Hobbit and eight companions set out on a journey to destroy the One Ring and the Dark Lord Sauron.',
@@ -46,7 +46,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2:58:00',
 'English',
 'N',
-'New Zealand', -- & USA?
+'N',
+'USA',
 'PG-13'),
 
 (DEFAULT,
@@ -56,7 +57,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2:59:00',
 'English',
 'N',
-'New Zealand', -- & USA?
+'N',
+'USA',
 'PG-13'),
 
 (DEFAULT,
@@ -66,7 +68,8 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '3:21:00',
 'English',
 'N',
-'New Zealand', -- & USA?
+'N',
+'USA',
 'PG-13'),
 
 (DEFAULT,
@@ -74,8 +77,9 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 'When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.',
 '2005-06-17',
 '1:59:00',
-'Japanese', -- ?
-'N', -- ?
+'Japanese',
+'Y',
+'Y',
 'Japan',
 'PG'),
 
@@ -85,6 +89,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1990-07-13',
 '2:07:00',
 'English',
+'N',
 'N',
 'USA',
 'PG-13'),
@@ -96,6 +101,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2:03:00',
 'English',
 'N',
+'N',
 'USA',
 'PG-13'),
 
@@ -105,6 +111,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2002-01-25',
 '1:41:00',
 'English',
+'N',
 'N',
 'USA',
 'PG'),
@@ -116,6 +123,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1:40:00',
 'English',
 'N',
+'N',
 'USA',
 'PG-13'),
 
@@ -125,6 +133,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1999-05-28',
 '2:04:00',
 'English',
+'N',
 'N',
 'USA',
 'PG-13'),
@@ -136,6 +145,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1:59:00',
 'English',
 'N',
+'N',
 'USA',
 'R'),
 
@@ -145,6 +155,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1989-04-14',
 '1:40:00',
 'English',
+'N',
 'N',
 'USA',
 'PG-13'),
@@ -156,6 +167,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '3:14:00',
 'English',
 'N',
+'N',
 'USA',
 'PG-13'),
 
@@ -165,6 +177,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2007-12-21',
 '2:06:00',
 'English',
+'N',
 'N',
 'USA',
 'PG-13'),
@@ -176,6 +189,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2:13:00',
 'English',
 'N',
+'N',
 'USA',
 'R'),
 
@@ -185,6 +199,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2004-05-14',
 '2:43:00',
 'English',
+'N',
 'N',
 'USA',
 'R'),
@@ -196,6 +211,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2:07:00',
 'English',
 'N',
+'N',
 'USA',
 'R'),
 
@@ -205,6 +221,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2004-07-16',
 '1:59:00',
 'Mandarin', -- ?
+'Y',
 'Y',
 'China', --? 
 'PG-13'),
@@ -216,6 +233,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1:39:00',
 'Mandarin', -- ?
 'Y',
+'N',
 'China', --?
 'PG-13'),
 
@@ -226,6 +244,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '2:28:00',
 'Mandarin', -- ?
 'Y',
+'N',
 'China', --?
 'R'),
 
@@ -236,6 +255,7 @@ INSERT INTO movie(movieID,name,description,dateReleased,duration,language,subtit
 '1:39:00',
 'Mandarin', -- ?
 'Y', -- ?
+'N',
 'China',
 'R'); --?
 
