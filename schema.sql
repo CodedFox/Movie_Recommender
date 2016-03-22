@@ -1,138 +1,138 @@
 --All the schema for the Movie Recommendation system
 
 CREATE TABLE users(
-  userID SERIAL UNIQUE,
+  user_id SERIAL UNIQUE,
   password varchar(255) NOT NULL,
-  firstName varchar(255) NOT NULL,
-  lastName varchar(255) NOT NULL,
-  yearBorn int,
+  first_name varchar(255) NOT NULL,
+  last_name varchar(255) NOT NULL,
+  year_born int,
   email varchar(255) UNIQUE,
   city varchar(255),
   province varchar(255),
   country varchar(255),
-  PRIMARY KEY (userID)
+  PRIMARY KEY (user_id)
 );
 
 CREATE TABLE profiles(
-  userID int,
-  ageRange varchar(255) CHECK (ageRange in ('0-13','14-17','18-20','20-30','30-40','40-50','60-70','80-90','100+')),
+  user_id int,
+  age_range varchar(255) CHECK (age_range in ('0-13','14-17','18-20','20-30','30-40','40-50','60-70','80-90','100+')),
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
-  FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE devices(
-  deviceID SERIAL UNIQUE,
-  deviceName varchar(255),
-  PRIMARY KEY (deviceID)
+  device_id SERIAL UNIQUE,
+  device_name varchar(255),
+  PRIMARY KEY (device_id)
 );
 
 CREATE TABLE devices_used(
-  deviceID int NOT NULL,
-  userID int NOT NULL,
-  FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE,
-  FOREIGN KEY (deviceID) REFERENCES devices(deviceID)
+  device_id int NOT NULL,
+  user_id int NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (device_id) REFERENCES devices(device_id)
 );
 
 CREATE TABLE topics(
-  topicID SERIAL UNIQUE,
+  topic_id SERIAL UNIQUE,
   genre varchar(255),
-  PRIMARY KEY (topicID)
+  PRIMARY KEY (topic_id)
 );
 
 CREATE TABLE movies(
-  movieID SERIAL UNIQUE,
+  movie_id SERIAL UNIQUE,
   name varchar(255) NOT NULL,
   description varchar(255) NOT NULL,
-  dateReleased date,
+  date_released date,
   duration time,
   language varchar(255),
   subtitles char(1) CHECK (subtitles in ('Y','N')),
   dubbed char(1) CHECK (subtitles in ('Y','N')),
   country varchar(255),
-  ageRating varchar(255),
-  PRIMARY KEY (movieID)
+  age_rating varchar(255),
+  PRIMARY KEY (movie_id)
 );
 
 CREATE TABLE watches(
-  userID int,
-  movieID int,
-  dateWatched date,
-  userRating int CHECK (userRating BETWEEN 0 AND 10),
-  FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE,
-  FOREIGN KEY (movieID) REFERENCES movies(movieID) ON DELETE CASCADE
+  user_id int,
+  movie_id int,
+  date_watched date,
+  user_rating int CHECK (user_rating BETWEEN 0 AND 10),
+  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
 );
 
 CREATE TABLE movie_topics(
-  topicID int,
-  movieID int,
-  FOREIGN KEY (topicID) REFERENCES topics(topicID) ON DELETE CASCADE,
-  FOREIGN KEY (movieID) REFERENCES movies(movieID) ON DELETE CASCADE
+  topic_id int,
+  movie_id int,
+  FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
 );
 
 CREATE TABLE actors(
-  actorID SERIAL UNIQUE,
-  firstName varchar(255) NOT NULL,
-  lastName varchar(255) NOT NULL,
-  dateOfBirth date,
-  placeOfBirth varchar(255),
+  actor_id SERIAL UNIQUE,
+  first_name varchar(255) NOT NULL,
+  last_name varchar(255) NOT NULL,
+  date_of_birth date,
+  place_of_birth varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
-  PRIMARY KEY (actorID)
+  PRIMARY KEY (actor_id)
 );
 
 CREATE TABLE roles(
-  roleID SERIAL UNIQUE,
-  characterName varchar(255),
-  PRIMARY KEY (roleID)
+  role_id SERIAL UNIQUE,
+  character_name varchar(255),
+  PRIMARY KEY (role_id)
 );
 
 CREATE TABLE movie_casts(
-  movieID int,
-  actorID int,
-  castingRole varchar(255) CHECK (castingRole in ('Star','Supporting')),
-  FOREIGN KEY (actorID) REFERENCES actors(actorID) ON DELETE SET NULL,
-  FOREIGN KEY (movieID) REFERENCES movies(movieID) ON DELETE CASCADE
+  movie_id int,
+  actor_id int,
+  casting_role varchar(255) CHECK (casting_role in ('Star','Supporting')),
+  FOREIGN KEY (actor_id) REFERENCES actors(actor_id) ON DELETE SET NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
 );
 
 CREATE TABLE actor_roles(
-  actorID int,
-  roleID int,
-  FOREIGN KEY (actorID) REFERENCES actors(actorID) ON DELETE CASCADE,
-  FOREIGN KEY (roleID) REFERENCES roles(roleID) ON DELETE CASCADE
+  actor_id int,
+  role_id int,
+  FOREIGN KEY (actor_id) REFERENCES actors(actor_id) ON DELETE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
 );
 
 CREATE TABLE movie_roles(
-  movieID int,
-  roleID int,
-  FOREIGN KEY (movieID) REFERENCES movies(movieID) ON DELETE CASCADE,
-  FOREIGN KEY (roleID) REFERENCES roles(roleID) ON DELETE CASCADE
+  movie_id int,
+  role_id int,
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
 );
 
 CREATE TABLE directors(
-  directorID SERIAL UNIQUE,
-  firstName varchar(255) NOT NULL,
-  lastName varchar(255) NOT NULL,
-  placeOfBirth varchar(255),
-  PRIMARY KEY (directorID)
+  director_id SERIAL UNIQUE,
+  first_name varchar(255) NOT NULL,
+  last_name varchar(255) NOT NULL,
+  place_of_birth varchar(255),
+  PRIMARY KEY (director_id)
 );
 
 CREATE TABLE directs(
-  directorID int,
-  movieID int,
-  FOREIGN KEY (movieID) REFERENCES movies(movieID) ON DELETE CASCADE,
-  FOREIGN KEY (directorID) REFERENCES directors(directorID) ON DELETE CASCADE
+  director_id int,
+  movie_id int,
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
+  FOREIGN KEY (director_id) REFERENCES directors(director_id) ON DELETE CASCADE
 );
 
 CREATE TABLE studios(
-  studioID SERIAL UNIQUE,
-  studioName varchar(255) NOT NULL,
+  studio_id SERIAL UNIQUE,
+  studio_name varchar(255) NOT NULL,
   country varchar(255) NOT NULL,
-  PRIMARY KEY (studioID)
+  PRIMARY KEY (studio_id)
 );
 
 CREATE TABLE sponsors(
-  studioID int,
-  movieID int,
-  FOREIGN KEY (movieID) REFERENCES movies(movieID) ON DELETE CASCADE,
-  FOREIGN KEY (studioID) REFERENCES studios(studioID) ON DELETE CASCADE
+  studio_id int,
+  movie_id int,
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
+  FOREIGN KEY (studio_id) REFERENCES studios(studio_id) ON DELETE CASCADE
 );
