@@ -15,7 +15,7 @@ CREATE TABLE userAccount(
 
 CREATE TABLE profile(
   userID int,
-  ageRange varchar(255),
+  ageRange varchar(255) CHECK (ageRange in ('0-13','14-17','18-20','20-30','30-40','40-50','60-70','80-90','100+')),
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
   FOREIGN KEY (userID) REFERENCES userAccount(userID) ON DELETE CASCADE
@@ -59,7 +59,7 @@ CREATE TABLE watches(
   dateWatched date,
   userRating int CHECK (userRating BETWEEN 0 AND 10),
   FOREIGN KEY (userID) REFERENCES userAccount(userID) ON DELETE CASCADE,
-  FOREIGN KEY (movieID) REFERENCES movie(movieID) -- TODO: should we cascade delete from 'movie'? or keep record of viewing?
+  FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE
 );
 
 CREATE TABLE movieTopic(
@@ -74,7 +74,7 @@ CREATE TABLE actor(
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
   dateOfBirth date,
-  nationality varchar(255),
+  placeOfBirth varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
   PRIMARY KEY (actorID)
 );
@@ -88,7 +88,7 @@ CREATE TABLE role(
 CREATE TABLE movieCast(
   movieID int,
   actorID int,
-  castingRole varchar(255),   --lead, support, extra, etc...
+  castingRole varchar(255) CHECK (castingRole in ('Star','Supporting')),
   FOREIGN KEY (actorID) REFERENCES actor(actorID) ON DELETE SET NULL,
   FOREIGN KEY (movieID) REFERENCES movie(movieID) ON DELETE CASCADE
 );
@@ -111,7 +111,7 @@ CREATE TABLE director(
   directorID SERIAL UNIQUE,
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
-  country varchar(255),
+  placeOfBirth varchar(255),
   PRIMARY KEY (directorID)
 );
 

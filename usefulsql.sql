@@ -86,18 +86,7 @@ FROM(
 ) val(email,ageRange,gender,occupation),userAccount uA
 WHERE uA.email = val.email;
 
-/* Replace above with correct values!
-
-Age Ranges?
-0-13
-14-17
-18-20
-20-30
-30-40
-40-50
-60-70
-80-90
-100+ */
+/* Replace above with correct values! */
 
 
 
@@ -182,11 +171,10 @@ Something UNIQUE needed in movie..? */
 
 
 
--- INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,nationality,gender) VALUES
+-- INSERT INTO actor(actorID,firstName,lastName,dateOfBirth,placeOfBirth,gender) VALUES
 (DEFAULT,'firstName','lastName','year-month-day','nationality','MorF')
 
-/* Change nationality to placeOfBirth?
-Something needs a UNIQUE constraint? */
+/* Something needs a UNIQUE constraint? */
 
 
 
@@ -209,11 +197,7 @@ FROM(
 WHERE m.name = val.name AND a.firstName = val.firstName AND a.lastName = val.lastName;
 
 /* Something UNIQUE needed in movie..?
-Something UNIQUE needed in actor..?
-
-Casting Roles?
-Star
-Supporting */
+Something UNIQUE needed in actor..? */
 
 
 
@@ -251,11 +235,10 @@ WHERE m.name = val.name AND r.characterName = val.characterName;
 
 
 
--- INSERT INTO director(directorID,firstName,lastName,country) VALUES
+-- INSERT INTO director(directorID,firstName,lastName,placeOfBirth) VALUES
 (DEFAULT,'firstName','lastName','country')
 
-/* Change country to placeOfBirth?
-Something needs a UNIQUE constraint? */
+/* Something needs a UNIQUE constraint? */
 
 
 
@@ -299,9 +282,3 @@ WHERE m.name = val.name AND s.studioName = val.studioName;
 
 /* Switched movieID & studioID positions!!
 Something UNIQUE needed in studio..? */
-
- 
- 
- 
- 
-/* CONFUSED ABOUT ACTOR ROLES & MOVIE ROLES AGAIN; PLEASE EXPLAIN <3 */
