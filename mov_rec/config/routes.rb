@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :users
+  resources :directors
+  resources :actors
+  resources :movies
   resources :profiles
   get "/home" => "pages#home"
   root "pages#home"

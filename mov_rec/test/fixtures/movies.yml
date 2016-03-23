@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  date_released: MyString
+  duration: 2016-03-22 23:48:39
+  language: MyString
+  subtitles: MyString
+  dubbed: MyString
+  country: MyString
+  age_rating: MyString
+
+two:
+  name: MyString
+  description: MyText
+  date_released: MyString
+  duration: 2016-03-22 23:48:39
+  language: MyString
+  subtitles: MyString
+  dubbed: MyString
+  country: MyString
+  age_rating: MyString

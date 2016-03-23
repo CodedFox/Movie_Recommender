@@ -1,11 +1,11 @@
 --All the schema for the Movie Recommendation system
 
-CREATE TABLE users(
+CREATE TABLE users( -- model
   user_id SERIAL UNIQUE,
   password varchar(255) NOT NULL,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
-  year_born int,
+  year_born int, -- changed to date_of_birth
   email varchar(255) UNIQUE,
   city varchar(255),
   province varchar(255),
@@ -13,7 +13,7 @@ CREATE TABLE users(
   PRIMARY KEY (user_id)
 );
 
-CREATE TABLE profiles(
+CREATE TABLE profiles( -- view
   user_id int,
   age_range varchar(255) CHECK (age_range in ('0-13','14-17','18-20','20-30','30-40','40-50','60-70','80-90','100+')),
   gender char(1) CHECK (gender in ('M','F')),
@@ -21,13 +21,13 @@ CREATE TABLE profiles(
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE devices(
+CREATE TABLE devices( -- do we need a view for devices? 
   device_id SERIAL UNIQUE,
   device_name varchar(255),
   PRIMARY KEY (device_id)
 );
 
-CREATE TABLE devices_used(
+CREATE TABLE devices_used( 
   device_id int NOT NULL,
   user_id int NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
@@ -40,7 +40,7 @@ CREATE TABLE topics(
   PRIMARY KEY (topic_id)
 );
 
-CREATE TABLE movies(
+CREATE TABLE movies( -- view
   movie_id SERIAL UNIQUE,
   name varchar(255) NOT NULL,
   description varchar(255) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE movie_topics(
   FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
 );
 
-CREATE TABLE actors(
+CREATE TABLE actors( --view
   actor_id SERIAL UNIQUE,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE movie_roles(
   FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
 );
 
-CREATE TABLE directors(
+CREATE TABLE directors( -- view
   director_id SERIAL UNIQUE,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE directors(
   PRIMARY KEY (director_id)
 );
 
-CREATE TABLE directs(
+CREATE TABLE directs( 
   director_id int,
   movie_id int,
   FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
