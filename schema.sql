@@ -1,6 +1,6 @@
 --All the schema for the Movie Recommendation system
 
-CREATE TABLE users( -- model
+CREATE TABLE users( -- view
   user_id SERIAL UNIQUE,
   password varchar(255) NOT NULL,
   first_name varchar(255) NOT NULL,
