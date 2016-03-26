@@ -269,17 +269,17 @@ Something UNIQUE needed in movie..? */
 
 
 -- INSERT INTO sponsors(movie_id,studio_id) VALUES
-((SELECT movie_id FROM movies WHERE name = '' AND date_released = ''),(SELECT studio_id FROM studios WHERE studio_name = ''))
+((SELECT movie_id FROM movies WHERE name = '' AND date_released = ''),(SELECT studio_id FROM studios WHERE studio_name = '' AND country = ''))
 
 -- OR
 INSERT INTO sponsors(movie_id,studio_id)
 SELECT m.movie_id,s.studio_id
 FROM(
 	VALUES
-	('The Lord of the Rings: The Fellowship of the Ring',cast('year-month-day' as date),'New Line Cinema'),
-	('The Lord of the Rings: The Fellowship of the Ring','year-month-day','WingNut Films')
-) val(name,date_released,studio_name),movies m,studios s
-WHERE m.name = val.name AND m.date_released = val.date_released AND s.studio_name = val.studio_name;
+	('The Lord of the Rings: The Fellowship of the Ring',cast('year-month-day' as date),'New Line Cinema','country'),
+	('The Lord of the Rings: The Fellowship of the Ring','year-month-day','WingNut Films','country')
+) val(name,date_released,studio_name,country),movies m,studios s
+WHERE m.name = val.name AND m.date_released = val.date_released AND s.studio_name = val.studio_name AND s.country = val.country;
 
 /* Switched movie_id & studio_id positions!!
 Something UNIQUE needed in studio..? */
