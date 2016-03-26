@@ -48,7 +48,7 @@ CREATE TABLE movies( -- view
   duration time,
   language varchar(255),
   subtitles char(1) CHECK (subtitles in ('Y','N')),
-  dubbed char(1) CHECK (subtitles in ('Y','N')),
+  dubbed char(1) CHECK (dubbed in ('Y','N')),
   country varchar(255),
   age_rating varchar(255),
   PRIMARY KEY (movie_id)
