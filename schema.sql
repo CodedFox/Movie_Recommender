@@ -10,7 +10,9 @@ CREATE TABLE users( -- view
   city varchar(255),
   province varchar(255),
   country varchar(255),
-  PRIMARY KEY (user_id)
+  type_id int,
+  PRIMARY KEY (user_id),
+  FOREIGN KEY (type_id) REFERENCES user_types(type_id)
 );
 
 CREATE TABLE profiles( -- view
@@ -21,15 +23,20 @@ CREATE TABLE profiles( -- view
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE devices( -- do we need a view for devices? 
+CREATE TABLE user_types(
+  type_id SERIAL UNIQUE,
+  type_name varchar(255) UNIQUE,
+);
+
+CREATE TABLE devices( -- do we need a view for devices?
   device_id SERIAL UNIQUE,
   device_name varchar(255),
   PRIMARY KEY (device_id)
 );
 
-CREATE TABLE devices_used( 
-  device_id int NOT NULL,
+CREATE TABLE devices_used(
   user_id int NOT NULL,
+  device_id int NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
   FOREIGN KEY (device_id) REFERENCES devices(device_id)
 );
@@ -59,15 +66,16 @@ CREATE TABLE watches(
   movie_id int,
   date_watched date,
   user_rating int CHECK (user_rating BETWEEN 0 AND 10),
+  review varchar(255),
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
   FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
 );
 
 CREATE TABLE movie_topics(
-  topic_id int,
   movie_id int,
-  FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+  topic_id int,
   FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
+  FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
 );
 
 CREATE TABLE actors( --view
@@ -112,11 +120,12 @@ CREATE TABLE directors( -- view
   director_id SERIAL UNIQUE,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
+  date_of_birth varchar(255),
   place_of_birth varchar(255),
   PRIMARY KEY (director_id)
 );
 
-CREATE TABLE directs( 
+CREATE TABLE directs(
   director_id int,
   movie_id int,
   FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,

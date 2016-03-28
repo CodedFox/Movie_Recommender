@@ -4,43 +4,42 @@ CSI 2132 final group project.
 
 -Schema-
 
-User(UserID, password, last‐name, first‐name, email, city, province, country…)
+users(user_id, password, first_name, last_name, year_born, email, city, province, country, type_id…)
 
-Profile(UserID, age‐range, year‐born, gender, occupation, …)
+profiles(user_id, age_range, gender, occupation, …)
 
-DeviceUsed(deviceID, userID)
+user_types(type_id, type_name)
 
-Device(deviceID, device-name)
+devices(deive_id, device_name)
 
-Topics(TopicID, genre) // e.g. (100, Horror) or (101, Comedy) This table implicitly refer to the genre(s) of a movie.
+devices_used(user_id, device_id)
 
-Movie(MovieID, name, description, date‐released, duration, language, subtitles (y/n), country, age-rating, …)
+topics(topic_id, genre) // e.g. (100, Horror) or (101, Comedy) This table implicitly refer to the genre(s) of a movie.
 
-Watches(UserID, MovieID, date-watched, user-rating, …)
+movies(movie_id, name, description, date_released, duration, language, subtitles (y/n), dubbed (y/n), country, age_rating, …)
 
-MovieTopics(TopicID, MovieID, …)
+watches(user_id, movie_id, date_watched, user_rating, review, …)
 
-Actor(ActorID, last‐name, first‐name, DateofBirth, nationality, gender, …)
+movie_topics(movie_id, topic_id, …)
 
-Role(RoleID, character-name, …)
+actors(actor_id, first_name, last_name, date_of_birth, place_of_birth, gender, …)
 
-MovieCast(MovieID, ActorID, castingRole,…) (castingRole: Lead, support, extra, etc...)
+roles(role_id, character_name, …)
 
-MovieRoles(MovieID, RoleID)
+movie_casts(movie_id, actor_id, casting_role, …) (castingRole: Lead/Support)
 
-ActorRoles(ActorID, RoleID)
+actor_roles(actor_id, role_id)
 
-Director(DirectorID, lastname, firstname, country, …)
+movie_roles(movie_id, role_id)
 
-Directs(DirectorID, MovieID, …)
+directors(director_id, first_name, last_name, date_of_birth, place_of_birth, …)
 
-Studio(StudioID, name, country, …)
+directs(director_id, movie_id, …)
 
-Sponsors(StudioID, MovieID, …)
+studios(studio_id, studio_name, country, …)
 
+sponsors(studio_id, movie_id, …)
 
-
-We are free to use any front-end software desired. Wordpress and Wix are not excluded.
 
 
 -Genres-
