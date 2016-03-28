@@ -77,3 +77,33 @@ Faith,
 Independent,
 Video Game,
 Novel.
+
+
+
+==========================================================
+
+Start Command Prompt with Ruby
+>rails new mov_rec -d postgresql
+
+IN \mov_rec\config\database.yml,
+BELOW database: mov_rec_development PASTE:
+username: [insertusername]
+password: [insertpassword]
+
+BELOW database: mov_rec_test PASTE:
+username: [insertusername]
+password: [insertpassword]
+
+-- ABOVE ARE STEPS YOU NEVER HAVE TO DO AGAIN. (I think).
+
+REPLACE \mov_rec\config\routes.rb with Qufei's
+REPLACE \mov_rec\db folder with Qufei's
+REPLACE \mov_rec\test folder with Qufei's
+REPLACE \mov_rec\app folder with Qufei's
+
+IN \mov_rec\app\views\layouts\application.html.erb,
+REPLACE 'application' with 'default' in two areas!
+
+>cd mov_rec
+>rake db:create
+>rake db:migrate
