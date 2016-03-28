@@ -88,6 +88,12 @@ CREATE TABLE actors( --view
   PRIMARY KEY (actor_id)
 );
 
+CREATE TABLE casting_types(
+  cast_id SERIAL UNIQUE,
+  cast_type varchar(255) UNIQUE,
+  PRIMARY KEY (cast_id)
+)
+
 CREATE TABLE roles(
   role_id SERIAL UNIQUE,
   character_name varchar(255),
@@ -97,9 +103,10 @@ CREATE TABLE roles(
 CREATE TABLE movie_casts(
   movie_id int,
   actor_id int,
-  casting_role varchar(255) CHECK (casting_role in ('Star','Supporting')),
+  cast_id int,
   FOREIGN KEY (actor_id) REFERENCES actors(actor_id) ON DELETE SET NULL,
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
+  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
+  FOREIGN KEY (cast_id) REFERENCES casting_types(cast_id) ON DELETE SET NULL
 );
 
 CREATE TABLE actor_roles(

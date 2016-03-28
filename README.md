@@ -24,9 +24,12 @@ movie_topics(movie_id, topic_id, …)
 
 actors(actor_id, first_name, last_name, date_of_birth, place_of_birth, gender, …)
 
+casting_types(cast_id, cast_type, …)
+(cast_type: Lead/Support)
+
 roles(role_id, character_name, …)
 
-movie_casts(movie_id, actor_id, casting_role, …) (castingRole: Lead/Support)
+movie_casts(movie_id, actor_id, cast_id, …)
 
 actor_roles(actor_id, role_id)
 
