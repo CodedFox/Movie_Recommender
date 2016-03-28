@@ -4,7 +4,7 @@ CSI 2132 final group project.
 
 -Schema-
 
-users(user_id, password, first_name, last_name, year_born, email, city, province, country, type_id…)
+users(user_id, email, password, first_name, last_name, year_born, city, province, country, type_id…)
 
 profiles(user_id, age_range, gender, occupation, …)
 

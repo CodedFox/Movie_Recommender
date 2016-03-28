@@ -2,11 +2,11 @@
 
 CREATE TABLE users( -- view
   user_id SERIAL UNIQUE,
+  email varchar(255) UNIQUE,
   password varchar(255) NOT NULL,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
   year_born int, -- changed to date_of_birth
-  email varchar(255) UNIQUE,
   city varchar(255),
   province varchar(255),
   country varchar(255),
