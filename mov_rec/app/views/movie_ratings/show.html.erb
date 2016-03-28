@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date watched:</strong>
+  <%= @movie_rating.date_watched %>
+</p>
+
+<p>
+  <strong>User rating:</strong>
+  <%= @movie_rating.user_rating %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @movie_rating.review %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @movie_rating.user %>
+</p>
+
+<p>
+  <strong>Movie:</strong>
+  <%= @movie_rating.movie %>
+</p>
+
+<%= link_to 'Edit', edit_movie_rating_path(@movie_rating) %> |
+<%= link_to 'Back', movie_ratings_path %>
