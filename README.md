@@ -94,16 +94,14 @@ BELOW database: mov_rec_test PASTE:
 username: [insertusername]
 password: [insertpassword]
 
--- ABOVE ARE STEPS YOU NEVER HAVE TO DO AGAIN. (I think).
-
-REPLACE \mov_rec\config\routes.rb with Qufei's
-REPLACE \mov_rec\db folder with Qufei's
-REPLACE \mov_rec\test folder with Qufei's
-REPLACE \mov_rec\app folder with Qufei's
-
-IN \mov_rec\app\views\layouts\application.html.erb,
-REPLACE 'application' with 'default' in two areas!
-
 >cd mov_rec
 >rake db:create
+
+-- ABOVE ARE STEPS YOU NEVER HAVE TO DO AGAIN. (I think).
+
+REPLACE \mov_rec\config\routes.rb
+REPLACE \mov_rec\db folder
+REPLACE \mov_rec\test folder
+REPLACE \mov_rec\app folder
+
 >rake db:migrate
