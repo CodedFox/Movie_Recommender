@@ -4,10 +4,10 @@ CREATE TABLE users( -- view
   id SERIAL UNIQUE,
   email varchar(255) UNIQUE,
   password varchar(255) NOT NULL,
-  year_born int, -- changed to date_of_birth
-  type_id int,
+  date_of_birth date, -- changed to date_of_birth
+  user_type_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (type_id) REFERENCES user_types(type_id)
+  FOREIGN KEY (user_type_id) REFERENCES user_types(id)
 );
 
 CREATE TABLE profiles( -- view
@@ -23,7 +23,7 @@ CREATE TABLE profiles( -- view
   province varchar(255),
   country varchar(255),
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_types( -- model
@@ -43,8 +43,8 @@ CREATE TABLE used_devices( --changed name (from devices_used) to match naming sy
   user_id int NOT NULL,
   device_id int NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-  FOREIGN KEY (device_id) REFERENCES devices(device_id)
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (device_id) REFERENCES devices(id)
 );
 
 CREATE TABLE topics( -- view
@@ -77,8 +77,8 @@ CREATE TABLE movie_ratings( -- view
   user_rating int CHECK (user_rating BETWEEN 0 AND 10),
   review varchar(255),
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
 );
 
 CREATE TABLE movie_topics( --model
@@ -86,8 +86,8 @@ CREATE TABLE movie_topics( --model
   movie_id int,
   topic_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
-  FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+  FOREIGN KEY (topic_id) REFERENCES topics(id) ON DELETE CASCADE,
 );
 
 CREATE TABLE actors( --view
@@ -119,9 +119,9 @@ CREATE TABLE movie_casts( -- model
   actor_id int,
   casting_type_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (actor_id) REFERENCES actors(actor_id) ON DELETE SET NULL,
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
-  FOREIGN KEY (cast_id) REFERENCES casting_types(cast_id) ON DELETE SET NULL
+  FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE SET NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+  FOREIGN KEY (cast_id) REFERENCES casting_types(id) ON DELETE SET NULL
 );
 
 CREATE TABLE actor_roles( -- model
@@ -129,8 +129,8 @@ CREATE TABLE actor_roles( -- model
   actor_id int,
   role_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (actor_id) REFERENCES actors(actor_id) ON DELETE CASCADE,
-  FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
+  FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
 
 CREATE TABLE movie_roles( -- model
@@ -138,8 +138,8 @@ CREATE TABLE movie_roles( -- model
   movie_id int,
   role_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
-  FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
 
 CREATE TABLE directors( -- view
@@ -157,8 +157,8 @@ CREATE TABLE directs( -- model
   director_id int,
   movie_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
-  FOREIGN KEY (director_id) REFERENCES directors(director_id) ON DELETE CASCADE
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+  FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE
 );
 
 CREATE TABLE studios( -- view
@@ -174,6 +174,6 @@ CREATE TABLE sponsors( -- model
   studio_id int,
   movie_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
-  FOREIGN KEY (studio_id) REFERENCES studios(studio_id) ON DELETE CASCADE
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+  FOREIGN KEY (studio_id) REFERENCES studios(id) ON DELETE CASCADE
 );
