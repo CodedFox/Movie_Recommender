@@ -21,6 +21,7 @@ CREATE TABLE profiles( -- view
   age_range varchar(255) CHECK (age_range in ('0-13','14-17','18-20','20-30','30-40','40-50','60-70','80-90','100+')),
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
+  picture text,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
@@ -63,6 +64,8 @@ CREATE TABLE movies( -- view
   dubbed char(1) CHECK (dubbed in ('Y','N')),
   country varchar(255),
   age_rating varchar(255),
+  poster text,
+  trailer text,
   PRIMARY KEY (id)
 );
 
@@ -94,6 +97,7 @@ CREATE TABLE actors( --view
   date_of_birth date,
   place_of_birth varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
+  picture text,
   PRIMARY KEY (actor_id)
 );
 
@@ -144,6 +148,7 @@ CREATE TABLE directors( -- view
   last_name varchar(255) NOT NULL,
   date_of_birth varchar(255),
   place_of_birth varchar(255),
+  picture text,
   PRIMARY KEY (id)
 );
 
@@ -160,6 +165,7 @@ CREATE TABLE studios( -- view
   id SERIAL UNIQUE,
   studio_name varchar(255) NOT NULL,
   country varchar(255) NOT NULL,
+  picture text,
   PRIMARY KEY (id)
 );
 
