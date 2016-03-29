@@ -4,12 +4,7 @@ CREATE TABLE users( -- view
   id SERIAL UNIQUE,
   email varchar(255) UNIQUE,
   password varchar(255) NOT NULL,
-  first_name varchar(255) NOT NULL,
-  last_name varchar(255) NOT NULL,
   year_born int, -- changed to date_of_birth
-  city varchar(255),
-  province varchar(255),
-  country varchar(255),
   type_id int,
   PRIMARY KEY (id),
   FOREIGN KEY (type_id) REFERENCES user_types(type_id)
@@ -22,6 +17,11 @@ CREATE TABLE profiles( -- view
   gender char(1) CHECK (gender in ('M','F')),
   occupation varchar(255),
   picture text,
+  first_name varchar(255) NOT NULL,
+  last_name varchar(255) NOT NULL,
+  city varchar(255),
+  province varchar(255),
+  country varchar(255),
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
