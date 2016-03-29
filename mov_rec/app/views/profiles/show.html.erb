@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>First Name:</strong>
+  <%= @profile.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @profile.last_name %>
+</p>
+
+<p>
   <strong>Age range:</strong>
   <%= @profile.age_range %>
 </p>
@@ -11,13 +21,28 @@
 </p>
 
 <p>
+  <strong>City:</strong>
+  <%= @profile.city %>
+</p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @profile.province %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @profile.country %>
+</p>
+
+<p>
   <strong>Occupation:</strong>
   <%= @profile.occupation %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @profile.user %>
+  <strong>Picture:</strong>
+  <%= @profile.picture %>
 </p>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |

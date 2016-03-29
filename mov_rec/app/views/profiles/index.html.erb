@@ -5,10 +5,16 @@
 <table>
   <thead>
     <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Age range</th>
       <th>Gender</th>
+      <th>City</th>
+      <th>Province</th>
+      <th>Country</th>
       <th>Occupation</th>
       <th>User</th>
+      <th>Picture</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +22,16 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
         <td><%= profile.age_range %></td>
         <td><%= profile.gender %></td>
+        <td><%= profile.city %></td>
+        <td><%= profile.province %></td>
+        <td><%= profile.country %></td>
         <td><%= profile.occupation %></td>
         <td><%= profile.user %></td>
+        <td><%= profile.picture %></td>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
