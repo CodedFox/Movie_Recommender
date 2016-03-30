@@ -91,7 +91,7 @@ CREATE TABLE movie_topics( --model
 );
 
 CREATE TABLE actors( --view
-  actor_id SERIAL UNIQUE,
+  id SERIAL UNIQUE,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
   date_of_birth date,
@@ -117,7 +117,7 @@ CREATE TABLE movie_casts( -- model
   id SERIAL UNIQUE,
   movie_id int,
   actor_id int,
-  casting_type_id int,
+  cast_id int,
   PRIMARY KEY (id),
   FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE SET NULL,
   FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
@@ -157,8 +157,8 @@ CREATE TABLE directs( -- model
   director_id int,
   movie_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-  FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE
+  FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
 );
 
 CREATE TABLE studios( -- view
@@ -174,6 +174,6 @@ CREATE TABLE sponsors( -- model
   studio_id int,
   movie_id int,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-  FOREIGN KEY (studio_id) REFERENCES studios(id) ON DELETE CASCADE
+  FOREIGN KEY (studio_id) REFERENCES studios(id) ON DELETE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
 );
