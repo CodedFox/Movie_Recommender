@@ -98,7 +98,7 @@ CREATE TABLE actors( --view
   place_of_birth varchar(255),
   gender char(1) CHECK (gender in ('M','F')),
   picture text,
-  PRIMARY KEY (actor_id)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE casting_types( -- model
@@ -110,7 +110,7 @@ CREATE TABLE casting_types( -- model
 CREATE TABLE roles( -- model
   id SERIAL UNIQUE,
   character_name varchar(255),
-  PRIMARY KEY (role_id)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE movie_casts( -- model
