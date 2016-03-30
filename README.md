@@ -4,23 +4,23 @@ CSI 2132 final group project.
 
 -Schema-
 
-users(user_id, email, password, first_name, last_name, year_born, city, province, country, type_id…)
+users(user_id, email, password, type_id…)
 
-profiles(user_id, age_range, gender, occupation, …)
+profiles(user_id, date_of_birth, gender, occupation, picture, first_name, last_name, city, province, country,…)
 
 user_types(type_id, type_name)
 
 devices(deive_id, device_name)
 
-devices_used(user_id, device_id)
+used_devices(used_devices_id, user_id, device_id)
 
 topics(topic_id, genre) // e.g. (100, Horror) or (101, Comedy) This table implicitly refer to the genre(s) of a movie.
 
-movies(movie_id, name, description, date_released, duration, language, subtitles (y/n), dubbed (y/n), country, age_rating, …)
+movies(movie_id, name, description, date_released, duration, language, subtitles (y/n), dubbed (y/n), country, age_rating, poster, trailer …)
 
-watches(user_id, movie_id, date_watched, user_rating, review, …)
+movie_ratings(movie_ratings_id, user_id, movie_id, date_watched, user_rating, review, …)
 
-movie_topics(movie_id, topic_id, …)
+movie_topics(movie_topics_id, movie_id, topic_id, …)
 
 actors(actor_id, first_name, last_name, date_of_birth, place_of_birth, gender, …)
 
@@ -29,19 +29,19 @@ casting_types(cast_id, cast_type, …)
 
 roles(role_id, character_name, …)
 
-movie_casts(movie_id, actor_id, cast_id, …)
+movie_casts(movie_casts_id, movie_id, actor_id, cast_id, …)
 
-actor_roles(actor_id, role_id)
+actor_roles(actor_roles_id, actor_id, role_id)
 
-movie_roles(movie_id, role_id)
+movie_roles(movie_roles, movie_id, role_id)
 
-directors(director_id, first_name, last_name, date_of_birth, place_of_birth, …)
+directors(director_id, first_name, last_name, date_of_birth, place_of_birth, picture, …)
 
-directs(director_id, movie_id, …)
+directs(directs_id, director_id, movie_id, …)
 
 studios(studio_id, studio_name, country, …)
 
-sponsors(studio_id, movie_id, …)
+sponsors(sponsors_id, studio_id, movie_id, …)
 
 
 

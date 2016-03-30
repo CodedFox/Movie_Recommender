@@ -11,7 +11,7 @@ CREATE TABLE users( -- view
 );
 
 CREATE TABLE profiles( -- view
-  id SERIAL UNIQUE, 
+  id SERIAL UNIQUE,
   user_id int,
   age_range varchar(255) CHECK (age_range in ('0-13','14-17','18-20','20-30','30-40','40-50','60-70','80-90','100+')),
   gender char(1) CHECK (gender in ('M','F')),
