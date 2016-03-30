@@ -14,7 +14,8 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
-    @profile = Profile.new
+    # byebug
+    @profile = Profile.new(user_id: params[:userid])
   end
 
   # GET /profiles/1/edit
@@ -69,6 +70,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:age_range, :gender, :occupation, :user_id)
+      params.require(:profile).permit(:age_range, :gender, :occupation, :user_id, :first_name, :last_name, :city, :province, :country, :picture)
     end
 end
