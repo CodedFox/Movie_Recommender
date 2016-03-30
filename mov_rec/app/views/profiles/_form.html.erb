@@ -47,6 +47,7 @@
     <%= f.text_field :picture %>
   </div>
   <div class="actions">
+    <%= f.hidden_field :user_id, value: params[:userid] %>
     <%= f.submit %>
   </div>
 <% end %>
