@@ -17,7 +17,35 @@
   </div>
   <div class="field">
     <%= f.label :user_rating %><br>
-    <%= f.number_field :user_rating %>
+    <table>
+      <tr>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 0 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 1 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 2 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 3 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 4 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 5 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 6%></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 7%></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 8 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 9 %></th>
+        <th style="text-align: center"><%= f.radio_button :user_rating, 10 %></th>
+      </tr>
+
+      <tr>
+        <td style="text-align: center"><%= label :user_rating_0, "0" %></td>
+        <td style="text-align: center"><%= label :user_rating_1, "1" %></td>
+        <td style="text-align: center"><%= label :user_rating_2, "2" %></td>
+        <td style="text-align: center"><%= label :user_rating_3, "3" %></td>
+        <td style="text-align: center"><%= label :user_rating_4, "4" %></td>
+        <td style="text-align: center"><%= label :user_rating_5, "5" %></td>
+        <td style="text-align: center"><%= label :user_rating_6, "6" %></td>
+        <td style="text-align: center"><%= label :user_rating_7, "7" %></td>
+        <td style="text-align: center"><%= label :user_rating_8, "8" %></td>
+        <td style="text-align: center"><%= label :user_rating_9, "9" %></td>
+        <td style="text-align: center"><%= label :user_rating_9, "10" %></td>
+      </tr>
+    </table>
   </div>
   <div class="field">
     <%= f.label :review %><br>

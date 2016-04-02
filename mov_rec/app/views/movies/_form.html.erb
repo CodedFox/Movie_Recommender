@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :date_released %><br>
-    <%= f.text_field :date_released %>
+    <%= f.date_select :date_released, :start_year=>1800, :end_year=> Time.now.year %>
   </div>
   <div class="field">
     <%= f.label :duration %><br>
-    <%= f.time_select :duration %>
+    <%= f.time_select :duration, include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :language %><br>
@@ -33,11 +33,17 @@
   </div>
   <div class="field">
     <%= f.label :subtitles %><br>
-    <%= f.text_field :subtitles %>
+    <%= f.radio_button :subtitles, 'N' %>
+    <%= label :subtitles_N, "No" %>
+    <%= f.radio_button :subtitles, 'Y' %>
+    <%= label :subtitles_Y, "Yes" %>
   </div>
   <div class="field">
     <%= f.label :dubbed %><br>
-    <%= f.text_field :dubbed %>
+    <%= f.radio_button :dubbed, 'N' %>
+    <%= label :dubbed_N, "No" %>
+    <%= f.radio_button :dubbed, 'Y' %>
+    <%= label :dubbed_Y, "Yes" %>
   </div>
   <div class="field">
     <%= f.label :country %><br>
@@ -45,7 +51,7 @@
   </div>
   <div class="field">
     <%= f.label :age_rating %><br>
-    <%= f.text_field :age_rating %>
+    <%= f.select :age_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], include_blank: true %>
   </div>
   <div class="actions">
     <%= f.submit %>

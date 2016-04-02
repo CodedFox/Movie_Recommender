@@ -28,8 +28,10 @@
     <%= f.text_field :place_of_birth %>
   </div>
   <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
+    <%= f.radio_button :gender, 'F' %>
+    <%= label :gender_F, "Female" %>
+    <%= f.radio_button :gender, 'M' %>
+    <%= label :gender_M, "Male" %>
   </div>
   <div class="actions">
     <%= f.submit %>
