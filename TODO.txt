@@ -1,0 +1,33 @@
+THINGS WE COULD IMPLEMENT IN PROJECT SPECIFCATION:
+1) Login Page:
+	Login
+	Create new user
+2) Home Page:
+	Most appeared actor in our database with directors and studio he or she worked with
+	Couple actors that appeared most often together
+	Top ten movies by ratings
+	Movies that have not been rated by any user since January 2016 (Watch me! button?)
+	Top three users that give the highest overall ratings
+3) Movie Page:
+	List of movies
+		CLICK 
+		Top three users who rated most with their reviews
+		Ratings of users where you can select a user and display all ratings lower than he or she 
+4) Topic/Genre Page:
+	List of topics/genres in alphabetical order with top movie by rating and users who rated the movie (Who rated this?!) 
+	List of topics/genres in order of popularity
+		CLICK
+		List of movies in this topic/genre with director, studio, release date
+		Top three users with most diverse ratings for this genre
+5) User Page:
+	List of users
+		CLICK
+		Profile
+		Date created for all movie ratings
+		Total number of ratings for each movie
+		Movies rated lower than a selected rating ordered by date created
+RECOMMENDATIONS
+SEARCH BAR
+
+Additional Ideas:
+Wish list of movies for users
