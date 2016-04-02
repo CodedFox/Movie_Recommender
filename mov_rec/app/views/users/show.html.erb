@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Profile</h2>
+
+<% @profile = Profile.find_by user_id: @user.id %>
+
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -8,6 +12,51 @@
 <p>
   <strong>Date of Birth:</strong>
   <%= @user.date_of_birth %>
+</p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @profile.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @profile.last_name %>
+</p>
+
+<p>
+  <strong>Age range:</strong>
+  <%= @profile.age_range %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @profile.gender %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @profile.city %>
+</p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @profile.province %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @profile.country %>
+</p>
+
+<p>
+  <strong>Occupation:</strong>
+  <%= @profile.occupation %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @profile.picture %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
