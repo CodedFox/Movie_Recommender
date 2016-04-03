@@ -1,4 +1,9 @@
 THINGS WE COULD IMPLEMENT IN PROJECT SPECIFCATION:
+
+VALIDATIONS FOR DATA
+RECOMMENDATIONS
+SEARCH BAR
+
 1) Login Page:
 	Login
 	Create new user
@@ -26,8 +31,6 @@ THINGS WE COULD IMPLEMENT IN PROJECT SPECIFCATION:
 		Date created for all movie ratings
 		Total number of ratings for each movie
 		Movies rated lower than a selected rating ordered by date created
-RECOMMENDATIONS
-SEARCH BAR
 
 Additional Ideas:
 Wish list of movies for users
