@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	# one use can only have one profile
-	has_one :profiles 
+	has_one :profile
+	# one user can have many movie watches
+	has_many :movie_rating
 
 	# to create a new user, must have a password length > 8
 	validates :password, presence: true,
