@@ -4,80 +4,45 @@ CSI 2132 final group project.
 
 -Schema-
 
-users(user_id, email, password, type_id…)
+users(id, email, password, user_type_id, created_at, updated_at)
 
-profiles(user_id, date_of_birth, gender, occupation, picture, first_name, last_name, city, province, country,…)
+profiles(id, user_id, first_name, last_name, date_of_birth, gender (F/M), city, province, country, occupation, picture, created_at, updated_at)
 
-user_types(type_id, type_name)
+user_types(id, type_name, created_at, updated_at)
 
-devices(deive_id, device_name)
+devices(id, device_name, created_at, updated_at)
 
-used_devices(used_devices_id, user_id, device_id)
+used_devices(id, user_id, device_id, created_at, updated_at)
 
-topics(topic_id, genre) // e.g. (100, Horror) or (101, Comedy) This table implicitly refer to the genre(s) of a movie.
+genres(id, genre_name, created_at, updated_at)
 
-movies(movie_id, name, description, date_released, duration, language, subtitles (y/n), dubbed (y/n), country, age_rating, poster, trailer …)
+likes_genres(id, profile_id, genre_id, created_at, updated_at)
 
-movie_ratings(movie_ratings_id, user_id, movie_id, date_watched, user_rating, review, …)
+movies(id, movie_name, description, date_released, duration, country, language, subtitles (Y/N), dubbed (Y/N), age_rating, poster, trailer, created_at, updated_at)
 
-movie_topics(movie_topics_id, movie_id, topic_id, …)
+movie_ratings(id, user_id, movie_id, date_watched, user_rating, review, created_at, updated_at)
 
-actors(actor_id, first_name, last_name, date_of_birth, place_of_birth, gender, …)
+movie_genres(id, movie_id, genre_id, created_at, updated_at)
 
-casting_types(cast_id, cast_type, …)
-(cast_type: Lead/Support)
+actors(id, first_name, last_name, date_of_birth, place_of_birth, gender, picture, created_at, updated_at)
 
-roles(role_id, character_name, …)
+casting_types(id, cast_type, created_at, updated_at)
 
-movie_casts(movie_casts_id, movie_id, actor_id, cast_id, …)
+roles(id, character_name, created_at, updated_at)
 
-actor_roles(actor_roles_id, actor_id, role_id)
+movie_casts(id, movie_id, actor_id, cast_id, created_at, updated_at)
 
-movie_roles(movie_roles, movie_id, role_id)
+actor_roles(id, actor_id, role_id, created_at, updated_at)
 
-directors(director_id, first_name, last_name, date_of_birth, place_of_birth, picture, …)
+movie_roles(id, movie_id, role_id, created_at, updated_at)
 
-directs(directs_id, director_id, movie_id, …)
+directors(id, first_name, last_name, date_of_birth, place_of_birth, genre, picture, created_at, updated_at)
 
-studios(studio_id, studio_name, country, …)
+directs(id, director_id, movie_id, created_at, updated_at)
 
-sponsors(sponsors_id, studio_id, movie_id, …)
+studios(id, studio_name, country, picture, created_at, updated_at)
 
-
-
--Genres-
-
-Horror,
-Romance,
-Comedy,
-Animation,
-Anime,
-Action,
-Science Fiction (Sci-fi),
-Mystery,
-Thriller,
-Musical,
-War,
-History,
-Documentary,
-Drama,
-Film Noir,
-Family,
-Crime,
-Sport,
-Fantasy,
-Biography,
-Adventure,
-Western,
-Adult,
-Space,
-Political,
-LGBT,
-Faith,
-Independent,
-Video Game,
-Novel.
-
+sponsors(id, studio_id, movie_id, created_at, updated_at)
 
 
 ==========================================================
