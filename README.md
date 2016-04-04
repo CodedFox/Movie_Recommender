@@ -4,9 +4,9 @@ CSI 2132 final group project.
 
 -Schema-
 
-users(id, email, password, user_type_id, created_at, updated_at)
+users(id, email, password, created_at, updated_at, user_type_id, password_digest)
 
-profiles(id, user_id, first_name, last_name, date_of_birth, gender (F/M), city, province, country, occupation, picture, created_at, updated_at)
+profiles(id, gender, occupation, user_id, created_at, updated_at, picture, first_name, last_name, city, province, country, date_of_birth,)
 
 user_types(id, type_name, created_at, updated_at)
 

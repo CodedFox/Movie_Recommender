@@ -4,27 +4,28 @@ CREATE TABLE users( -- view
   id SERIAL UNIQUE,
   email varchar(255) UNIQUE,
   password varchar(255) NOT NULL,
-  user_type_id int,
   created_at datetime,
   updated_at datetime,
+  user_type_id int,
+  password_digest varchar(255),
   PRIMARY KEY (id),
   FOREIGN KEY (user_type_id) REFERENCES user_types(id)
 );
 
 CREATE TABLE profiles( -- view
   id SERIAL UNIQUE,
+  gender char(1) CHECK (gender in ('M','F')),
+  occupation varchar(255),
   user_id int,
+  created_at datetime,
+  updated_at datetime,
+  picture text,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
-  date_of_birth date, -- changed to date_of_birth
-  gender char(1) CHECK (gender in ('M','F')),
   city varchar(255),
   province varchar(255),
   country varchar(255),
-  occupation varchar(255),
-  picture text,
-  created_at datetime,
-  updated_at datetime,
+  date_of_birth date,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
