@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        flash[:success] = "Welcome to MovRec!"
         format.html {redirect_to "/profiles/new?userid=#{@user.id}"}
         # format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
