@@ -15,5 +15,15 @@
   <%= @director.place_of_birth %>
 </p>
 
+<p>
+  <strong>Date of birth:</strong>
+  <%= @director.date_of_birth %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @director.gender %>
+</p>
+
 <%= link_to 'Edit', edit_director_path(@director) %> |
 <%= link_to 'Back', directors_path %>

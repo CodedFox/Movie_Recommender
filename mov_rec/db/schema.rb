@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404183948) do
+ActiveRecord::Schema.define(version: 20160404191918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,11 @@ ActiveRecord::Schema.define(version: 20160404183948) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "place_of_birth"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.text     "picture"
+    t.string   "date_of_birth"
+    t.string   "gender",         limit: 1
   end
 
   create_table "directs", force: :cascade do |t|
@@ -114,7 +116,6 @@ ActiveRecord::Schema.define(version: 20160404183948) do
   add_index "movie_topics", ["topic_id"], name: "index_movie_topics_on_topic_id", using: :btree
 
   create_table "movies", force: :cascade do |t|
-    t.string   "name"
     t.text     "description"
     t.time     "duration"
     t.string   "language"
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160404183948) do
     t.text     "poster"
     t.text     "trailer"
     t.date     "date_released"
+    t.string   "movie_name"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -171,9 +173,9 @@ ActiveRecord::Schema.define(version: 20160404183948) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "genre_name"
   end
 
   create_table "used_devices", force: :cascade do |t|
