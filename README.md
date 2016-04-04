@@ -14,15 +14,15 @@ devices(id, device_name, created_at, updated_at)
 
 used_devices(id, user_id, device_id, created_at, updated_at)
 
-genres(id, genre_name, created_at, updated_at)
+topics(id, genre_name, created_at, updated_at)
 
-likes_genres(id, profile_id, genre_id, created_at, updated_at)
+likes_topics(id, profile_id, topic_id, created_at, updated_at)
 
 movies(id, movie_name, description, date_released, duration, country, language, subtitles (Y/N), dubbed (Y/N), age_rating, poster, trailer, created_at, updated_at)
 
 movie_ratings(id, user_id, movie_id, date_watched, user_rating, review, created_at, updated_at)
 
-movie_genres(id, movie_id, genre_id, created_at, updated_at)
+movie_topics(id, movie_id, topic_id, created_at, updated_at)
 
 actors(id, first_name, last_name, date_of_birth, place_of_birth, gender, picture, created_at, updated_at)
 

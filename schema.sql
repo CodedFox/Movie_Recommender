@@ -57,7 +57,7 @@ CREATE TABLE used_devices( --changed name (from devices_used) to match naming sy
   FOREIGN KEY (device_id) REFERENCES devices(id)
 );
 
-CREATE TABLE genres( -- view
+CREATE TABLE topics( -- view
   id SERIAL UNIQUE,
   genre_name varchar(255),
   created_at datetime,
@@ -65,10 +65,10 @@ CREATE TABLE genres( -- view
   PRIMARY KEY (id)
 );
 
-CREATE TABLE likes_genres(
+CREATE TABLE likes_topics(
   id SERIAL UNIQUE,
   profile_id int,
-  genre_id int,
+  topic_id int,
   created_at datetime,
   updated_at datetime,
   PRIMARY KEY (id)
@@ -106,10 +106,10 @@ CREATE TABLE movie_ratings( -- view
   FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
 );
 
-CREATE TABLE movie_genres( --model
+CREATE TABLE movie_topics( --model
   id SERIAL UNIQUE,
   movie_id int,
-  genre_id int,
+  topic_id int,
   created_at datetime,
   updated_at datetime,
   PRIMARY KEY (id),
