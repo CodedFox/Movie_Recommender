@@ -27,7 +27,8 @@
   </div>
 
   <div class="actions">
-    <%= f.hidden_field :user_type_id, value: 2 %>
+    <% @user_type = UserType.find_by type_name: 'user' %>
+    <%= f.hidden_field :user_type_id, value: @user_type.id %>
     <%= f.submit %>
   </div>
 <% end %>
