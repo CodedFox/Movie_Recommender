@@ -2,24 +2,24 @@
 
 <% @profile = Profile.find_by user_id: @user.id %>
 
-<h2>Profile</h2>
-
-<%= link_to 'Edit Login', edit_user_path(@user) %> |
-<%= link_to 'Edit Profile', edit_profile_path(@profile) %>
-
-<br>
-<br>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
 <% if @profile == nil %>
 
   <% controller.redirect_to "/profiles/new?userid=#{@user.id}" %>
 
 <% else %>
+
+  <h2>Profile</h2>
+
+  <%= link_to 'Edit Login', edit_user_path(@user) %> |
+  <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+
+  <br>
+  <br>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
   <p>
     <strong>First Name:</strong>
