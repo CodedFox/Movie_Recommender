@@ -25,11 +25,11 @@ SEARCH BAR
 		List of movies in this topic/genre with director, studio, release date
 		Top three users with most diverse ratings for this genre
 5) User Page:
-	List of users COMPLETE
+	List of users
 		CLICK
-		Profile COMPLETE
+		Profile
 		Date created for all movie ratings
-		Total number of ratings for each movie COMPLETE
+		Total number of ratings for each movie
 		Movies rated lower than a selected rating ordered by date created
 
 Additional Ideas:
