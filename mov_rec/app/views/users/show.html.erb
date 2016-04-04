@@ -9,7 +9,11 @@
   <%= @user.email %>
 </p>
 
-<% if @profile != nil %>
+<% if @profile == nil %>
+
+  <% controller.redirect_to "/profiles/new?userid=#{@user.id}" %>
+
+<% else %>
 
   <p>
     <strong>First Name:</strong>
