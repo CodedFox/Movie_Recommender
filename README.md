@@ -62,6 +62,16 @@ password: [insertpassword]
 >cd mov_rec
 >rake db:create
 
+> gem install bcrypt
+> gem install tzinfo-data
+
+CHECK THAT \mov_rec\Gemfile,
+CONTAINS OR ELSE PASTE:
+gem 'bcrypt', '3.1.11'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
+> bundle install
+
 -- ABOVE ARE STEPS YOU NEVER HAVE TO DO AGAIN. (I think).
 
 REPLACE \mov_rec\config\routes.rb
