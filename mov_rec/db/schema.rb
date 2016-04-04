@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329012951) do
+ActiveRecord::Schema.define(version: 20160404022449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,17 +131,18 @@ ActiveRecord::Schema.define(version: 20160329012951) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "age_range"
-    t.string   "gender",     limit: 1
+    t.string   "gender",        limit: 1
     t.string   "occupation"
     t.integer  "user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.text     "picture"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "city"
     t.string   "province"
     t.string   "country"
+    t.date     "date_of_birth"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -194,10 +195,9 @@ ActiveRecord::Schema.define(version: 20160329012951) do
 
   create_table "users", force: :cascade do |t|
     t.string   "password"
-    t.date     "date_of_birth"
     t.string   "email"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_type_id"
   end
 
