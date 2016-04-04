@@ -1,0 +1,25 @@
+<%= form_for(@likes_topic) do |f| %>
+  <% if @likes_topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@likes_topic.errors.count, "error") %> prohibited this likes_topic from being saved:</h2>
+
+      <ul>
+      <% @likes_topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :profile_id %><br>
+    <%= f.text_field :profile_id %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_id %><br>
+    <%= f.text_field :topic_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

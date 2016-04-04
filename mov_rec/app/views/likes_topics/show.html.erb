@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @likes_topic.profile %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @likes_topic.topic %>
+</p>
+
+<%= link_to 'Edit', edit_likes_topic_path(@likes_topic) %> |
+<%= link_to 'Back', likes_topics_path %>

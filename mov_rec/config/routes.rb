@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :likes_topics
+  resources :devices
   resources :studios
   resources :movie_ratings
   resources :topics
