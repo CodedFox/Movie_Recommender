@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404191918) do
+ActiveRecord::Schema.define(version: 20160404195158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 20160404191918) do
 
   add_index "directs", ["director_id"], name: "index_directs_on_director_id", using: :btree
   add_index "directs", ["movie_id"], name: "index_directs_on_movie_id", using: :btree
+
+  create_table "likes_topics", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes_topics", ["profile_id"], name: "index_likes_topics_on_profile_id", using: :btree
+  add_index "likes_topics", ["topic_id"], name: "index_likes_topics_on_topic_id", using: :btree
 
   create_table "movie_casts", force: :cascade do |t|
     t.integer  "movie_id"
@@ -210,6 +220,8 @@ ActiveRecord::Schema.define(version: 20160404191918) do
   add_foreign_key "actor_roles", "roles"
   add_foreign_key "directs", "directors"
   add_foreign_key "directs", "movies"
+  add_foreign_key "likes_topics", "profiles"
+  add_foreign_key "likes_topics", "topics"
   add_foreign_key "movie_casts", "actors"
   add_foreign_key "movie_casts", "casting_types"
   add_foreign_key "movie_casts", "movies"
