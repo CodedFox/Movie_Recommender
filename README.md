@@ -30,7 +30,7 @@ casting_types(id, cast_type, created_at, updated_at)
 
 roles(id, character_name, created_at, updated_at)
 
-movie_casts(id, movie_id, actor_id, cast_id, created_at, updated_at)
+movie_casts(id, movie_id, actor_id, casting_type_id, created_at, updated_at)
 
 actor_roles(id, actor_id, role_id, created_at, updated_at)
 

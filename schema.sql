@@ -150,7 +150,7 @@ CREATE TABLE movie_casts( -- model
   id SERIAL UNIQUE,
   movie_id int,
   actor_id int,
-  cast_id int,
+  casting_type_id int,
   created_at datetime,
   updated_at datetime,
   PRIMARY KEY (id),
