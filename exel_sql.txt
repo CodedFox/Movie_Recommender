@@ -1,0 +1,98 @@
+users(id; email; password; user_type_id; created_at; updated_at)
+
+= "INSERT INTO users("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&") VALUES ("&A2&", '"&B2&"', '"&C2&"', "&D2&", "&E2&", "&F2&");"
+
+
+profiles(id; user_id; first_name; last_name; date_of_birth; gender (F/M); city; province; country; occupation; picture; created_at; updated_at)
+
+= "INSERT INTO profiles("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&", "&G$1&", "&H$1&", "&I$1&", "&J$1&", "&K$1&", "&L$1&", "&M$1&") VALUES ("&A2&", "&B2&", '"&C2&"', '"&D2&"', '"&E2&"', "&F2&", '"&G2&"', '"&H2&"', '"&I2&"', '"&J2&"', '"&K2&"', "&L2&", "&M2&");"
+
+
+user_types(id; type_name; created_at; updated_at)
+
+= "INSERT INTO user_types("&A$1&", "&B$1&", "&C$1&", "&D$1&") VALUES ("&A2&", '"&B2&"', "&C2&", "&D2&");"
+
+
+devices(id; device_name; created_at; updated_at)
+
+= "INSERT INTO devices("&A$1&", "&B$1&", "&C$1&", "&D$1&") VALUES ("&A2&", '"&B2&"', "&C2&", "&D2&");"
+
+
+used_devices(id; user_id; device_id; created_at; updated_at)
+
+= "INSERT INTO used_devices("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
+
+
+genres(id; genre_name; created_at; updated_at)
+
+= "INSERT INTO genres("&A$1&", "&B$1&", "&C$1&", "&D$1&") VALUES ("&A2&", '"&B2&"', "&C2&", "&D2&");"
+
+
+likes_genres(id; profile_id; genre_id; created_at; updated_at)
+
+= "INSERT INTO likes_genres("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
+
+
+movies(id; movie_name; description; date_released; duration; country; language; subtitles (Y/N); dubbed (Y/N); age_rating; poster; trailer; created_at; updated_at)
+
+= "INSERT INTO profiles("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&", "&G$1&", "&H$1&", "&I$1&", "&J$1&", "&K$1&", "&L$1&", "&M$1&", "&N$1&") VALUES ("&A2&", '"&B2&"', '"&C2&"', '"&D2&"', '"&E2&"', '"&F2&"', '"&G2&"', '"&H2&"', '"&I2&"', '"&J2&"', '"&K2&"', '"&L2&"', "&M2&", "&N2&");"
+
+
+movie_ratings(id; user_id; movie_id; date_watched; user_rating; review; created_at; updated_at)
+
+= "INSERT INTO movie_ratings("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&", "&G$1&", "&H$1&") VALUES ("&A2&", "&B2&", "&C2&", '"&D2&"', "&E2&", '"&F2&"', "&G2&", "&H2&");"
+
+
+movie_genres(id; movie_id; genre_id; created_at; updated_at)
+
+= "INSERT INTO movie_genres("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
+
+
+actors(id; first_name; last_name; date_of_birth; place_of_birth; gender; picture; created_at; updated_at)
+
+= "INSERT INTO actors("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&", "&G$1&", "&H$1&", "&I$1&") VALUES ("&A2&", '"&B2&"', '"&C2&"', '"&D2&"', '"&E2&"', '"&F2&"', '"&G2&"', "&H2&", "&I2&");"
+
+
+casting_types(id; cast_type; created_at; updated_at)
+
+= "INSERT INTO casting_types("&A$1&", "&B$1&", "&C$1&", "&D$1&") VALUES ("&A2&", '"&B2&"', "&C2&", "&D2&");"
+
+
+roles(id; character_name; created_at; updated_at)
+
+= "INSERT INTO roles("&A$1&", "&B$1&", "&C$1&", "&D$1&") VALUES ("&A2&", '"&B2&"', "&C2&", "&D2&");"
+
+
+movie_casts(id; movie_id; actor_id; cast_id; created_at; updated_at)
+
+= "INSERT INTO movie_casts("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&", "&F2&");"
+
+
+actor_roles(id; actor_id; role_id; created_at; updated_at)
+
+= "INSERT INTO actor_roles("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
+
+
+movie_roles(id; movie_id; role_id; created_at; updated_at)
+
+= "INSERT INTO movie_roles("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
+
+
+directors(id; first_name; last_name; date_of_birth; place_of_birth; genre; picture; created_at; updated_at)
+
+= "INSERT INTO directors("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&", "&G$1&", "&H$1&", "&I$1&") VALUES ("&A2&", '"&B2&"', '"&C2&"', '"&D2&"', '"&E2&"', '"&F2&"', '"&G2&"', "&H2&", "&I2&");"
+
+
+directs(id; director_id; movie_id; created_at; updated_at)
+
+= "INSERT INTO directs("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
+
+
+studios(id; studio_name; country; picture; created_at; updated_at)
+
+= "INSERT INTO studios("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&", "&F$1&") VALUES ("&A2&", '"&B2&"', '"&C2&"', '"&D2&"', "&E2&", "&F2&");"
+
+
+sponsors(id; studio_id; movie_id; created_at; updated_at)
+
+= "INSERT INTO sponsors("&A$1&", "&B$1&", "&C$1&", "&D$1&", "&E$1&") VALUES ("&A2&", "&B2&", "&C2&", "&D2&", "&E2&");"
