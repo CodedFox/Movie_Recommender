@@ -15,7 +15,8 @@ SEARCH BAR
 	Top three users that give the highest overall ratings
 3) Movie Page:
 	List of movies
-		CLICK 
+		CLICK
+		Total number of ratings for each movie by each user
 		Top three users who rated most with their reviews
 		Ratings of users where you can select a user and display all ratings lower than he or she 
 4) Topic/Genre Page:
@@ -25,11 +26,10 @@ SEARCH BAR
 		List of movies in this topic/genre with director, studio, release date
 		Top three users with most diverse ratings for this genre
 5) User Page:
-	List of users
+	List of users COMPLETE
 		CLICK
-		Profile
-		Date created for all movie ratings
-		Total number of ratings for each movie
+		Profile COMPLETE
+		Date created for all movie ratings COMPLETE
 		Movies rated lower than a selected rating ordered by date created
 
 Additional Ideas:
