@@ -283,3 +283,9 @@ WHERE m.name = val.name AND m.date_released = val.date_released AND s.studio_nam
 
 /* Switched movie_id & studio_id positions!!
 Something UNIQUE needed in studio..? */
+
+
+-- INSERT INTO user_types(id,type_name,created_at,updated_at) VALUES
+INSERT INTO user_types (id, type_name,created_at, updated_at) VALUES (DEFAULT,'admin','2011-05-16 15:36:38','2011-05-16 15:36:38');
+INSERT INTO user_types (id, type_name,created_at, updated_at) VALUES (DEFAULT,'member','2011-05-16 15:36:38','2011-05-16 15:36:38');
+
