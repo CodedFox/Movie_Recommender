@@ -1,327 +1,185 @@
 --All data inputs for the Movie Recommendation system
 
-INSERT INTO users(user_id,password,first_name,last_name,year_born,email,city,province,country) VALUES
-(DEFAULT,'ilovelotr','Jonathan','Buttbutt',1900,'lotrfan@boy.ca','Ottawa','Ontario','Canada');
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Action', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Adventure', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Animation', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Biography', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Comedy', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Crime', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Documentary', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Drama', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Family', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Fantasy', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Film-Noir', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'History', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Horror', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Romance', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Musical', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Mystery', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Sci-Fi', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Sport', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Thriller', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'War', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Western', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Anime', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Adult', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Space', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Political', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Faith', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Independent', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Video Game', now(), now());
+INSERT INTO genres(id, genre_name, created_at, updated_at) VALUES (DEFAULT, 'Novel', now(), now());
 
-INSERT INTO profiles(user_id,age_range,gender,occupation) VALUES
-(1,'100+','M','Student');
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'The Lord of the Rings: The Fellowship of the Ring', 'A meek Hobbit and eight companions set out on a journey to destroy the One Ring and the Dark Lord Sauron.', '37244', '178', 'USA', 'English', 'N', 'N', 'PG-13', 'http://vignette3.wikia.nocookie.net/lotr/images/7/74/LOTRFOTRmovie.jpg/revision/latest?cb=20150203040819', 'https://www.youtube.com/watch?v=V75dMMIW2B4', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'The Lord of the Rings: The Two Towers', '', '37608', '179', 'USA', 'English', 'N', 'N', 'PG-13', 'https://www.movieposter.com/posters/archive/main/7/MPW-3576', 'https://www.youtube.com/watch?v=cvCktPUwkW0', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'The Lord of the Rings: The Return of the King', 'Gandalf and Aragorn lead the World of Men against Sauron''s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.', '37972', '201', 'USA', 'English', 'N', 'N', 'PG-13', 'https://www.movieposter.com/posters/archive/main/16/MPW-8295', 'https://www.youtube.com/watch?v=r5X-hFf6Bwo', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Howl''s Moving Castle', 'When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.', '38520', '119', 'Japan', 'Japanese', 'Y', 'Y', 'PG', 'https://fanart.tv/fanart/movies/4935/movieposter/howls-moving-castle-5216a7d1a7a67.jpg', 'https://www.youtube.com/watch?v=iwROgK94zcM', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Ghost', 'After an accident leaves a young man dead, his spirit stays behind to warn his lover of impending danger, with the help of a reluctant psychic.', '33067', '127', 'USA', 'English', 'N', 'N', 'PG-13', 'https://www.movieposter.com/posters/archive/main/106/MPW-53146', 'https://www.youtube.com/watch?v=4cOb3gfe4tQ', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'The Notebook', 'A poor and passionate young man falls in love with a rich young woman and gives her a sense of freedom. They soon are separated by their social differences.', '38163', '123', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTk3OTM5Njg5M15BMl5BanBnXkFtZTYwMzA0ODI3._V1_SX640_SY720_.jpg', 'https://www.youtube.com/watch?v=4M7LIcH8C9U', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'A Walk to Remember', 'The story of two North Carolina teens, Landon Carter and Jamie Sullivan, who are thrown together after Landon gets into trouble and is made to do community service.', '37281', '101', 'USA', 'English', 'N', 'N', 'PG', 'https://upload.wikimedia.org/wikipedia/en/d/dc/A_Walk_to_Remember_Poster.jpg', 'https://www.youtube.com/watch?v=EgdoQ8Oxu2E', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Dirty Dancing', 'Spending the summer at a Catskills resort with her family, Frances "Baby" Houseman falls in love with the camp''s dance instructor, Johnny Castle.', '32010', '100', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ecx.images-amazon.com/images/I/61PF6Oi%2BUhL._SY355_.jpg', 'https://www.youtube.com/watch?v=wcra0-0Gu4U', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Notting Hill', 'The life of a simple bookshop owner changes when he meets the most famous film star in the world.', '36308', '124', 'USA', 'English', 'N', 'N', 'PG-13', 'http://images.moviepostershop.com/notting-hill-movie-poster-1998-1020190961.jpg', 'https://www.youtube.com/watch?v=4RI0QvaGoiI', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Pretty Woman', 'A man in a legal but hurtful business needs an escort for some social events, and hires a beautiful prostitute he meets... only to fall in love.', '32955', '119', 'USA', 'English', 'N', 'N', 'R', 'http://cosmouk.cdnds.net/15/10/1280x1986/gallery_nrm_1425399318-pretty-woman-poster.jpg', 'https://www.youtube.com/results?search_query=pretty+woman+trailer', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Say Anything', 'A noble underachiever and a beautiful valedictorian fall in love the summer before she goes off to college.', '32612', '100', 'USA', 'English', 'N', 'N', 'PG-13', 'https://upload.wikimedia.org/wikipedia/en/8/8a/Say_Anything.jpg', 'https://www.youtube.com/watch?v=QeUnT3f7eAA', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Titanic', 'A seventeen-year-old aristocrat falls in love with a kind, but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.', '35783', '194', 'USA', 'English', 'N', 'N', 'PG-13', 'http://cdn.traileraddict.com/content/paramount-pictures/titanic.jpg', 'https://www.youtube.com/watch?v=zCy5WQ9S4c0', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'P.S. I Love You', 'A young widow discovers that her late husband has left her 10 messages intended to help ease her pain and start a new life.', '39437', '126', 'USA', 'English', 'N', 'N', 'PG-13', 'https://natashastander.files.wordpress.com/2014/01/ps-i-love-you-poster.jpg', 'https://www.youtube.com/watch?v=CZzW6_hR068', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Legends of the Fall', 'Epic tale of three brothers and their father living in the remote wilderness of 1900s USA and how their lives are affected by nature, history, war, love and betrayal.', '34712', '133', 'USA', 'English', 'N', 'N', 'R', 'https://www.movieposter.com/posters/archive/main/63/MPW-31979', 'https://www.youtube.com/watch?v=oEr4rhfDKcQ', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Troy', 'An adaptation of Homer''s great epic, the film follows the assault on Troy by the united Greek forces and chronicles the fates of the men involved.', '38121', '163', 'USA', 'English', 'N', 'N', 'R', 'https://upload.wikimedia.org/wikipedia/en/b/b8/Troy2004Poster.jpg', 'https://www.youtube.com/watch?v=znTLzRJimeY', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Se7en', 'Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his modus operandi.', '34964', '127', 'USA', 'English', 'N', 'N', 'R', 'http://img.goldposter.com/2015/04/Se7en_poster_goldposter_com_1.jpg', 'https://www.youtube.com/watch?v=J4YV2_TcCoE', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'House of Flying Daggers', 'A romantic police captain breaks a beautiful member of a rebel group out of prison to help her rejoin her fellows, but things are not what they seem.', '38184', '119', 'China', 'Mandarin', 'Y', 'Y', 'PG-13', 'http://static.rogerebert.com/uploads/movie/movie_poster/house-of-flying-daggers-2004/large_Ar5Ev4nycoJsrPYaabMCrTvPHIe.jpg', 'https://www.youtube.com/watch?v=-GLVaSYzAvg', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Hero', 'A defense officer, Nameless, was summoned by the King of Qin regarding his success of terminating three warriors.', '37553', '99', 'China', 'Mandarin', 'Y', 'N', 'PG-13', 'https://upload.wikimedia.org/wikipedia/en/0/08/Hero_poster.jpg', 'https://www.youtube.com/watch?v=srFhXDZhUZI', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Red Cliff', 'The first chapter of a two-part story centered on a battle fought in China''s Three Kingdoms period (220-280 A.D.).', '39639', '148', 'China', 'Mandarin', 'Y', 'N', 'R', 'https://upload.wikimedia.org/wikipedia/en/c/cf/Redcliffposter.jpg', 'https://www.youtube.com/watch?v=pd0bqLQrtdE', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Red Cliff II', 'In this sequel to Red Cliff, Chancellor Cao Cao convinces Emperor Xian of the Han to initiate a battle against the two Kingdoms of Shu and Wu, who have become allied forces, against all expectations. Red Cliff will be the site for the gigantic battle.', '39820', '99', 'China', 'Mandarin', 'Y', 'N', 'R', 'http://oneguyrambling.com/wp-content/uploads/2009/12/red-cliff-2.jpg', 'https://www.youtube.com/watch?v=M2KkencnKKc', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Terminator', 'A human-looking indestructible cyborg is sent from 2029 to 1984 to assassinate a waitress, whose unborn son will lead humanity in a war against the machines, while a soldier from that war is sent to protect her at all costs.', '30981', '107', 'USA', 'English', 'N', 'N', 'R', 'http://ia.media-imdb.com/images/M/MV5BODE1MDczNTUxOV5BMl5BanBnXkFtZTcwMTA0NDQyNA@@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=lHz95RYUbik', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Alien', 'After a space merchant vessel perceives an unknown transmission as distress call, their landing on the source planet finds one of the crew attacked by a mysterious lifeform. ', '29028', '117', 'USA', 'English', 'N', 'N', 'R', 'http://ia.media-imdb.com/images/M/MV5BMTU1ODQ4NjQyOV5BMl5BanBnXkFtZTgwOTQ3NDU2MTE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=LjLamj-b0I8', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Prometheus', 'Following clues to the origin of mankind a team journey across the universe and find a structure on a distant planet containing a monolithic statue of a humanoid head and stone cylinders of alien blood but they soon find they are not alone.', '41068', '124', 'USA', 'English', 'N', 'N', 'R', 'http://ia.media-imdb.com/images/M/MV5BMTY3NzIyNTA2NV5BMl5BanBnXkFtZTcwNzE2NjI4Nw@@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=sftuxbvGwiU', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Sphere', 'A spaceship is discovered under three hundred years'' worth of coral growth at the bottom of the ocean.', '35839', '134', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTUyNTE2MjEyNV5BMl5BanBnXkFtZTcwODQ0NTYxMQ@@._V1_UY268_CR6,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=kozds_anirw', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Star Wars: Episode IV – A New Hope', 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the galaxy from the Empire''s world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.', '28270', '121', 'USA', 'English', 'N', 'N', 'PG', 'http://ia.media-imdb.com/images/M/MV5BOTIyMDY2NGQtOGJjNi00OTk4LWFhMDgtYmE3M2NiYzM0YTVmXkEyXkFqcGdeQXVyNTU1NTcwOTk@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=1g3_CFmnU7k', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'The Big Short', 'Four denizens in the world of high-finance predict the credit and housing bubble collapse of the mid-2000s, and decide to take on the big banks for their greed and lack of foresight.', '42361', '130', 'USA', 'English', 'N', 'N', 'R', 'http://ia.media-imdb.com/images/M/MV5BMjM2MTQ2MzcxOF5BMl5BanBnXkFtZTgwNzE4NTUyNzE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=vgqG3ITMv1Q', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Shall We Dance?', 'A successful but unhappy Japanese accountant finds the missing passion in his life when he begins to secretly take ballroom dance lessons.', '35622', '136', 'Japan', 'Japanese', 'Y', 'N', 'PG', 'http://ia.media-imdb.com/images/M/MV5BMTk2Nzk4MTcyMF5BMl5BanBnXkFtZTcwMDI0NDMzMQ@@._V1_UY268_CR3,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=zQWEhPYwuY4', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Shall We Dance?', 'A romantic comedy where a bored, overworked Estate Lawyer, upon first sight of a beautiful instructor, signs up for ballroom dancing lessons.', '38275', '104', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTcwODUwMTMxN15BMl5BanBnXkFtZTcwNzc3MjcyMQ@@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=UGtS3CL-zpo', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Forrest Gump', 'Forrest Gump, while not intelligent, has accidentally been present at many historic moments, but his true love, Jenny Curran, eludes him.', '34521', '142', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTI1Nzk1MzQwMV5BMl5BanBnXkFtZTYwODkxOTA5._V1_UY268_CR2,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=uPIEn0M8su0', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Les Miserables', 'In 19th-century France, Jean Valjean, who for decades has been hunted by the ruthless policeman Javert after breaking parole, agrees to care for a factory worker''s daughter. The decision changes their lives forever.', '41268', '158', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTQ4NDI3NDg4M15BMl5BanBnXkFtZTcwMjY5OTI1OA@@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=YmvHzCLP6ug', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Gattica', 'A genetically inferior man assumes the identity of a superior one in order to pursue his lifelong dream of space travel.', '35727', '106', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BNzQxMzU3OTQwNF5BMl5BanBnXkFtZTYwNDUyNTE5._V1_UY268_CR3,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=hWjlUj7Czlk', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Larry Crowne', 'After losing his job, a middle-aged man reinvents himself by going back to college.', '40725', '98', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTM1NzAyNTEwN15BMl5BanBnXkFtZTcwODYyNTEzNQ@@._V1._CR68,54,886,1396_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=1UNtrqRG7GA', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Up', 'Seventy-eight year old Carl Fredricksen travels to Paradise Falls in his home equipped with balloons, inadvertently taking a young stowaway.', '39962', '96', 'USA', 'English', 'N', 'N', 'PG', 'http://ia.media-imdb.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=qas5lWp7_R0', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Toy Story', 'A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy''s room.', '35025', '81', 'USA', 'English', 'N', 'N', 'G', 'http://ia.media-imdb.com/images/M/MV5BMTgwMjI4MzU5N15BMl5BanBnXkFtZTcwMTMyNTk3OA@@._V1_UY268_CR9,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=KYz2wyBy3kc', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Star Trek: Into Darkness', 'After the crew of the Enterprise find an unstoppable force of terror from within their own organization, Captain Kirk leads a manhunt to a war-zone world to capture a one-man weapon of mass destruction.', '41410', '132', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTk2NzczOTgxNF5BMl5BanBnXkFtZTcwODQ5ODczOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=QAEkuVgt6Aw', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Batman Begins', 'After training with his mentor, Batman begins his war on crime to free the crime-ridden Gotham City from corruption that the Scarecrow and the League of Shadows have cast upon it.', '38518', '140', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=neY2xVmOfUM', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Bridge of Spies', 'During the Cold War, an American lawyer is recruited to defend an arrested Soviet spy in court, and then help the CIA facilitate an exchange of the spy for the Soviet captured American U2 spy plane pilot, Francis Gary Powers.', '42293', '142', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMjIxOTI0MjU5NV5BMl5BanBnXkFtZTgwNzM4OTk4NTE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=mBBuzHrZBro', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Avatar', 'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', '40165', '162', 'USA', 'English', 'N', 'N', 'PG-13', 'http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=5PSNL1qE6VY', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Deadpool', 'A former Special Forces operative turned mercenary is subjected to a rogue experiment that leaves him with accelerated healing powers, adopting the alter ego Deadpool.', '42412', '108', 'USA', 'English', 'N', 'N', 'R', 'http://ia.media-imdb.com/images/M/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_UY268_CR1,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=ZIM1HydF9UA', now(), now());
+INSERT INTO profiles(id, movie_name, description, date_released, duration, country, language, subtitles, dubbed, age_rating, poster, trailer, created_at, update_at) VALUES (DEFAULT, 'Amelie', 'Amelie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love.', '37295', '122', 'France', 'French', 'Y', 'N', 'R', 'http://ia.media-imdb.com/images/M/MV5BMTYzNjkxMTczOF5BMl5BanBnXkFtZTgwODg5NDc2MjE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'https://www.youtube.com/watch?v=2UT5xaAfxWU', now(), now());
 
-INSERT INTO devices(device_id,device_name) VALUES
-(DEFAULT,'Desktop'),
-(DEFAULT,'Mobile');
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Lord of the Rings: The Two Towers' AND duration = '179'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Lord of the Rings: The Two Towers' AND duration = '179'), (SELECT id FROM topics WHERE genre_name = 'Fantasy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Lord of the Rings: The Return of the King' AND duration = '201'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Lord of the Rings: The Return of the King' AND duration = '201'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Lord of the Rings: The Return of the King' AND duration = '201'), (SELECT id FROM topics WHERE genre_name = 'Fantasy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Howl''s Moving Castle' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Anime'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Howl''s Moving Castle' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Howl''s Moving Castle' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Family'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Ghost' AND duration = '127'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Ghost' AND duration = '127'), (SELECT id FROM topics WHERE genre_name = 'Family'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Ghost' AND duration = '127'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Notebook' AND duration = '123'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Notebook' AND duration = '123'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'A Walk to Remember' AND duration = '101'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'A Walk to Remember' AND duration = '101'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Dirty Dancing' AND duration = '100'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Dirty Dancing' AND duration = '100'), (SELECT id FROM topics WHERE genre_name = 'Music'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Dirty Dancing' AND duration = '100'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Notting Hill' AND duration = '124'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Notting Hill' AND duration = '124'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Notting Hill' AND duration = '124'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Pretty Woman' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Pretty Woman' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Say Anything' AND duration = '100'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Say Anything' AND duration = '100'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Say Anything' AND duration = '100'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Titanic' AND duration = '194'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Titanic' AND duration = '194'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'P.S. I Love You' AND duration = '126'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'P.S. I Love You' AND duration = '126'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Legends of the Fall' AND duration = '133'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Legends of the Fall' AND duration = '133'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Legends of the Fall' AND duration = '133'), (SELECT id FROM topics WHERE genre_name = 'War'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Troy' AND duration = '163'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Troy' AND duration = '163'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Se7en' AND duration = '127'), (SELECT id FROM topics WHERE genre_name = 'Crime'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Se7en' AND duration = '127'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Se7en' AND duration = '127'), (SELECT id FROM topics WHERE genre_name = 'Mystery'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'House of Flying Daggers' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'House of Flying Daggers' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'House of Flying Daggers' AND duration = '119'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Hero' AND duration = '99'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Hero' AND duration = '99'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Hero' AND duration = '99'), (SELECT id FROM topics WHERE genre_name = 'History'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Red Cliff' AND duration = '148'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Red Cliff' AND duration = '148'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Red Cliff' AND duration = '148'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Red Cliff II' AND duration = '99'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Red Cliff II' AND duration = '99'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Red Cliff II' AND duration = '99'), (SELECT id FROM topics WHERE genre_name = 'History'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Terminator' AND duration = '107'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Terminator' AND duration = '107'), (SELECT id FROM topics WHERE genre_name = 'Sci-Fi'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Alien' AND duration = '117'), (SELECT id FROM topics WHERE genre_name = 'Horror'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Alien' AND duration = '117'), (SELECT id FROM topics WHERE genre_name = 'Sci-Fi'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Prometheus' AND duration = '124'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Prometheus' AND duration = '124'), (SELECT id FROM topics WHERE genre_name = 'Mystery'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Prometheus' AND duration = '124'), (SELECT id FROM topics WHERE genre_name = 'Sci-Fi'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Sphere' AND duration = '134'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Sphere' AND duration = '134'), (SELECT id FROM topics WHERE genre_name = 'Mystery'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Sphere' AND duration = '134'), (SELECT id FROM topics WHERE genre_name = 'Sci-Fi'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Star Wars: Episode IV – A New Hope' AND duration = '121'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Star Wars: Episode IV – A New Hope' AND duration = '121'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Star Wars: Episode IV – A New Hope' AND duration = '121'), (SELECT id FROM topics WHERE genre_name = 'Fantasy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Big Short' AND duration = '130'), (SELECT id FROM topics WHERE genre_name = 'Biography'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Big Short' AND duration = '130'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'The Big Short' AND duration = '130'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Shall We Dance?' AND duration = '136'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Shall We Dance?' AND duration = '136'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Shall We Dance?' AND duration = '136'), (SELECT id FROM topics WHERE genre_name = 'Music'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Shall We Dance?' AND duration = '104'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Shall We Dance?' AND duration = '104'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Shall We Dance?' AND duration = '104'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Forrest Gump' AND duration = '142'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Forrest Gump' AND duration = '142'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Les Miserables' AND duration = '158'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Les Miserables' AND duration = '158'), (SELECT id FROM topics WHERE genre_name = 'Music'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Les Miserables' AND duration = '158'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Gattica' AND duration = '106'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Gattica' AND duration = '106'), (SELECT id FROM topics WHERE genre_name = 'Sci-Fi'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Gattica' AND duration = '106'), (SELECT id FROM topics WHERE genre_name = 'Thriller'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Larry Crowne' AND duration = '98'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Larry Crowne' AND duration = '98'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Larry Crowne' AND duration = '98'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Up' AND duration = '96'), (SELECT id FROM topics WHERE genre_name = 'Animation'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Up' AND duration = '96'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Up' AND duration = '96'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Toy Story' AND duration = '81'), (SELECT id FROM topics WHERE genre_name = 'Animation'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Toy Story' AND duration = '81'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Toy Story' AND duration = '81'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Star Trek: Into Darkness' AND duration = '132'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Star Trek: Into Darkness' AND duration = '132'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Star Trek: Into Darkness' AND duration = '132'), (SELECT id FROM topics WHERE genre_name = 'Sci-Fi'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Batman Begins' AND duration = '140'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Batman Begins' AND duration = '140'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Bridge of Spies' AND duration = '142'), (SELECT id FROM topics WHERE genre_name = 'Drama'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Bridge of Spies' AND duration = '142'), (SELECT id FROM topics WHERE genre_name = 'History'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Bridge of Spies' AND duration = '142'), (SELECT id FROM topics WHERE genre_name = 'Thriller'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Avatar' AND duration = '162'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Avatar' AND duration = '162'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Avatar' AND duration = '162'), (SELECT id FROM topics WHERE genre_name = 'Fantasy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Deadpool' AND duration = '108'), (SELECT id FROM topics WHERE genre_name = 'Action'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Deadpool' AND duration = '108'), (SELECT id FROM topics WHERE genre_name = 'Adventure'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Deadpool' AND duration = '108'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Amelie' AND duration = '122'), (SELECT id FROM topics WHERE genre_name = 'Comedy'), now(), now());
+INSERT INTO movie_genres(id, movie_id, topic_id, created_at, updated_at) VALUES (DEFAULT, (SELECT id FROM movies WHERE movie_name = 'Amelie' AND duration = '122'), (SELECT id FROM topics WHERE genre_name = 'Romance'), now(), now());
 
-INSERT INTO devices_used(user_id,device_id) VALUES
-(1,1),
-(1,2);
 
-INSERT INTO topics(topic_id,genre) VALUES
-(DEFAULT,'Action'), -- 1
-(DEFAULT,'Adventure'), -- 2
-(DEFAULT,'Animation'), -- 3
-(DEFAULT,'Biography'), -- 4
-(DEFAULT,'Comedy'), -- 5
-(DEFAULT,'Crime'), -- 6
-(DEFAULT,'Documentary'), -- 7
-(DEFAULT,'Drama'), -- 8
-(DEFAULT,'Family'), -- 9
-(DEFAULT,'Fantasy'), -- 10
-(DEFAULT,'Film-Noir'), -- 11
-(DEFAULT,'History'), -- 12
-(DEFAULT,'Horror'), -- 13
-(DEFAULT,'Music'), -- 14
-(DEFAULT,'Musical'), -- 15
-(DEFAULT,'Mystery'), -- 16
-(DEFAULT,'Romance'), -- 17
-(DEFAULT,'Sci-Fi'), -- 18
-(DEFAULT,'Sport'), -- 19
-(DEFAULT,'Thiller'), -- 20
-(DEFAULT,'War'), -- 21
-(DEFAULT,'Western'); -- 22
+//////////////////////////////////////////////////////
 
-INSERT INTO movies(movie_id,name,description,date_released,duration,language,subtitles,dubbed,country,age_rating) VALUES
-(DEFAULT,
-'The Lord of the Rings: The Fellowship of the Ring',
-'A meek Hobbit and eight companions set out on a journey to destroy the One Ring and the Dark Lord Sauron.',
-'2001-12-19',
-'2:58:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'The Lord of the Rings: The Two Towers',
-'While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron''s new ally, Saruman, and his hordes of Isengard.',
-'2002-12-18',
-'2:59:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'The Lord of the Rings: The Return of the King',
-'Gandalf and Aragorn lead the World of Men against Sauron''s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.',
-'2003-12-17',
-'3:21:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'Howl''s Moving Castle',
-'When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.',
-'2005-06-17',
-'1:59:00',
-'Japanese',
-'Y',
-'Y',
-'Japan',
-'PG'),
-
-(DEFAULT,
-'Ghost',
-'After an accident leaves a young man dead, his spirit stays behind to warn his lover of impending danger, with the help of a reluctant psychic.',
-'1990-07-13',
-'2:07:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'The Notebook',
-'A poor and passionate young man falls in love with a rich young woman and gives her a sense of freedom. They soon are separated by their social differences.',
-'2004-06-25',
-'2:03:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'A Walk to Remember',
-'The story of two North Carolina teens, Landon Carter and Jamie Sullivan, who are thrown together after Landon gets into trouble and is made to do community service.',
-'2002-01-25',
-'1:41:00',
-'English',
-'N',
-'N',
-'USA',
-'PG'),
-
-(DEFAULT,
-'Dirty Dancing',
-'Spending the summer at a Catskills resort with her family, Frances "Baby" Houseman falls in love with the camp''s dance instructor, Johnny Castle.',
-'1987-08-21',
-'1:40:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'Notting Hill',
-'The life of a simple bookshop owner changes when he meets the most famous film star in the world.',
-'1999-05-28',
-'2:04:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'Pretty Woman',
-'A man in a legal but hurtful business needs an escort for some social events, and hires a beautiful prostitute he meets... only to fall in love.',
-'1990-03-23',
-'1:59:00',
-'English',
-'N',
-'N',
-'USA',
-'R'),
-
-(DEFAULT,
-'Say Anything',
-'A noble underachiever and a beautiful valedictorian fall in love the summer before she goes off to college.',
-'1989-04-14',
-'1:40:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'Titanic',
-'A seventeen-year-old aristocrat falls in love with a kind, but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.',
-'1997-12-19',
-'3:14:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'P.S. I Love You',
-'A young widow discovers that her late husband has left her 10 messages intended to help ease her pain and start a new life.',
-'2007-12-21',
-'2:06:00',
-'English',
-'N',
-'N',
-'USA',
-'PG-13'),
-
-(DEFAULT,
-'Legends of the Fall',
-'Epic tale of three brothers and their father living in the remote wilderness of 1900s USA and how their lives are affected by nature, history, war, love and betrayal.',
-'1995-01-13',
-'2:13:00',
-'English',
-'N',
-'N',
-'USA',
-'R'),
-
-(DEFAULT,
-'Troy',
-'An adaptation of Homer''s great epic, the film follows the assault on Troy by the united Greek forces and chronicles the fates of the men involved.',
-'2004-05-14',
-'2:43:00',
-'English',
-'N',
-'N',
-'USA',
-'R'),
-
-(DEFAULT,
-'Se7en',
-'Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his modus operandi.',
-'1995-09-22',
-'2:07:00',
-'English',
-'N',
-'N',
-'USA',
-'R'),
-
-(DEFAULT,
-'House of Flying Daggers',
-'A romantic police captain breaks a beautiful member of a rebel group out of prison to help her rejoin her fellows, but things are not what they seem.',
-'2004-07-16',
-'1:59:00',
-'Mandarin', -- ?
-'Y',
-'Y',
-'China', --? 
-'PG-13'),
-
-(DEFAULT,
-'Hero',
-'A defense officer, Nameless, was summoned by the King of Qin regarding his success of terminating three warriors.',
-'2002-10-24',
-'1:39:00',
-'Mandarin', -- ?
-'Y',
-'N',
-'China', --?
-'PG-13'),
-
-(DEFAULT,
-'Red Cliff',
-'The first chapter of a two-part story centered on a battle fought in China''s Three Kingdoms period (220-280 A.D.).',
-'2008-07-10',
-'2:28:00',
-'Mandarin', -- ?
-'Y',
-'N',
-'China', --?
-'R'),
-
-(DEFAULT,
-'Red Cliff II',
-'In this sequel to Red Cliff, Chancellor Cao Cao convinces Emperor Xian of the Han to initiate a battle against the two Kingdoms of Shu and Wu, who have become allied forces, against all expectations. Red Cliff will be the site for the gigantic battle.',
-'2009-01-07',
-'1:39:00',
-'Mandarin', -- ?
-'Y', -- ?
-'N',
-'China',
-'R'); --?
-
-INSERT INTO watches(user_id,movie_id,date_watched,user_rating) VALUES
-(1,1,'2001-12-19',10),
-(1,2,'2002-12-18',10),
-(1,3,'2003-12-17',10),
-(1,4,'2005-06-17',10);
-
-INSERT INTO movie_topics(topic_id,movie_id) VALUES
-(2,1), 
-(8,1),
-(10,1),
-(2,2), 
-(8,2),
-(10,2),
-(2,3), 
-(8,3),
-(10,3),
-(2,4), 
-(3,4),
-(9,4),
-(8,5),
-(10,5),
-(17,5),
-(8,6),
-(17,6),
-(8,7),
-(17,7),
-(8,8),
-(14,8),
-(17,8),
-(5,9),
-(8,9),
-(17,9),
-(5,10),
-(17,10),
-(5,11),
-(8,11),
-(17,11),
-(8,12),
-(17,12),
-(8,13),
-(17,13),
-(8,14),
-(17,14),
-(21,14),
-(1,15),
-(2,15),
-(12,15),
-(6,16),
-(8,16),
-(16,16),
-(1,17),
-(2,17),
-(8,17),
-(17,17),
-(1,18),
-(2,18),
-(12,18),
-(1,19),
-(8,19),
-(12,19),
-(1,20),
-(8,20),
-(12,20);
 
 INSERT INTO actors(actor_id,first_name,last_name,date_of_birth,place_of_birth,gender) VALUES
 (DEFAULT,'Elijah','Wood','1981-01-28','American','M'), -- 1
