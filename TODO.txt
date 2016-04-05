@@ -73,14 +73,34 @@ c) For each user-specified category of movie, list the details of the director(s
 together with the date that the movie has been released. The user should be able to select the
 category (e.g. Horror or Nature) from a list.
 
-Display likes_topics in /topics/id
+Display directs in /topics/id
+Display sponsors in /topics/id
+
+Display movie_topics in /topics/id
+	SELECT movies.*
+	FROM movies
+	INNER JOIN movie_topics
+	ON movies.id = movie_topics.movie_id
+	WHERE movie_topics.movie_id = @topic.id
+
+	
+	
+d) 
+
+
+
+
+
+
+Display likes_topics in /users/id
 	SELECT genre_name
 	FROM topics
 	INNER JOIN likes_topics
-	ON topics.id = likes_topics.
+	ON topics.id = likes_topics.topic_id
+	WHERE likes_topics.profile_id = @profile.id
+	
+	<% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
 
-Display movie_topics in /topics/id
-
-
-
-d) 
+	<% @genres.each do |genre| %>
+	  <%= genre.genre_name %>
+	<% end %>
