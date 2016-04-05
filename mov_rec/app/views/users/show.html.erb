@@ -68,6 +68,13 @@
 
 <% end %>
 
+<% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
+
+  <% @genres.each do |genre| %>
+    <%= genre.genre_name %>
+  <% end %>
+
+
 <% @watched = MovieRating.where user_id: @user.id %>
 
 <br>

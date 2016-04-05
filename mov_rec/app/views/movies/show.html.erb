@@ -44,6 +44,12 @@
   <%= @movie.age_rating %>
 </p>
 
+<% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
+
+  <% @genres.each do |genre| %>
+    <%= genre.genre_name %>
+  <% end %>
+
 <% @avgrating =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
 
 <br>

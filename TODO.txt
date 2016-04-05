@@ -34,3 +34,53 @@ SEARCH BAR
 
 Additional Ideas:
 Wish list of movies for users
+
+============================================================================================
+
+a) Display all the information about a user-specified movie. That is, the user should select
+ the name of the movie from a list, and the information as contained in the movie table
+ should then be displayed on the screen.
+
+Display movie_ratings in /movies/id
+Display directs in /movies/id
+Display sponsors in /movies/id
+
+Display movie_topics in /movies/id
+	SELECT genre_name 
+	FROM topics
+	INNER JOIN movie_topics
+	ON topics.id = movie_topics.topic_id
+	WHERE movie_topics.movie_id = @movie.id
+
+	<% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
+
+	<% @genres.each do |genre| %>
+	  <%= genre.genre_name %>
+	<% end %>
+
+
+
+b) Display the full list of actors, and their roles, of a specific movie. That is, the user should select
+the name of the movie from a list, and all the details of the actors, together with their roles,
+should be displayed on the screen.
+
+Display movie_casts in /movies/id
+Display movie_roles in /movies/id
+
+
+
+c) For each user-specified category of movie, list the details of the director(s) and studio(s),
+together with the date that the movie has been released. The user should be able to select the
+category (e.g. Horror or Nature) from a list.
+
+Display likes_topics in /topics/id
+	SELECT genre_name
+	FROM topics
+	INNER JOIN likes_topics
+	ON topics.id = likes_topics.
+
+Display movie_topics in /topics/id
+
+
+
+d) 
