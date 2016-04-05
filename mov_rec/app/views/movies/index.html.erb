@@ -24,7 +24,7 @@
       <tr>
         <td><img src="<%= movie.poster %>" style="width: 75px"></td>
         <td><%= movie.movie_name %></td>
-        <td><%= movie.description %></td>
+        <td id="td1"><%= movie.description %></td>
         <td><%= movie.date_released %></td>
         <td>
           <% if movie.duration.hour == 0 %><%= movie.duration.strftime('%Mm') %>
