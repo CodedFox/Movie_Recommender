@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Movie Name</th>
       <th>Description</th>
       <th>Date released</th>
@@ -21,6 +22,7 @@
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
+        <td><img src="<%= movie.poster %>" style="width: 75px"></td>
         <td><%= movie.movie_name %></td>
         <td><%= movie.description %></td>
         <td><%= movie.date_released %></td>
