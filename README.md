@@ -62,13 +62,13 @@ password: [insertpassword]
 >cd mov_rec
 >rake db:create
 
-> gem install bcrypt
-> gem install tzinfo-data
-
-CHECK THAT \mov_rec\Gemfile,
-CONTAINS OR ELSE PASTE:
+IN \mov_rec\Gemfile,
+BELOW gem 'sdoc', '~> 0.4.0', group: :doc PASTE:
+# Hash function 
 gem 'bcrypt', '3.1.11'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+# CSS styling
+gem 'bootstrap-sass', '3.2.0.0'
 
 > bundle install
 
