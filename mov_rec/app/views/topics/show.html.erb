@@ -5,5 +5,9 @@
   <%= @topic.genre_name %>
 </p>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<% @user_type = UserType.find_by type_name: 'Admin' %>
+<% if current_user.user_type_id == @user_type.id  %>
+	<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<% end %>
+
 <%= link_to 'Back', topics_path %>
