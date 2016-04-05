@@ -17,7 +17,8 @@
       	<li class="active"><a href="/home">Home</a></li>
 
 	    <% if logged_in? %>
-	      	<li><a href="/users">USERS</a></li>
+	      	<li><a href="/users/<%= current_user.id %>">MY PROFILE</a></li>
+	      	
 	      	<li><a href="/movies">MOVIES</a></li>
 	      	<li><a href="/directors">DIRECTORS</a></li>
 	      	<li><a href="/topics">TOPICS/GENRES</a></li>
@@ -32,6 +33,25 @@
 				<li class="divider"></li>
 				<li><a href="logout">Log out</a></li>
 			</ul>
+			<% if admin? %>
+					<li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	              Admin Tools<b class="caret"></b>
+	            </a>
+			  	<ul class="dropdown-menu">
+			  		<li><a href="/users">USERS</a></li>
+	      			<li><a href="/movies">MOVIES</a></li>
+	      			<li><a href="/directors">DIRECTORS</a></li>
+	      			<li><a href="/topics">TOPICS/GENRES</a></li>
+		  			<li><a href="/studios">STUDIOS</a></li>
+					<li><a href="/profiles">PROFILES</a></li>
+					<li><a href="/movie_ratings">WATCHED</a></li>
+					<li class="divider"></li>
+				</ul>
+			<% else %>
+				<li><a href="logout">NOT ADMIN</a></li>
+			<% end %>
+
 		<% else %>
 			<li><a href="login">Log in</a></li>
 			<li class="dropdown">
