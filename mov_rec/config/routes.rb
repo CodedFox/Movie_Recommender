@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
   resources :likes_topics
   resources :devices
   resources :studios
@@ -12,7 +14,11 @@ Rails.application.routes.draw do
   resources :profiles
 
   get "/home" => "pages#home"
-  root "pages#home"
+  get "/signup" => "users#new"
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  get "logout" => "sessions#destroy"
+  root "pages#login"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

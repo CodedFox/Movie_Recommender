@@ -8,21 +8,53 @@
 </head>
 <body>
 
-	<div class="header">Movie Rec</div>
-	<div class="nav">
-	    <a href="/home">HOME</a>
-	    <a href="/users">USERS</a>
-	    <a href="/movies">MOVIES</a>
-	    <a href="/actors">ACTORS</a>
-	    <a href="/directors">DIRECTORS</a>
-	    <a href="/topics">TOPICS/GENRES</a>
-	    <a href="/studios">STUDIOS</a>
-	    For testing:
-	    <a href="/profiles">PROFILES</a>
-	    <a href="/movie_ratings">WATCHED</a>
-	</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Movie Recommender</a>
+    </div>
+    <ul class="nav navbar-nav">
+      	<li class="active"><a href="/home">Home</a></li>
+
+	    <% if logged_in? %>
+	      	<li><a href="/users">USERS</a></li>
+	      	<li><a href="/movies">MOVIES</a></li>
+	      	<li><a href="/directors">DIRECTORS</a></li>
+	      	<li><a href="/topics">TOPICS/GENRES</a></li>
+		  	<li><a href="/studios">STUDIOS</a></li>
+		  	<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              For Testing <b class="caret"></b>
+            </a>
+		  	<ul class="dropdown-menu">
+				<li><a href="/profiles">PROFILES</a></li>
+				<li><a href="/movie_ratings">WATCHED</a></li>
+				<li class="divider"></li>
+				<li><a href="logout">Log out</a></li>
+			</ul>
+		<% else %>
+			<li><a href="login">Log in</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">For Testing <b class="caret"></b></a>
+		  		<ul class="dropdown-menu">
+					<li><a href="/profiles">PROFILES</a></li>
+					<li><a href="/movie_ratings">WATCHED</a></li>
+					<li class="divider"></li>
+					<li><a href="logout">Log out</a></li>
+				</ul>
+			</li>
+		<% end %>
+    </ul>
+  </div>
+</nav>
+
+
 
 	<div class="content">
+		 <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      	<% end %>
+  
 		<%= yield %>
 	</div>
 
