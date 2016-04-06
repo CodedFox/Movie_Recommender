@@ -113,7 +113,7 @@
         <td id="td1"><%= watch.review %></td>
         <td>
           <% if watch.user_rating != nil %>
-            <%= watch.updated_at %>
+            <%= watch.updated_at.strftime("%Y-%m-%d") %>
           <% end %>
         </td>
         <td><%= link_to 'Edit', edit_movie_rating_path(watch) %></td>
