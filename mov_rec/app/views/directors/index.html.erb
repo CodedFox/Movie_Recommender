@@ -33,6 +33,7 @@
 </table>
 
 <br>
+<% @user_type = UserType.find_by type_name: 'Admin' %>
 <% if current_user.user_type_id == @user_type.id  %>
   <%= link_to 'New Director', new_director_path %>
 <% end %>

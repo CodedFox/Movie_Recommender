@@ -30,7 +30,7 @@
 				<li><a href="/profiles">PROFILES</a></li>
 				<li><a href="/movie_ratings">WATCHED</a></li>
 				<li class="divider"></li>
-				<li><a href="logout">Log out</a></li>
+				<li><%= link_to "LOG OUT", logout_path, method: "delete" %></li>
 			</ul>
 			<% if admin? %>
 					<li class="dropdown">
