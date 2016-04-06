@@ -46,9 +46,9 @@
 
 <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
 
-  <% @genres.each do |genre| %>
-    <%= genre.genre_name %>
-  <% end %>
+<% @genres.each do |genre| %>
+  <%= genre.genre_name %>
+<% end %>
 
 <br>
 <br>
@@ -56,7 +56,7 @@
 
 <h2>Watched By</h2>
 
-<% @userwatched =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
+<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
 
 <table>
   <thead>
@@ -70,7 +70,7 @@
   </thead>
 
   <tbody style="border: 1px solid black">
-    <% @userwatched.each do |watch| %>
+    <% @watches.each do |watch| %>
       <% @user = User.find_by id: watch.user_id %>
       <% @userreviews = MovieRating.where(movie_id: @movie.id, user_id: @user.id) %>
       <tr>
