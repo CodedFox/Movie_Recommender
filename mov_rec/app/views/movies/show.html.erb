@@ -50,13 +50,13 @@
     <%= genre.genre_name %>
   <% end %>
 
-<% @avgrating =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
-
 <br>
 <br>
 
 
 <h2>Watched By</h2>
+
+<% @avgrating =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
 
 <table>
   <thead>

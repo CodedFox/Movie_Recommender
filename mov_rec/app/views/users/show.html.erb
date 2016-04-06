@@ -21,6 +21,11 @@
     <%= @user.email %>
   </p>
 
+<p>
+    <strong>Join Date:</strong>
+    <%= @user.created_at %>
+  </p>
+
   <p>
     <strong>First Name:</strong>
     <%= @profile.first_name %>
@@ -74,9 +79,6 @@
     <%= genre.genre_name %>
   <% end %>
 
-
-<% @watched = MovieRating.where user_id: @user.id %>
-
 <br>
 <br>
 
@@ -85,6 +87,9 @@
 
 <br>
 <br>
+
+
+<% @watched = MovieRating.where user_id: @user.id %>
 
 <table>
   <thead>
