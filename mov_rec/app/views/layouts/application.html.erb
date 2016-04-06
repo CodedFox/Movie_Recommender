@@ -22,16 +22,6 @@
 	      	<li><a href="/directors">DIRECTORS</a></li>
 	      	<li><a href="/topics">TOPICS/GENRES</a></li>
 		  	<li><a href="/studios">STUDIOS</a></li>
-		  	<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              For Testing <b class="caret"></b>
-            </a>
-		  	<ul class="dropdown-menu">
-				<li><a href="/profiles">PROFILES</a></li>
-				<li><a href="/movie_ratings">WATCHED</a></li>
-				<li class="divider"></li>
-				<li><%= link_to "LOG OUT", logout_path, method: "delete" %></li>
-			</ul>
 			<% if admin? %>
 					<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -47,8 +37,18 @@
 					<li><a href="/movie_ratings">WATCHED</a></li>
 					<li class="divider"></li>
 				</ul>
+				<li><%= link_to "LOG OUT", logout_path, method: "delete" %></li>
 			<% else %>
-				<li><a href="logout">LOGOUT</a></li>
+			<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              For Testing <b class="caret"></b>
+            </a>
+		  	<ul class="dropdown-menu">
+				<li><a href="/profiles">PROFILES</a></li>
+				<li><a href="/movie_ratings">WATCHED</a></li>
+				<li class="divider"></li>
+			</ul>
+				<li><%= link_to "LOG OUT", logout_path, method: "delete" %></li>
 			<% end %>
 
     </ul>
