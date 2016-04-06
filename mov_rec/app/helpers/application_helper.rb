@@ -1,6 +1,7 @@
 module ApplicationHelper
 
 	def admin?
-		@current_user.user_type_id == 1
+		@admin = UserType.find_by type_name: 'Admin'
+		@current_user.user_type_id == @admin.id
 	end
 end
