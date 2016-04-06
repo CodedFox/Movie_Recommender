@@ -25,5 +25,8 @@
   <%= @actor.gender %>
 </p>
 
-<%= link_to 'Edit', edit_actor_path(@actor) %> |
+<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
+  <%= link_to 'Edit', edit_actor_path(@actor) %> |
+<% end %>
+
 <%= link_to 'Back', actors_path %>

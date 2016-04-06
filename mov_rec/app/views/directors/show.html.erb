@@ -25,8 +25,6 @@
   <%= @director.gender %>
 </p>
 
-<% @user_type = UserType.find_by type_name: 'Admin' %>
-<% if current_user.user_type_id == @user_type.id  %>
   <%= link_to 'Edit', edit_director_path(@director) %> |
 <% end %>
 

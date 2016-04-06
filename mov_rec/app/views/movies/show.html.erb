@@ -89,8 +89,7 @@
   </tbody>
 </table>
 
-<% @user_type = UserType.find_by type_name: 'Admin' %>
-<% if current_user.user_type_id == @user_type.id  %>
+<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
   <%= link_to 'Edit', edit_movie_path(@movie) %> | 
 <% end %>
 

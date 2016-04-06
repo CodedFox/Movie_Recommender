@@ -5,9 +5,8 @@
   <%= @topic.genre_name %>
 </p>
 
-<% @user_type = UserType.find_by type_name: 'Admin' %>
-<% if current_user.user_type_id == @user_type.id  %>
-	<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
+  <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <% end %>
 
 <%= link_to 'Back', topics_path %>
@@ -39,7 +38,8 @@
 		<td id="td1"><%= movie.description %></td>
 		<td><%= movie.date_released %></td>
 		<td>
-		  <% if movie.duration.hour == 0 %><%= movie.duration.strftime('%Mm') %>
+		  <% if movie.duration.hour == 0 %>
+		  	<%= movie.duration.strftime('%Mm') %>
 		  <% else %>
 			<%= movie.duration.strftime('%kh %Mm') %>
 		  <% end %>

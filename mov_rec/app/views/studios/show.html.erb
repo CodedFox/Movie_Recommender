@@ -10,9 +10,8 @@
   <%= @studio.country %>
 </p>
 
-<% @user_type = UserType.find_by type_name: 'Admin' %>
-<% if current_user.user_type_id == @user_type.id  %>
-	<%= link_to 'Edit', edit_studio_path(@studio) %> |
+<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
+  <%= link_to 'Edit', edit_studio_path(@studio) %> |
 <% end %>
 
 <%= link_to 'Back', studios_path %>

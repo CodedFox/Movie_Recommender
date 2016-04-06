@@ -36,7 +36,12 @@ Display movie_casts in /movies/id
 Display movie_roles in /movies/id
 Display sponsors in /movies/id
 
-Display movie_ratings in /movies/id
+Display movie_ratings in /movies/id ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	SELECT *
+	FROM movie_ratings
+	WHERE movie_ratings = @movie.id
+	
+	
 
 Display movie_topics in /movies/id
 	SELECT genre_name 
@@ -185,7 +190,7 @@ Display movie_ratings in /topics/id
 =========================================================================================
 	
 IN /USERS/ID, DISPLAY:
-	profile
+	profile ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	likes_topics
 		SELECT genre_name
 		FROM topics
@@ -199,7 +204,7 @@ IN /USERS/ID, DISPLAY:
 		  <%= genre.genre_name %>
 		<% end %>
 		
->	used_devices
+	used_devices
 		SELECT device_name
 		FROM devices
 		INNER JOIN used_devices

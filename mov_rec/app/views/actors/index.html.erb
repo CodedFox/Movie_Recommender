@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% @admin = UserType.find_by type_name: 'Admin' %>
+
 <h1>Listing Actors</h1>
 
 <table>
@@ -23,8 +25,11 @@
         <td><%= actor.place_of_birth %></td>
         <td><%= actor.gender %></td>
         <td><%= link_to 'Show', actor %></td>
-        <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
-        <td><%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if current_user.user_type_id == @admin.id  %>
+          <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
+          <td><%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +37,6 @@
 
 <br>
 
-<%= link_to 'New Actor', new_actor_path %>
+<% if current_user.user_type_id == @admin.id  %>
+  <%= link_to 'New Actor', new_actor_path %>
+<% end %>

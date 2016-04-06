@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% @admin = UserType.find_by type_name: 'Admin' %>
+
 <h1>Listing Movies</h1>
 
 <table>
@@ -27,7 +29,8 @@
         <td id="td1"><%= movie.description %></td>
         <td><%= movie.date_released %></td>
         <td>
-          <% if movie.duration.hour == 0 %><%= movie.duration.strftime('%Mm') %>
+          <% if movie.duration.hour == 0 %>
+            <%= movie.duration.strftime('%Mm') %>
           <% else %>
             <%= movie.duration.strftime('%kh %Mm') %>
           <% end %>
@@ -40,8 +43,7 @@
 
         <td><%= link_to 'Show', movie %></td>
 
-        <% @user_type = UserType.find_by type_name: 'Admin' %>
-        <% if current_user.user_type_id == @user_type.id  %>
+        <% if current_user.user_type_id == @admin.id  %>
           <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
           <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -53,6 +55,6 @@
 
 <br>
 
-<% if current_user.user_type_id == @user_type.id  %>
+<% if current_user.user_type_id == @admin.id  %>
   <%= link_to 'New Movie', new_movie_path %>
 <% end %>
