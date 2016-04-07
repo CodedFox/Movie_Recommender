@@ -20,7 +20,11 @@
   <tbody>
     <% @actors.each do |actor| %>
       <tr>
-        <td><img src="<%= actor.picture %>" style="width: 75px"></td>
+        <% if actor.picture.blank? %>
+          <td><img src="<%= actor.picture %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= actor.picture %>" style="width: 75px"></td>
+        <% end %>
         <td><%= actor.first_name %></td>
         <td><%= actor.last_name %></td>
         <td><%= actor.date_of_birth %></td>

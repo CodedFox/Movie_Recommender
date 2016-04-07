@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<img src="<%= @director.picture %>" style="width: 200px; float: left; padding: 5px">
+<% unless @director.picture.blank? %>
+  <img src="<%= @director.picture %>" style="width: 200px; float: left; padding: 5px">
+<% end %>
 
 <p>
   <strong>First name:</strong>

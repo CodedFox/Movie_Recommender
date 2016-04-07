@@ -18,7 +18,11 @@
   <tbody>
     <% @directors.each do |director| %>
       <tr>
-        <td><img src="<%= director.picture %>" style="width: 75px"></td>
+         <% if director.picture.blank? %>
+          <td><img src="<%= director.picture %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= director.picture %>" style="width: 75px"></td>
+        <% end %>
         <td><%= director.first_name %></td>
         <td><%= director.last_name %></td>
         <td><%= director.place_of_birth %></td>

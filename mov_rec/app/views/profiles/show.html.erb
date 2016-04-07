@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
  <p>
+    <% unless @profile.picture.blank? %>
     <img src="<%= @profile.picture %>" style="width: 200px; float: center">
+    <% end %>
  </p>
  <br>
 
