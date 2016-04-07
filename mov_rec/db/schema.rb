@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404195158) do
+ActiveRecord::Schema.define(version: 20160407005632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,14 +96,14 @@ ActiveRecord::Schema.define(version: 20160404195158) do
     t.date     "date_watched"
     t.integer  "user_rating"
     t.text     "review"
-    t.integer  "user_id"
     t.integer  "movie_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "profile_id"
   end
 
   add_index "movie_ratings", ["movie_id"], name: "index_movie_ratings_on_movie_id", using: :btree
-  add_index "movie_ratings", ["user_id"], name: "index_movie_ratings_on_user_id", using: :btree
+  add_index "movie_ratings", ["profile_id"], name: "index_movie_ratings_on_profile_id", using: :btree
 
   create_table "movie_roles", force: :cascade do |t|
     t.integer  "movie_id"
@@ -189,14 +189,14 @@ ActiveRecord::Schema.define(version: 20160404195158) do
   end
 
   create_table "used_devices", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "device_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "profile_id"
   end
 
   add_index "used_devices", ["device_id"], name: "index_used_devices_on_device_id", using: :btree
-  add_index "used_devices", ["user_id"], name: "index_used_devices_on_user_id", using: :btree
+  add_index "used_devices", ["profile_id"], name: "index_used_devices_on_profile_id", using: :btree
 
   create_table "user_types", force: :cascade do |t|
     t.string   "type_name"
@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(version: 20160404195158) do
   add_foreign_key "movie_casts", "casting_types"
   add_foreign_key "movie_casts", "movies"
   add_foreign_key "movie_ratings", "movies"
-  add_foreign_key "movie_ratings", "users"
+  add_foreign_key "movie_ratings", "profiles"
   add_foreign_key "movie_roles", "movies"
   add_foreign_key "movie_roles", "roles"
   add_foreign_key "movie_topics", "movies"
@@ -235,6 +235,6 @@ ActiveRecord::Schema.define(version: 20160404195158) do
   add_foreign_key "sponsors", "movies"
   add_foreign_key "sponsors", "studios"
   add_foreign_key "used_devices", "devices"
-  add_foreign_key "used_devices", "users"
+  add_foreign_key "used_devices", "profiles"
   add_foreign_key "users", "user_types"
 end
