@@ -17,7 +17,11 @@
   <tbody>
     <% @studios.each do |studio| %>
       <tr>
-        <td><img src="<%= studio.picture %>" style="width: 75px"></td>
+        <% if studio.picture.blank? %>
+        <td><img src="<%= studio.picture %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= studio.picture %>" style="width: 75px"></td>
+        <% end %>
         <td><%= studio.studio_name %></td>
         <td><%= studio.country %></td>
         <td><%= link_to 'Show', studio %></td>

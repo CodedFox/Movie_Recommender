@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<img src="<%= @studio.picture %>" style="width: 300px; float: left; padding: 5px">
-
+<% unless @studio.picture.blank? %>
+	<img src="<%= @studio.picture %>" style="width: 300px; float: left; padding: 5px">
+<% end %>
 <p>
   <strong>Studio name:</strong>
   <%= @studio.studio_name %>
