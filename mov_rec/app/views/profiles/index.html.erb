@@ -22,6 +22,7 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
+        <td><img src="<%= profile.picture %>" style="width: 75px"></td>
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
         <td><%= profile.date_of_birth %></td>
@@ -31,7 +32,6 @@
         <td><%= profile.country %></td>
         <td><%= profile.occupation %></td>
         <td><%= profile.user %></td>
-        <td><%= profile.picture %></td>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>

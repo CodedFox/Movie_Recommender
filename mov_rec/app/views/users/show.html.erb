@@ -16,6 +16,11 @@
   <br>
   <br>
 
+ <p>
+    <img src="<%= @profile.picture %>" style="width: 200px; float: center">
+ </p>
+ <br>
+
   <p>
     <strong>Email:</strong>
     <%= @user.email %>
@@ -64,11 +69,6 @@
   <p>
     <strong>Occupation:</strong>
     <%= @profile.occupation %>
-  </p>
-
-  <p>
-    <strong>Picture:</strong>
-    <%= @profile.picture %>
   </p>
 
 <% end %>
