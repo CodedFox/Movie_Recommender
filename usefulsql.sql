@@ -43,3 +43,28 @@ DELETE FROM ROLES;
 DELETE FROM STUDIOS;
 DELETE FROM TOPICS;
 DELETE FROM USER_TYPES;
+
+
+-- set the date style to month-day-year
+set datestyle = mdy;
+
+
+-- reset primary key sequences
+ALTER SEQUENCE actor_roles_id_seq RESTART WITH 1;
+ALTER SEQUENCE actors_id_seq RESTART WITH 1;
+ALTER SEQUENCE casting_types_id_seq RESTART WITH 1;
+ALTER SEQUENCE devices_id_seq RESTART WITH 1;
+ALTER SEQUENCE directors_id_seq RESTART WITH 1;
+ALTER SEQUENCE likes_topics_id_seq RESTART WITH 1;
+ALTER SEQUENCE movie_casts_id_seq RESTART WITH 1;
+ALTER SEQUENCE movie_ratings_id_seq RESTART WITH 1;
+ALTER SEQUENCE movie_roles_id_seq RESTART WITH 1;
+ALTER SEQUENCE movie_topics_id_seq RESTART WITH 1;
+ALTER SEQUENCE movies_id_seq RESTART WITH 1;
+ALTER SEQUENCE profiles_id_seq RESTART WITH 1;
+ALTER SEQUENCE roles_id_seq RESTART WITH 1;
+ALTER SEQUENCE sponsors_id_seq RESTART WITH 1;
+ALTER SEQUENCE studios_id_seq RESTART WITH 1;
+ALTER SEQUENCE topics_id_seq RESTART WITH 1;
+ALTER SEQUENCE used_devices_id_seq RESTART WITH 1;
+--ALTER SEQUENCE users_id_seq RESTART WITH 1;
