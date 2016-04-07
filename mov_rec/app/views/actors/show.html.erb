@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-
-<img src="<%= @actor.picture %>" style="width: 200px; float: left; padding: 5px">
+<% unless @actor.picture.blank? %>
+  <img src="<%= @actor.picture %>" style="width: 200px; float: left; padding: 5px">
+<% end %>
 
 <div style="padding: 5px">
 
