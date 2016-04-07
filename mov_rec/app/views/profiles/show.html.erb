@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+ <p>
+    <img src="<%= @profile.picture %>" style="width: 200px; float: center">
+ </p>
+ <br>
+
 <p>
   <strong>First Name:</strong>
   <%= @profile.first_name %>
@@ -38,11 +43,6 @@
 <p>
   <strong>Occupation:</strong>
   <%= @profile.occupation %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-  <%= @profile.picture %>
 </p>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
