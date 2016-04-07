@@ -56,7 +56,7 @@
 
 <h2>Watched By</h2>
 
-<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
+<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, profile_id").group("profile_id").order(count: :desc).where movie_id: @movie.id %>
 
 <table>
   <thead>
@@ -71,8 +71,9 @@
 
   <tbody style="border: 1px solid black">
     <% @watches.each do |watch| %>
-      <% @user = User.find_by id: watch.user_id %>
-      <% @userreviews = MovieRating.where(movie_id: @movie.id, user_id: @user.id) %>
+      <% @profile = Profile.find_by id: watch.profile_id %>
+      <% @user = User.find_by id: @profile.user_id %>
+      <% @userreviews = MovieRating.where(movie_id: @movie.id, profile_id: @profile.id) %>
       <tr>
         <td style="text-align: center"><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
         <td style="text-align: center"><%= watch.avg %></td>
