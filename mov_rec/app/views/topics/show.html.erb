@@ -37,7 +37,6 @@
   <tbody>
 	<% @dusers.each do |duser| %>
 	  <% @user = User.joins(:profile).where(profiles: { id: duser.profile_id }).take %>
-		<td><%= duser.mi %></td>
 	  <% @maxmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
 	  <% @minmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
 	  
