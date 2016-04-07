@@ -4,7 +4,7 @@ class StudiosController < ApplicationController
   # GET /studios
   # GET /studios.json
   def index
-    @studios = Studio.all
+    @studios = Studio.all.order('studio_name ASC')
   end
 
   # GET /studios/1

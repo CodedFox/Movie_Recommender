@@ -57,7 +57,17 @@ Display directs in /movies/id
 	  <%= actor.last_name %>
 	<% end %>
 
->Display movie_roles in /movies/id	
+>Display movie_roles in /movies/id
+	SELECT character_name
+	FROM roles
+	INNER JOIN movie_roles ON roles.id = movie_roles.role_id
+	WHERE movie_roles.movie_id = @movie.id
+
+	<% @roles = Role.joins(:movie_roles).where(movie_roles: { movie_id: @movie.id }) %>
+
+	<% @roles.each do |role| %>
+	  <%= role.character_name %>
+	<% end %>
 
 Display sponsors in /movies/id
 	SELECT studio_name

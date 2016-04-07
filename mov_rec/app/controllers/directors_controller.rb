@@ -4,7 +4,7 @@ class DirectorsController < ApplicationController
   # GET /directors
   # GET /directors.json
   def index
-    @directors = Director.all
+    @directors = Director.all.order('first_name ASC', 'last_name ASC')
   end
 
   # GET /directors/1
