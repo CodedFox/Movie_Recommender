@@ -1,8 +1,8 @@
 THINGS WE COULD IMPLEMENT IN PROJECT SPECIFCATION:
 
 Get rid of password column in users
-Change user_id column to profile_id in used_devices & movie_ratings
 
+FORMS FOR LIKES_TOPICS, MOVIE_RATINGS, ETC- ANYTHING WITH FOREIGN KEYS.
 MAKE SURE OF ACCESS OF PAGES ARE CORRECT TO CURRENT USER
 VALIDATIONS FOR DATA
 RECOMMENDATIONS
@@ -36,21 +36,23 @@ Display movie_roles in /movies/id
 Display sponsors in /movies/id
 
 Display movie_ratings in /movies/id
-	SELECT avg(user_rating) as avg, count(id) as count, user_id
+	SELECT avg(user_rating) as avg, count(id) as count, profile_id
 	FROM movie_ratings
 	ORDER BY count DESC
 	WHERE movie_ratings.movie_id = @movie.id
-	
-		SELECT email
+		
+		SELECT email, id
 		FROM users
-		WHERE users.id = ^movie_rating.user_id
+		INNER JOIN profiles
+		ON users.id = profiles.user_id
+		WHERE profiles.id = ^movie_rating.profile_id		
 		
 		SELECT review
 		FROM movie_ratings
 		WHERE movie_ratings.user_id = ^users.id AND movie_ratings.movie_id = @movie.id
 		
 	
-	<% @userwatched =  MovieRating.select("avg(user_rating) as avg, count(id) as count, user_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
+	<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, profile_id").group("user_id").order(count: :desc).where movie_id: @movie.id %>
 
 	<table>
 	  <thead>
@@ -64,9 +66,9 @@ Display movie_ratings in /movies/id
 	  </thead>
 
 	  <tbody>
-		<% @userwatched.each do |watch| %>
-		  <% @user = User.find_by id: watch.user_id %>
-		  <% @userreviews = MovieRating.where(movie_id: @movie.id, user_id: @user.id) %>
+		<% @watches.each do |watch| %>
+		  <% @user = Users.joins(:profile).where(profile: { id: watch.profile_id }).take %>
+		  <% @userreviews = MovieRating.where(movie_id: @movie.id, profile_id: watch.profile_id) %>
 		  <tr>
 			<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
 			<td><%= watch.avg %></td>
@@ -225,6 +227,7 @@ Jane Doe may have rated terminator 1 as a 1, Terminator 2 as a 10 and Terminator
 Clearly, she changes her mind quite often!
 
 Display movie_ratings in /topics/id
+	SELECT 
 
 
 
@@ -314,13 +317,13 @@ IN /USERS/ID, DISPLAY:
 	movie_ratings
 		SELECT *
 		FROM movie_rating
-		WHERE movie_rating.user_id = @user.id
+		WHERE movie_rating.profile_id = @profile.id
 		
 			SELECT name
 			FROM movies
 			WHERE movies.id = ^movie_rating.movie_id
 
-		<% @watched = MovieRating.where user_id: @user.id %>
+		<% @watched = MovieRating.where profile_id: @profile.id %>
 
 		<table>
 		  <thead>
@@ -393,3 +396,14 @@ IN /STUDIOS/ID, DISPLAY:
 	sponsors
 
 
+
+=========================================================================================
+
+SELECT MAX(R.user_rating) - MIN(R.user_rating) as diff
+FROM MOVIE_RATINGS R, MOVIE_TOPICS MT, TOPICS T
+WHERE R.movie_id = MT.movie_id
+	AND MT.topic_id = T.id
+	AND T.genre_name = 'Fantasy'
+GROUP BY R.user_id
+ORDER BY diff DESC
+LIMIT 3
