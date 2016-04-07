@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @topic.genre_name %>
-</p>
+<h2><%= @topic.genre_name %></h2>
 
 <% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
   <%= link_to 'Edit', edit_topic_path(@topic) %> |

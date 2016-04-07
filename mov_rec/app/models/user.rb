@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
 	# one user can only have one profile
 	has_one :profile
-	# one user can have many movie watches
-	has_many :movie_rating
 
 	# must enter a email with proper format
 	before_save { self.email = email.downcase }

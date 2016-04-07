@@ -3,4 +3,6 @@ class Profile < ActiveRecord::Base
 	belongs_to :user
 	# each profile can have many topics liked
 	has_many :likes_topics
+	# each profile can have many topics liked
+	has_many :movie_ratings
 end
