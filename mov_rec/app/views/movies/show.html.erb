@@ -101,7 +101,6 @@
 
 <% @roles = Role.joins(:movie_roles).where(movie_roles: { movie_id: @movie.id }).order('character_name ASC') %>
 
-
 <table>
   <thead>
     <tr>
@@ -113,9 +112,18 @@
 
   <tbody>
     <% @roles.each do |role| %>
+      <% @actors = Actor.joins(:actor_roles).where(actor_roles: { role_id: role.id }) %>
       <tr>
         <td><%= role.character_name %></td>
-        <td></td>
+        <td>
+          <% @actors.each do |actor| %>
+            <% if actor == @actors.last %>
+              <%= actor.first_name %> <%= actor.last_name %>
+            <% else %>
+              <%= actor.first_name %> <%= actor.last_name %>,
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
