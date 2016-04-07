@@ -73,19 +73,27 @@
 
 <% end %>
 
-<% if false %>
-<% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
+<p>
+  <strong>Devices:</strong>
 
-<% @devices.each do |device| %>
-  <%= devices.device_name %>
-<% end %>
-<% end %>
+  <% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
 
-<% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
+  <% @devices.each do |device| %>
+    <%= device.device_name %>
+  <% end %>
 
-<% @genres.each do |genre| %>
-  <%= genre.genre_name %>
-<% end %>
+</p>
+
+<p>
+  <strong>Genres:</strong>
+
+  <% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
+
+  <% @genres.each do |genre| %>
+    <%= genre.genre_name %>
+  <% end %>
+
+</p>
 
 <br>
 <br>
