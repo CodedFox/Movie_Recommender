@@ -37,16 +37,20 @@
   <tbody>
 	<% @dusers.each do |duser| %>
 	  <% @user = User.joins(:profile).where(profiles: { id: duser.profile_id }).take %>
-	  <% @maxmovie = Movie.joins(:movie_ratings).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }).take %>
-	  <% @minmovie = Movie.joins(:movie_ratings).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }).take %>
-	  <tr>
-		<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
-		<td><%= @maxmovie.movie_name %></td>
-		<td><%= duser.ma %></td>
-		<td><%= @minmovie.movie_name %></td>
 		<td><%= duser.mi %></td>
-		<td><%= duser.d %></td>
-	  </tr>
+	  <% @maxmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+	  <% @minmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+	  
+	  <% if duser.d != 0 %>
+		  <tr>
+			<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
+			<td><%= @maxmovie.movie_name %></td>
+			<td><%= duser.ma %></td>
+			<td><%= @minmovie.movie_name %></td>
+			<td><%= duser.mi %></td>
+			<td><%= duser.d %></td>
+		  </tr>
+	  <% end %>
 	<% end %>
   </tbody>
 </table>

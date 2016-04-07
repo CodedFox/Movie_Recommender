@@ -45,13 +45,12 @@ Display movie_ratings in /movies/id
 		
 		SELECT email, id
 		FROM users
-		INNER JOIN profiles
-		ON users.id = profiles.user_id
+		INNER JOIN profiles ON users.id = profiles.user_id
 		WHERE profiles.id = ^movie_rating.profile_id		
 		
 		SELECT review
 		FROM movie_ratings
-		WHERE movie_ratings.profile_id = ^movie_ratings.profile_id AND movie_ratings.movie_id = @movie.id
+		WHERE movie_ratings.profile_id = ^movie_rating.profile_id AND movie_ratings.movie_id = @movie.id
 		
 	
 	<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, profile_id").group("profile_id").order(count: :desc).where movie_id: @movie.id %>
@@ -90,8 +89,7 @@ Display movie_ratings in /movies/id
 Display movie_topics in /movies/id
 	SELECT genre_name 
 	FROM topics
-	INNER JOIN movie_topics
-	ON topics.id = movie_topics.topic_id
+	INNER JOIN movie_topics ON topics.id = movie_topics.topic_id
 	WHERE movie_topics.movie_id = @movie.id
 
 	<% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
@@ -112,8 +110,7 @@ Display sponsors in /topics/id
 Display movie_topics in /topics/id
 	SELECT *
 	FROM movies
-	INNER JOIN movie_topics
-	ON movies.id = movie_topics.movie_id
+	INNER JOIN movie_topics ON movies.id = movie_topics.movie_id
 	WHERE movie_topics.topic_id = @topic.id
 	
 	<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }) %>
@@ -229,38 +226,43 @@ Jane Doe may have rated terminator 1 as a 1, Terminator 2 as a 10 and Terminator
 Clearly, she changes her mind quite often!
 
 Display movie_ratings in /topics/id
-
-	SELECT MAX(R.user_rating) - MIN(R.user_rating) as diff, MAX(R.user_rating) as max, MIN(R.user_rating) as min, R.profile_id
-	FROM MOVIE_RATINGS R, MOVIE_TOPICS MT, TOPICS T
-	WHERE R.movie_id = MT.movie_id
-		AND MT.topic_id = T.id
-		AND T.genre_name = 'Fantasy'
-	GROUP BY R.profile_id
-	ORDER BY diff DESC
-
-	SELECT max(user_rating) - min(user_rating) as diff, max(R.user_rating) as max, min(R.user_rating) as min, profile_id
+	SELECT max(user_rating) - min(user_rating) as d, max(R.user_rating) as ma, min(R.user_rating) as mi, profile_id
 	FROM movie_ratings
+	INNER JOIN movie_topics ON movie_ratings.movie_id = movie_topics.movie_id
+	WHERE movie_topics.topic_id = @topic.id
 	GROUP BY profile_id
 	ORDER BY diff DESC
-	WHERE movie_ratings.movie_id = movie_topics.movie_id, movie_topics.topic_id = @topic.id
 	LIMIT 3
 	
 		SELECT email, id
 		FROM users
-		INNER JOIN profiles
-		ON users.id = profiles.user_id
+		INNER JOIN profiles ON users.id = profiles.user_id
 		WHERE profiles.id = ^movie_rating.profile_id
 		
 		SELECT name
-		FROM movie
-		INNER JOIN movie_ratings
-		ON movie.id = movie_ratings.movie_id
-		WHERE movie_ratings.rating = ^movie_rating.max
+		FROM movies
+		INNER JOIN movie_ratings ON movie.id = movie_ratings.movie_id
+		INNER JOIN movie_topics ON movie.id = movie_topics.movie_id
+		WHERE movie_ratings.rating = ^movie_rating.ma AND movie_ratings.user_id = ^movie_rating.user_id AND movie_topics.topic_id = @topic.id
+		
+		SELECT name
+		FROM movies
+		INNER JOIN movie_ratings ON movie.id = movie_ratings.movie_id
+		INNER JOIN movie_topics	ON movie.id = movie_topics.movie_id
+		WHERE movie_ratings.rating = ^movie_rating.mi AND movie_ratings.user_id = ^movie_rating.user_id AND movie_topics.topic_id = @topic.id
+
+	<% @dusers = MovieRating.
+					select("max(user_rating) - min(user_rating) as d, max(user_rating) as ma, min(user_rating) as mi, profile_id").
+					joins(:movie_topics).
+					where(movie_topics: { topic_id: @topic.id }).
+					group("profile_id").
+					order('d DESC').
+					take(3) %>
 
 	<table>
 	  <thead>
 		<tr>
-		  <th>User</th>
+		  <th>Diverse Raters</th>
 		  <th>Max Movie</th>
 		  <th>Rating</th>
 		  <th>Min Movie</th>
@@ -271,18 +273,18 @@ Display movie_ratings in /topics/id
 	  </thead>
 
 	  <tbody>
-		<% @diverseusers.each do |diverseuser| %>
-		  <% @user = User.joins(:profile).where(profiles: { id: diverseuser.profile_id }).take %>
-		  <% @maxmovie = Movie.joins(:movie_ratings).where(movie_ratings: { user_rating: diverseuser.max }) %>
-		  <% @minmovie = Movie.joins(:movie_ratings).where(movie_ratings: { user_rating: diverseuser.min }) %>
-		  <tr>
-			<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
-			<td><%= @maxmovie.movie_name %></td>
-			<td><%= diverseuser.max %></td>
-			<td><%= @minmovie.movie_name %></td>
-			<td><%= diverseuser.min %></td>
-			<td><%= diverseuser.diff %></td>
-		  </tr>
+		<% @dusers.each do |duser| %>
+		  <% @user = User.joins(:profile).where(profiles: { id: duser.profile_id }).take %>
+		  <% @maxmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+		  <% @minmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+			<tr>
+				<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
+				<td><%= @maxmovie.movie_name %></td>
+				<td><%= duser.ma %></td>
+				<td><%= @minmovie.movie_name %></td>
+				<td><%= duser.mi %></td>
+				<td><%= duser.d %></td>
+			</tr>
 		<% end %>
 	  </tbody>
 	</table>
@@ -349,8 +351,7 @@ IN /USERS/ID, DISPLAY:
 	likes_topics
 		SELECT genre_name
 		FROM topics
-		INNER JOIN likes_topics
-		ON topics.id = likes_topics.topic_id
+		INNER JOIN likes_topics ON topics.id = likes_topics.topic_id
 		WHERE likes_topics.profile_id = @profile.id
 		
 		<% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
@@ -362,8 +363,7 @@ IN /USERS/ID, DISPLAY:
 	used_devices
 		SELECT device_name
 		FROM devices
-		INNER JOIN used_devices
-		ON devices.id = used_devices.devices_id
+		INNER JOIN used_devices ON devices.id = used_devices.devices_id
 		WHERE used_devices.profile_id = @profile.id
 		
 		<% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
