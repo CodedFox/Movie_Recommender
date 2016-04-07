@@ -67,6 +67,18 @@
 
 </p>
 
+<p>
+  <strong>Directors:</strong>
+
+  <% @directors = Director.joins(:directs).where(directs: { movie_id: @movie.id }) %>
+
+  <% @directors.each do |director| %>
+    <%= director.first_name %>
+    <%= director.last_name %>
+  <% end %>
+
+</p>
+
 <br>
 <br>
 
