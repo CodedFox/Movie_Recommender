@@ -22,7 +22,11 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
-        <td><img src="<%= profile.picture %>" style="width: 75px"></td>
+        <% if profile.picture.blank? %>
+          <td><img src="<%= profile.picture %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= profile.picture %>" style="width: 75px"></td>
+        <% end %>
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
         <td><%= profile.date_of_birth %></td>
