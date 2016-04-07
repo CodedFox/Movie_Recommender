@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<img src="<%= @movie.poster %>" style="width: 350px; float: right">
+<% unless @movie.poster.blank? %>
+  <img src="<%= @movie.poster %>" style="width: 350px; float: right">
+<% end %>
 
 <h2><%= @movie.movie_name %></h2>
 
