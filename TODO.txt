@@ -32,9 +32,44 @@ with their comments, if any. (Here movie Z refers to a movie of your own choice,
 Hundred Foot Journey).
 
 Display directs in /movies/id
-Display movie_casts in /movies/id
-Display movie_roles in /movies/id
+	SELECT first_name, last_name
+	FROM directors
+	INNER JOIN directs ON directors.id = directs.director_id
+	WHERE directs.movie_id = @movie.id
+
+	<% @directors = Director.joins(:directs).where(directs: { movie_id: @movie.id }) %>
+
+	<% @directors.each do |director| %>
+	  <%= director.first_name %>
+	  <%= director.last_name %>
+	<% end %>
+
+>Display movie_casts in /movies/id
+	SELECT first_name, last_name
+	FROM actors
+	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
+	WHERE movie_casts.movie_id = @movie.id
+
+	<% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }) %>
+
+	<% @actors.each do |actor| %>
+	  <%= actor.first_name %>
+	  <%= actor.last_name %>
+	<% end %>
+
+>Display movie_roles in /movies/id	
+
 Display sponsors in /movies/id
+	SELECT studio_name
+	FROM studios
+	INNER JOIN sponsors ON studios.id = sponsors.studio_id
+	WHERE sponsors.movie_id = @movie.id
+
+	<% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: @movie.id }) %>
+
+	<% @studios.each do |studio| %>
+	  <%= studio.studio_name %>
+	<% end %>
 
 Display movie_ratings in /movies/id
 	SELECT avg(user_rating) as avg, count(id) as count, profile_id
@@ -494,7 +529,6 @@ IN /DIRECTORS/ID, DISPLAY:
 		<% end %>
 	  </tbody>
 	</table>
-
 
 
 

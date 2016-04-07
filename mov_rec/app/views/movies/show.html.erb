@@ -79,8 +79,26 @@
 
 </p>
 
+<p>
+  <strong>Studios:</strong>
+
+  <% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: @movie.id }) %>
+
+  <% @studios.each do |studio| %>
+    <% if studio == @studios.last %>
+      <%= studio.studio_name %>
+    <% else %>
+      <%= studio.studio_name %>,
+    <% end %>
+  <% end %>
+
+</p>
+
 <br>
 <br>
+
+<h2>Cast</h2>
+
 
 
 <h2>Watched By</h2>
