@@ -399,7 +399,7 @@ INSERT INTO directors(id, first_name, last_name, date_of_birth, place_of_birth, 
 INSERT INTO directors(id, first_name, last_name, date_of_birth, place_of_birth, gender, picture, created_at, updated_at) VALUES (DEFAULT, 'Tim', 'Miller', '02/28/1970', 'USA', 'M', 'http://ia.media-imdb.com/images/M/MV5BMTk4NjMyNzY3MV5BMl5BanBnXkFtZTgwNDY0Nzg0ODE@._V1_UX214_CR0,0,214,317_AL_.jpg', now(), now());
 INSERT INTO directors(id, first_name, last_name, date_of_birth, place_of_birth, gender, picture, created_at, updated_at) VALUES (DEFAULT, 'Jean-Pierre', 'Jeunet', '09/03/1953', 'France', 'M', 'http://ia.media-imdb.com/images/M/MV5BMjE2Mjg3MTE2NF5BMl5BanBnXkFtZTYwOTUzMzk1._V1_UY317_CR3,0,214,317_AL_.jpg', now(), now());
 
--studios
+--studios
 INSERT INTO studios(id, studio_name, country, picture, created_at, updated_at) VALUES (DEFAULT, 'New Line Cinema', 'USA', 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/New_Line_Cinema.svg/260px-New_Line_Cinema.svg.png', now(), now());
 INSERT INTO studios(id, studio_name, country, picture, created_at, updated_at) VALUES (DEFAULT, 'WingNut Films', 'New Zealand', 'http://vignette2.wikia.nocookie.net/middleearthshadowofmordor7723/images/b/bd/Wingnut_Films_logo.png/revision/latest?cb=20140225204753', now(), now());
 INSERT INTO studios(id, studio_name, country, picture, created_at, updated_at) VALUES (DEFAULT, 'The Saul Zaentz Company', 'USA', 'http://bcdbimages.s3.amazonaws.com/logo/zaentz.jpg', now(), now());
