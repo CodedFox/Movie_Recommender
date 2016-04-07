@@ -1,4 +1,4 @@
 class MovieTopic < ActiveRecord::Base
-  belongs_to :movie
-  belongs_to :topic
+	belongs_to :movie
+	belongs_to :topic
 end

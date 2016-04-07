@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-	validates :movie_name, presence:true
-
 	has_many :movie_topics
+
+	validates :movie_name, presence:true
 end

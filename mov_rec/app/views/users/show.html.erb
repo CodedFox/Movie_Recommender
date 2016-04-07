@@ -73,10 +73,12 @@
 
 <% end %>
 
-<% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
+<% if false %>
+  <% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
 
-<% @devices.each do |device| %>
-  <%= devices.device_name %>
+  <% @devices.each do |device| %>
+    <%= devices.device_name %>
+  <% end %>
 <% end %>
 
 <% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>

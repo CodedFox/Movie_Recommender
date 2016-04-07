@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	# one use can only have one profile
+	# one user can only have one profile
 	has_one :profile
 	# one user can have many movie watches
 	has_many :movie_rating

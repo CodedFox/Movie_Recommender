@@ -1,4 +1,4 @@
 class LikesTopic < ActiveRecord::Base
-  belongs_to :profile
-  belongs_to :topic
+	belongs_to :profile
+	belongs_to :topic
 end
