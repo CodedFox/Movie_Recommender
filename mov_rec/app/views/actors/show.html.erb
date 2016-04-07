@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div>
+
+<img src="<%= @actor.picture %>" style="width: 200px; float: left; padding: 5px">
+
+<div style="padding: 5px">
+
 <p>
   <strong>First name:</strong>
   <%= @actor.first_name %>
@@ -24,6 +30,9 @@
   <strong>Gender:</strong>
   <%= @actor.gender %>
 </p>
+
+</div>
+</div>
 
 <% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
   <%= link_to 'Edit', edit_actor_path(@actor) %> |

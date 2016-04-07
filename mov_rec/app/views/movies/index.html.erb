@@ -25,7 +25,7 @@
     <% @movies.each do |movie| %>
       <tr>
         <td><img src="<%= movie.poster %>" style="width: 75px"></td>
-        <td><%= movie.movie_name %></td>
+        <td style="width: 200px"><%= movie.movie_name %></td>
         <td id="td1"><%= movie.description %></td>
         <td><%= movie.date_released %></td>
         <td>
