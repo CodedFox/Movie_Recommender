@@ -17,7 +17,9 @@
   <br>
 
  <p>
-    <img src="<%= @profile.picture %>" style="width: 200px; float: center">
+    <% unless @profile.picture.blank? %>
+      <img src="<%= @profile.picture %>" style="width: 200px; float: center">
+    <% end %>
  </p>
  <br>
 
