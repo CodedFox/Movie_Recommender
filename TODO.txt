@@ -11,6 +11,7 @@ ALPHABETICAL
 SEARCH BAR
 
 Trailers
+casting_types error
 
 =========================================================================================
 
@@ -44,9 +45,15 @@ Display directs in /movies/id
 	  <%= director.first_name %>
 	  <%= director.last_name %>
 	<% end %>
+	
+SELECT cast_type
+FROM casting_types
+WHERE casting_types.id = movie_casts.casting_type_id
+	AND movie_casts.movie_id = @movie.id
+	AND 
 
 >Display movie_casts in /movies/id
-	SELECT first_name, last_name
+	SELECT first_name, last_name, casting_type_id
 	FROM actors
 	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
 	WHERE movie_casts.movie_id = @movie.id

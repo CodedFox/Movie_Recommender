@@ -97,15 +97,16 @@
 <br>
 <br>
 
-<h2>Cast</h2>
+<h2>Roles</h2>
 
 <% @roles = Role.joins(:movie_roles).where(movie_roles: { movie_id: @movie.id }).order('character_name ASC') %>
 
 <table>
   <thead>
     <tr>
-      <th>Role</th>
+      <th>Character Name</th>
       <th>Actors</th>
+      <th>Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -113,6 +114,7 @@
   <tbody>
     <% @roles.each do |role| %>
       <% @actors = Actor.joins(:actor_roles).where(actor_roles: { role_id: role.id }) %>
+      <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: @actors.first.id }).take %>
       <tr>
         <td><%= role.character_name %></td>
         <td>
@@ -124,6 +126,7 @@
             <% end %>
           <% end %>
         </td>
+        <td><%= @type.cast_type %></td>
       </tr>
     <% end %>
   </tbody>
