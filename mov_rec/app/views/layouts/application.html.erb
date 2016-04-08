@@ -56,7 +56,7 @@
     				<div class="input-group">
       					<%= text_field_tag :query, params[:query], size: 150, placeholder: "Search for...", class: "form-control"%>
       					<span class="input-group-btn">
-      						<%= submit_tag 'Go!', class: 'btn btn-default' %>
+      						<%= submit_tag 'Go!', class: 'btn btn-default', :name => nil %>
       					</span>
     				</div>
     			</div>
