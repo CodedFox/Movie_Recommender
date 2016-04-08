@@ -19,7 +19,7 @@
 
 <%= link_to 'Back', studios_path %>
 
-<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }) %>
+<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }).order('movie_name ASC') %>
 
 <table>
   <thead>
@@ -57,8 +57,6 @@
 		<td><%= movie.dubbed %></td>
 		<td><%= movie.country %></td>
 		<td><%= movie.age_rating %></td>
-
-		<td><%= link_to 'Show', movie %></td>
 	  </tr>
 	<% end %>
   </tbody>

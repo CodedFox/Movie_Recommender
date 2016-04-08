@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>CHANGEME</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,63 +19,95 @@
 --> 
 
   <tbody>
-
-  	<% if @movies %>
+ <div>
+  	<% unless @movies.blank? %>
+  		<td><br></td>
+  		<td><h3>Movies</h3></td>
 	    <% @movies.each do |item| %>
 	      <tr>
-	        <td><%= item.movie_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<% if item.poster.blank? %>
+          		<td><img src="<%= item.poster %>" style="width: 75px; visibility: hidden"></td>
+        	<% else %>
+          		<td><img src="<%= item.poster %>" style="width: 75px"></td>
+        	<% end %>
+
+	        <td><%= link_to item.movie_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
+</div>
 
-    <% if @actors %>
+    <% unless @actors.blank? %>
+    	<td><br></td>
+    	<td><h3>Actors</h3></h3>
 	    <% @actors.each do |item| %>
 	      <tr>
-	        <td><%= item.first_name %> <%= item.last_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<% if item.picture.blank? %>
+          		<td><img src="<%= item.picture %>" style="width: 75px; visibility: hidden"></td>
+        	<% else %>
+          		<td><img src="<%= item.picture %>" style="width: 75px"></td>
+        	<% end %>
+	        <td><%= link_to item.first_name + ' ' + item.last_name, item %></td>
+
 	      </tr>
 	    <% end %>
     <% end %>
 
-    <% if @directors %>
+    <% unless @directors.blank? %>
+    	<td><br></td>
+    	<td><h3>Directors</h3></td>
 	    <% @directors.each do |item| %>
 	      <tr>
-	        <td><%= item.first_name %> <%= item.last_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<% if item.picture.blank? %>
+          		<td><img src="<%= item.picture %>" style="width: 75px; visibility: hidden"></td>
+        	<% else %>
+          		<td><img src="<%= item.picture %>" style="width: 75px"></td>
+        	<% end %>
+
+	        <td><%= link_to item.first_name + ' ' + item.last_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
 
-     <% if @studios %>
+     <% unless @studios.blank? %>
+     	<td><br></td>
+     	<td><h3>Studios</h3></td>
 	    <% @studios.each do |item| %>
 	      <tr>
-	        <td><%= item.studio_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<% if item.picture.blank? %>
+          		<td><img src="<%= item.picture %>" style="width: 75px; visibility: hidden"></td>
+        	<% else %>
+          		<td><img src="<%= item.picture %>" style="width: 75px"></td>
+        	<% end %>
+
+	        <td><%= link_to item.studio_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
 
 
-    <% if @topics %>
+    <% unless @topics.blank? %>
+    <td><h3>Genres</h3></td>
 	    <% @topics.each do |item| %>
 	      <tr>
-	        <td><%= item.genre_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	        <td><%= link_to item.genre_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
 
-     <% if @users %>
+     <% unless @users.blank? %>
+     	<td><h3>Users</h3></td>
 	    <% @users.each do |item| %>
 	      <tr>
-	        <td><%= item.email %></td>
-	        <td><%= link_to 'Show', item %></td>
+	        <td><%= link_to item.email, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
 
-    
+    <% if @results.blank? %>
+    <br><br><br>
+    	<div align='center'>Your search did not return any results!</div>
+    <% end %>
 
   </tbody>
 </table>

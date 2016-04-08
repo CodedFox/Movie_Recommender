@@ -8,7 +8,7 @@
 
 <%= link_to 'Back', topics_path %>
 
-<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }) %>
+<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }).order('movie_name ASC') %>
 
 <br>
 <br>
@@ -93,8 +93,6 @@
 		<td><%= movie.dubbed %></td>
 		<td><%= movie.country %></td>
 		<td><%= movie.age_rating %></td>
-
-		<td><%= link_to 'Show', movie %></td>
 	  </tr>
 	<% end %>
   </tbody>
