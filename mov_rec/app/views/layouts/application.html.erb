@@ -54,7 +54,7 @@
 				<div class="col-sm-3 col-md-3">
   					<%= form_tag search_path, method: 'get', class: 'navbar-form', role: 'search' do %>
     				<div class="input-group">
-      					<%= text_field_tag :search, params[:s], size: 150, placeholder: "Search for...", class: "form-control"%>
+      					<%= text_field_tag :search, params[:search], size: 150, placeholder: "Search for...", class: "form-control"%>
       					<span class="input-group-btn">
       						<%= submit_tag 'Go!', class: 'btn btn-default', :name => nil %>
       					</span>

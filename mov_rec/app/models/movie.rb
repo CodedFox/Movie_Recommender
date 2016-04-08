@@ -9,7 +9,7 @@ class Movie < ActiveRecord::Base
 
 def self.search(s)
 	byebug
-	Movie.where('movie_name like :value', value: "%#{s}%" )
+	Movie.where('movie_name = :value', value: "%#{s}%" )
 end
 
 end
