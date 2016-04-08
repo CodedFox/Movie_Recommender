@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
     # ensure password is secure (hashed) and length > 6
 	has_secure_password
 	validates :password, presence: true, length: {minimum: 6}
+
+def self.search(search)
+	User.where('email like :value', value: "%#{search}%" )
+end
+
 end

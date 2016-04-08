@@ -6,4 +6,9 @@ class Movie < ActiveRecord::Base
 	has_many :movie_casts
 
 	validates :movie_name, presence:true
+
+def self.search(search)
+	Movie.where('movie_name like :value', value: "%#{search}%" )
+end
+
 end
