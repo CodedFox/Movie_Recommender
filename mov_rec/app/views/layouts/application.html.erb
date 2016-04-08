@@ -23,6 +23,7 @@
 	      	<li><a href="/directors">DIRECTORS</a></li>
 	      	<li><a href="/topics">TOPICS/GENRES</a></li>
 		  	<li><a href="/studios">STUDIOS</a></li>
+
 			<% if admin? %>
 					<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -51,7 +52,20 @@
 			</ul>
 				<li><%= link_to "LOG OUT", logout_path, method: "delete" %></li>
 			<% end %>
-
+			
+				<div class="col-sm-3 col-md-3">
+  					<%= form_tag search_path, method: 'get', class: 'navbar-form', role: 'search' do %>
+    				<div class="input-group">
+      					<%= text_field_tag :query, params[:query], size: 150, placeholder: "Search for...", class: "form-control"%>
+      					<span class="input-group-btn">
+      						<%= submit_tag 'Go!', class: 'btn btn-default' %>
+      					</span>
+    				</div>
+    			</div>
+    			
+  				<% end %>
+			</div>
+		</li>
     </ul>
   </div>
 </nav>
