@@ -40,3 +40,35 @@
 <% end %>
 
 <%= link_to 'Back', actors_path %>
+
+<% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Movie</th>
+      <th>Roles</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <% @roles = Role.joins(:movie_roles, :actor_roles).where(movie_roles: { movie_id: movie.id }, actor_roles: { actor_id: @actor.id }) %>
+      <tr>
+        <% if movie.poster.blank? %>
+          <td><img src="<%= movie.poster %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= movie.poster %>" style="width: 75px"></td>
+        <% end %>
+        <td><%= movie.movie_name %></td>
+        <td>
+          <% @roles.each do |role| %>
+            <%= role.character_name %><br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

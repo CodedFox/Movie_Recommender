@@ -1,17 +1,13 @@
 THINGS WE COULD IMPLEMENT IN PROJECT SPECIFCATION:
 
-Get rid of password column in users
-
 FORMS FOR LIKES_TOPICS, MOVIE_RATINGS, ETC- ANYTHING WITH FOREIGN KEYS.
-MAKE SURE OF ACCESS OF PAGES ARE CORRECT TO CURRENT USER
-UPLOADING PICTURE FOR NEW USER
-VALIDATIONS FOR DATA
 RECOMMENDATIONS
-ALPHABETICAL
 SEARCH BAR
 
 Trailers
-casting_types error
+Validations for data
+Get rid of password column in users
+Make sure of access of pages are correct to current user
 
 =========================================================================================
 
@@ -50,32 +46,64 @@ SELECT cast_type
 FROM casting_types
 WHERE casting_types.id = movie_casts.casting_type_id
 	AND movie_casts.movie_id = @movie.id
-	AND 
+	
 
->Display movie_casts in /movies/id
-	SELECT first_name, last_name, casting_type_id
-	FROM actors
-	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
-	WHERE movie_casts.movie_id = @movie.id
+NOT USED, SEE BELOW!	Display movie_casts in /movies/id
+							SELECT first_name, last_name, casting_type_id
+							FROM actors
+							INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
+							WHERE movie_casts.movie_id = @movie.id
 
-	<% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }) %>
-
-	<% @actors.each do |actor| %>
-	  <%= actor.first_name %>
-	  <%= actor.last_name %>
-	<% end %>
-
->Display movie_roles in /movies/id
+Display movie_roles in /movies/id
 	SELECT character_name
 	FROM roles
 	INNER JOIN movie_roles ON roles.id = movie_roles.role_id
 	WHERE movie_roles.movie_id = @movie.id
+	ORDER BY character_name ASC
+	
+		SELECT first_name, last_name
+		FROM actors
+		INNER JOIN actor_roles ON actors.id = actor_roles.actor_id
+		WHERE actor_roles.role_id = ^role.id
+		
+			SELECT cast_type
+			FROM casting_types
+			INNER JOIN movie_casts ON casting_types.id = movie_casts.casting_type_id
+ANY ^actor	WHERE movie_casts.movie_id = @movie.id AND movie_casts.actor_id = ^actor.id
+			LIMIT 1
 
-	<% @roles = Role.joins(:movie_roles).where(movie_roles: { movie_id: @movie.id }) %>
+	<% @roles = Role.joins(:movie_roles).where(movie_roles: { movie_id: @movie.id }).order('character_name ASC') %>
 
-	<% @roles.each do |role| %>
-	  <%= role.character_name %>
-	<% end %>
+	<table>
+	  <thead>
+		<tr>
+		  <th>Character Name</th>
+		  <th>Actors</th>
+		  <th>Type</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<% @roles.each do |role| %>
+		  <% @actors = Actor.joins(:actor_roles).where(actor_roles: { role_id: role.id }) %>
+		  <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: @actors.first.id }).take %>
+		  <tr>
+			<td><%= role.character_name %></td>
+			<td>
+			  <% @actors.each do |actor| %>
+				<% if actor == @actors.last %>
+				  <%= actor.first_name %> <%= actor.last_name %>
+				<% else %>
+				  <%= actor.first_name %> <%= actor.last_name %>,
+				<% end %>
+			  <% end %>
+			</td>
+			<td><%= @type.cast_type %></td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
 
 Display sponsors in /movies/id
 	SELECT studio_name
@@ -99,7 +127,8 @@ Display movie_ratings in /movies/id
 		SELECT email, id
 		FROM users
 		INNER JOIN profiles ON users.id = profiles.user_id
-		WHERE profiles.id = ^movie_rating.profile_id		
+		WHERE profiles.id = ^movie_rating.profile_id
+		LIMIT 1
 		
 		SELECT review
 		FROM movie_ratings
@@ -291,6 +320,7 @@ Display movie_ratings in /topics/id
 		FROM users
 		INNER JOIN profiles ON users.id = profiles.user_id
 		WHERE profiles.id = ^movie_rating.profile_id
+		LIMIT 1
 		
 		SELECT name
 		FROM movies
@@ -473,7 +503,6 @@ IN /TOPICS/ID, DISPLAY:
 
 
 IN /MOVIES/ID, DISPLAY:
-
 	movie_topics
 		a), b), h), n)
 	directs
@@ -490,9 +519,24 @@ IN /MOVIES/ID, DISPLAY:
 
 
 IN /ACTORS/ID, DISPLAY:
-
 	movie_casts
+		SELECT movie_name
+		FROM movies
+		INNER JOIN movie_casts ON movies.id = movie_casts.movie_id
+		WHERE movie_casts.actor_id = @actor.id
+		ORDER BY movie_name ASC
+		
+		<% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
+		
+		<% @movies.each do |movie| %>
+		  <%= movie.movie_name %>
+		<% end %>
+	
 	actor_roles
+		SELECT character_name
+		FROM roles
+		INNER JOIN actor_roles ON roles.id = actor_roles.movie_id
+		WHERE actor_roles.actor_id = @actor.id
 
 
 
@@ -503,50 +547,50 @@ IN /DIRECTORS/ID, DISPLAY:
 		INNER JOIN directs ON movies.id = directs.movie_id
 		WHERE directs.director_id = @director.id
 		
-	<% @movies = Movie.joins(:directs).where(directs: { director_id: @director.id }) %>
+		<% @movies = Movie.joins(:directs).where(directs: { director_id: @director.id }) %>
 
-	<table>
-	  <thead>
-		<tr>
-		  <th></th>
-		  <th>Movie Name</th>
-		  <th>Description</th>
-		  <th>Date released</th>
-		  <th>Duration</th>
-		  <th>Language</th>
-		  <th>Subtitles</th>
-		  <th>Dubbed</th>
-		  <th>Country</th>
-		  <th>Age rating</th>
-		  <th colspan="3"></th>
-		</tr>
-	  </thead>
+		<table>
+		  <thead>
+			<tr>
+			  <th></th>
+			  <th>Movie Name</th>
+			  <th>Description</th>
+			  <th>Date released</th>
+			  <th>Duration</th>
+			  <th>Language</th>
+			  <th>Subtitles</th>
+			  <th>Dubbed</th>
+			  <th>Country</th>
+			  <th>Age rating</th>
+			  <th colspan="3"></th>
+			</tr>
+		  </thead>
 
-	  <tbody>
-		<% @movies.each do |movie| %>
-		  <tr>
-			<td><img src="<%= movie.poster %>" style="width: 75px"></td>
-			<td><%= movie.movie_name %></td>
-			<td><%= movie.description %></td>
-			<td><%= movie.date_released %></td>
-			<td>
-			  <% if movie.duration.hour == 0 %>
-				<%= movie.duration.strftime('%Mm') %>
-			  <% else %>
-				<%= movie.duration.strftime('%kh %Mm') %>
-			  <% end %>
-			</td>
-			<td><%= movie.language %></td>
-			<td><%= movie.subtitles %></td>
-			<td><%= movie.dubbed %></td>
-			<td><%= movie.country %></td>
-			<td><%= movie.age_rating %></td>
+		  <tbody>
+			<% @movies.each do |movie| %>
+			  <tr>
+				<td><img src="<%= movie.poster %>" style="width: 75px"></td>
+				<td><%= movie.movie_name %></td>
+				<td><%= movie.description %></td>
+				<td><%= movie.date_released %></td>
+				<td>
+				  <% if movie.duration.hour == 0 %>
+					<%= movie.duration.strftime('%Mm') %>
+				  <% else %>
+					<%= movie.duration.strftime('%kh %Mm') %>
+				  <% end %>
+				</td>
+				<td><%= movie.language %></td>
+				<td><%= movie.subtitles %></td>
+				<td><%= movie.dubbed %></td>
+				<td><%= movie.country %></td>
+				<td><%= movie.age_rating %></td>
 
-			<td><%= link_to 'Show', movie %></td>
-		  </tr>
-		<% end %>
-	  </tbody>
-	</table>
+				<td><%= link_to 'Show', movie %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
 
 
 
@@ -557,49 +601,49 @@ IN /STUDIOS/ID, DISPLAY:
 		INNER JOIN sponsors ON movies.id = sponsors.movie_id
 		WHERE sponsors.studio_id = @studio.id
 		
-	<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }) %>
+		<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }) %>
 
-	<table>
-	  <thead>
-		<tr>
-		  <th></th>
-		  <th>Movie Name</th>
-		  <th>Description</th>
-		  <th>Date released</th>
-		  <th>Duration</th>
-		  <th>Language</th>
-		  <th>Subtitles</th>
-		  <th>Dubbed</th>
-		  <th>Country</th>
-		  <th>Age rating</th>
-		  <th colspan="3"></th>
-		</tr>
-	  </thead>
+		<table>
+		  <thead>
+			<tr>
+			  <th></th>
+			  <th>Movie Name</th>
+			  <th>Description</th>
+			  <th>Date released</th>
+			  <th>Duration</th>
+			  <th>Language</th>
+			  <th>Subtitles</th>
+			  <th>Dubbed</th>
+			  <th>Country</th>
+			  <th>Age rating</th>
+			  <th colspan="3"></th>
+			</tr>
+		  </thead>
 
-	  <tbody>
-		<% @movies.each do |movie| %>
-		  <tr>
-			<td><img src="<%= movie.poster %>" style="width: 75px"></td>
-			<td><%= movie.movie_name %></td>
-			<td><%= movie.description %></td>
-			<td><%= movie.date_released %></td>
-			<td>
-			  <% if movie.duration.hour == 0 %>
-				<%= movie.duration.strftime('%Mm') %>
-			  <% else %>
-				<%= movie.duration.strftime('%kh %Mm') %>
-			  <% end %>
-			</td>
-			<td><%= movie.language %></td>
-			<td><%= movie.subtitles %></td>
-			<td><%= movie.dubbed %></td>
-			<td><%= movie.country %></td>
-			<td><%= movie.age_rating %></td>
+		  <tbody>
+			<% @movies.each do |movie| %>
+			  <tr>
+				<td><img src="<%= movie.poster %>" style="width: 75px"></td>
+				<td><%= movie.movie_name %></td>
+				<td><%= movie.description %></td>
+				<td><%= movie.date_released %></td>
+				<td>
+				  <% if movie.duration.hour == 0 %>
+					<%= movie.duration.strftime('%Mm') %>
+				  <% else %>
+					<%= movie.duration.strftime('%kh %Mm') %>
+				  <% end %>
+				</td>
+				<td><%= movie.language %></td>
+				<td><%= movie.subtitles %></td>
+				<td><%= movie.dubbed %></td>
+				<td><%= movie.country %></td>
+				<td><%= movie.age_rating %></td>
 
-			<td><%= link_to 'Show', movie %></td>
-		  </tr>
-		<% end %>
-	  </tbody>
-	</table>
+				<td><%= link_to 'Show', movie %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
 
 
