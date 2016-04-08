@@ -92,6 +92,7 @@
   <% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
 
   <% @genres.each do |genre| %>
+    <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a><br>
   <% end %>
 
 </p>
