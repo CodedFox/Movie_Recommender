@@ -43,9 +43,9 @@
 	  <% if duser.d != 0 %>
 		  <tr>
 			<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
-			<td><%= @maxmovie.movie_name %></td>
+			<td><a href="/movies/<%= @maxmovie.id %>"><%= @maxmovie.movie_name %></a></td>
 			<td><%= duser.ma %></td>
-			<td><%= @minmovie.movie_name %></td>
+			<td><a href="/movies/<%= @minmovie.id %>"><%= @minmovie.movie_name %></a></td>
 			<td><%= duser.mi %></td>
 			<td><%= duser.d %></td>
 		  </tr>
