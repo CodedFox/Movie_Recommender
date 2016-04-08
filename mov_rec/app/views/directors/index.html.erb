@@ -26,7 +26,6 @@
         <td><%= director.place_of_birth %></td>
         <td><%= director.date_of_birth %></td>
         <td><%= director.gender %></td>
-        <td><%= link_to 'Show', director %></td>
 
         <% if current_user.user_type_id == @admin.id %>
           <td><%= link_to 'Edit', edit_director_path(director) %></td>

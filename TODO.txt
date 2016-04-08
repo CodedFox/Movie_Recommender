@@ -8,6 +8,7 @@ Trailers
 Validations for data
 Get rid of password column in users
 Make sure of access of pages are correct to current user
+Column casting_type_id should be with movie_roles instead
 
 =========================================================================================
 
@@ -65,6 +66,7 @@ Display movie_casts in /movies/id
 		FROM casting_types
 		INNER JOIN movie_casts ON casting_types.id = movie_casts.casting_type_id
 		WHERE movie_casts.movie_id = @movie.id AND movie_casts.actor_id = ^actor.id
+		ORDER BY id ASC
 		LIMIT 1
 	
 	<% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }).order('casting_type_id ASC') %>
@@ -192,7 +194,7 @@ Display movie_topics in /topics/id
 	INNER JOIN movie_topics ON movies.id = movie_topics.movie_id
 	WHERE movie_topics.topic_id = @topic.id
 	
-	<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }) %>
+	<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }).order('movie_name ASC') %>
 
 	<table>
 	  <thead>
@@ -642,5 +644,3 @@ IN /STUDIOS/ID, DISPLAY:
 			<% end %>
 		  </tbody>
 		</table>
-
-
