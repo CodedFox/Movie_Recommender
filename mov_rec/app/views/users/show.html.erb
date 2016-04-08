@@ -87,7 +87,7 @@
 </p>
 
 <p>
-  <strong>Genres:</strong><br>
+  <strong>Liked Genres:</strong><br>
 
   <% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
 
@@ -101,7 +101,7 @@
 <br>
 
 
-<h2>Watched</h2>
+<h2>Watched Movies</h2>
 
 <br>
 <br>
