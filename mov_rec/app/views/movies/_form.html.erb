@@ -56,7 +56,7 @@
 
   <div class="field">
     <% Topic.all.each do |topic| %>
-      <%= check_box_tag "movie[topic_ids][]", topic.id %>
+      <%= check_box_tag "movie[topic_ids][]", topic.id, @movie.topic_ids.include?(topic.id) %>
       <%= topic.genre_name %><br>
       <% end %>
   </div>
