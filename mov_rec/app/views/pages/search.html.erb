@@ -13,15 +13,71 @@
 <!-- 
 <%= debug @movies %>
 <%= debug @actors %>
+@directors
+@studio
+@topics
+@users 
 --> 
 
   <tbody>
-    <% @result.each do |item| %>
-      <tr>
-        <td><%= item %></td>
-        <td><%= link_to 'Show', item %></td>
-      </tr>
+
+  	<% if @movies %>
+	    <% @movies.each do |item| %>
+	      <tr>
+	        <td><%= item.movie_name %></td>
+	        <td><%= link_to 'Show', item %></td>
+	      </tr>
+	    <% end %>
     <% end %>
+
+    <% if @actors %>
+	    <% @actors.each do |item| %>
+	      <tr>
+	        <td><%= item.first_name %> <%= item.last_name %></td>
+	        <td><%= link_to 'Show', item %></td>
+	      </tr>
+	    <% end %>
+    <% end %>
+
+    <% if @directors %>
+	    <% @directors.each do |item| %>
+	      <tr>
+	        <td><%= item.first_name %> <%= item.last_name %></td>
+	        <td><%= link_to 'Show', item %></td>
+	      </tr>
+	    <% end %>
+    <% end %>
+
+     <% if @studios %>
+	    <% @studios.each do |item| %>
+	      <tr>
+	        <td><%= item.studio_name %></td>
+	        <td><%= link_to 'Show', item %></td>
+	      </tr>
+	    <% end %>
+    <% end %>
+
+
+    <% if @topics %>
+	    <% @topics.each do |item| %>
+	      <tr>
+	        <td><%= item.genre_name %></td>
+	        <td><%= link_to 'Show', item %></td>
+	      </tr>
+	    <% end %>
+    <% end %>
+
+     <% if @users %>
+	    <% @users.each do |item| %>
+	      <tr>
+	        <td><%= item.email %></td>
+	        <td><%= link_to 'Show', item %></td>
+	      </tr>
+	    <% end %>
+    <% end %>
+
+    
+
   </tbody>
 </table>
 

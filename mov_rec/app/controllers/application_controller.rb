@@ -6,15 +6,12 @@ class ApplicationController < ActionController::Base
 
 
 def search
-
 	@movies =  Movie.search(params[:search])
 	@actors =  Actor.search(params[:search])
 	@directors =  Director.search(params[:search])
 	@topics =  Topic.search(params[:search])
 	@users =  User.search(params[:search])
-	@studio =  Studio.search(params[:search])
-
-	@result = @movies + @actors + @directors + @topics + @users + @studio
+	@studios =  Studio.search(params[:search])
 end
 
 
