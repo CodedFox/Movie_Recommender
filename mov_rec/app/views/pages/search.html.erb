@@ -5,7 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>CHANGEME</th>
+      <th>Catagory</th>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,8 +25,8 @@
   	<% if @movies %>
 	    <% @movies.each do |item| %>
 	      <tr>
-	        <td><%= item.movie_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<td>Movie</td>
+	        <td><%= link_to item.movie_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
@@ -33,8 +34,9 @@
     <% if @actors %>
 	    <% @actors.each do |item| %>
 	      <tr>
-	        <td><%= item.first_name %> <%= item.last_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<td>Actor</td>
+	        <td><%= link_to item.first_name + ' ' + item.last_name, item %></td>
+
 	      </tr>
 	    <% end %>
     <% end %>
@@ -42,8 +44,8 @@
     <% if @directors %>
 	    <% @directors.each do |item| %>
 	      <tr>
-	        <td><%= item.first_name %> <%= item.last_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<td>Director</td>
+	        <td><%= link_to item.first_name + ' ' + item.last_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
@@ -51,8 +53,8 @@
      <% if @studios %>
 	    <% @studios.each do |item| %>
 	      <tr>
-	        <td><%= item.studio_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<td>Studio</td>
+	        <td><%= link_to item.studio_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
@@ -61,8 +63,8 @@
     <% if @topics %>
 	    <% @topics.each do |item| %>
 	      <tr>
-	        <td><%= item.genre_name %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<td>Genre</td>
+	        <td><%= link_to item.genre_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
@@ -70,8 +72,8 @@
      <% if @users %>
 	    <% @users.each do |item| %>
 	      <tr>
-	        <td><%= item.email %></td>
-	        <td><%= link_to 'Show', item %></td>
+	      	<td>User</td>
+	        <td><%= link_to item.email, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
