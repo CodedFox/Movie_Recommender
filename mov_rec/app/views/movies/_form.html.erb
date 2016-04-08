@@ -53,6 +53,14 @@
     <%= f.label :age_rating %><br>
     <%= f.select :age_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], include_blank: true %>
   </div>
+
+  <div class="field">
+    <% Topic.all.each do |topic| %>
+      <%= check_box_tag "movie[topic_ids][]", topic.id %>
+      <%= topic.genre_name %><br>
+      <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
