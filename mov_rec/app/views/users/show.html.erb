@@ -76,23 +76,22 @@
 <% end %>
 
 <p>
-  <strong>Devices:</strong>
+  <strong>Devices:</strong><br>
 
   <% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
 
   <% @devices.each do |device| %>
-    <%= device.device_name %>
+    <%= device.device_name %><br>
   <% end %>
 
 </p>
 
 <p>
-  <strong>Genres:</strong>
+  <strong>Genres:</strong><br>
 
   <% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
 
   <% @genres.each do |genre| %>
-    <%= genre.genre_name %>
   <% end %>
 
 </p>

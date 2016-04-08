@@ -57,39 +57,35 @@
 </p>
 
 <p>
-  <strong>Genres:</strong>
+  <strong>Genres:</strong><br>
 
   <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
 
   <% @genres.each do |genre| %>
-    <%= genre.genre_name %>
+    <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a><br>
   <% end %>
 
 </p>
 
 <p>
-  <strong>Directors:</strong>
+  <strong>Directors:</strong><br>
 
   <% @directors = Director.joins(:directs).where(directs: { movie_id: @movie.id }) %>
 
   <% @directors.each do |director| %>
-    <%= director.first_name %>
-    <%= director.last_name %>
+    <a href="/directors/<%= director.id %>"><%= director.first_name %>
+    <%= director.last_name %></a><br>
   <% end %>
 
 </p>
 
 <p>
-  <strong>Studios:</strong>
+  <strong>Studios:</strong><br>
 
   <% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: @movie.id }) %>
 
   <% @studios.each do |studio| %>
-    <% if studio == @studios.last %>
-      <%= studio.studio_name %>
-    <% else %>
-      <%= studio.studio_name %>,
-    <% end %>
+    <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
   <% end %>
 
 </p>
@@ -104,6 +100,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Character Name</th>
       <th>Actors</th>
       <th>Type</th>
@@ -114,19 +111,24 @@
   <tbody>
     <% @roles.each do |role| %>
       <% @actors = Actor.joins(:actor_roles).where(actor_roles: { role_id: role.id }) %>
-      <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: @actors.first.id }).take %>
       <tr>
-        <td><%= role.character_name %></td>
-        <td>
-          <% @actors.each do |actor| %>
+        <% @actors.each do |actor| %>
+          <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: actor.id }).take %>
+          <td><img src="<%= actor.picture %>" style="width: 75px"></td>
+          <td><%= role.character_name %></td>
+          <td>
             <% if actor == @actors.last %>
-              <%= actor.first_name %> <%= actor.last_name %>
+              <a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a>
             <% else %>
-              <%= actor.first_name %> <%= actor.last_name %>,
+              <a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a>,
             <% end %>
-          <% end %>
-        </td>
-        <td><%= @type.cast_type %></td>
+          </td>
+          <td>
+            <% if @type != nil %>
+              <%= @type.cast_type %>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

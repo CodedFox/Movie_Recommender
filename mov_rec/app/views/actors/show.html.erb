@@ -62,7 +62,7 @@
         <% else %>
           <td><img src="<%= movie.poster %>" style="width: 75px"></td>
         <% end %>
-        <td><%= movie.movie_name %></td>
+        <td><a href="/movies/<%= movie.id %>"><%= movie.movie_name %></a></td>
         <td>
           <% @roles.each do |role| %>
             <%= role.character_name %><br>
