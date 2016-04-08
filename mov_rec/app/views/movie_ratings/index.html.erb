@@ -20,8 +20,8 @@
         <td><%= movie_rating.date_watched %></td>
         <td><%= movie_rating.user_rating %></td>
         <td id="td1"><%= movie_rating.review %></td>
-        <td><%= movie_rating.profile_id %></td>
-        <td><%= movie_rating.movie %></td>
+        <td><%= movie_rating.profile.user.email %></td>
+        <td><%= movie_rating.movie.movie_name %></td>
         <td><%= link_to 'Show', movie_rating %></td>
         <td><%= link_to 'Edit', edit_movie_rating_path(movie_rating) %></td>
         <td><%= link_to 'Destroy', movie_rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
