@@ -6,7 +6,7 @@ class Actor < ActiveRecord::Base
 
 def self.search(search)
 
-	Actor.where("lower(first_name) like lower(:value) OR lower(last_name) like lower(:value)",value: "%#{search}%" )
+	Actor.where("lower(first_name)|| ' '|| lower(last_name) like lower(:value)",value: "%#{search}%" )
 end
 
 end
