@@ -6,24 +6,23 @@
 
     <% @movies.each do |movie| %>
 
-<div class="center">
+<div style="float:left; width:235px">
 
     <% if current_user.user_type_id == @admin.id  %>
       <%= link_to 'Edit', edit_movie_path(movie) %>
       <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-    <br>
-
         <% if movie.poster.blank? %>
           <img src="<%= movie.poster %>" style="width: 200px; visibility: hidden">
         <% else %>
           <img src="<%= movie.poster %>" style="width: 200px">
         <% end %>
-        <br>
         <td style="width: 200px"><a href="/movies/<%= movie.id %>"><%= movie.movie_name %></a>
-
     <% end %>
-</div>
+
+  </div>
+
+<br>
 
 <% if current_user.user_type_id == @admin.id  %>
   <%= link_to 'New Movie', new_movie_path %>
