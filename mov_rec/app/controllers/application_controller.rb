@@ -12,8 +12,9 @@ def search
 	@directors =  Director.search(params[:search])
 	@topics =  Topic.search(params[:search])
 	@users =  User.search(params[:search])
+	@studio =  Studio.search(params[:search])
 
-	@result = @movies + @actors + @directors + @topics + @users
+	@result = @movies + @actors + @directors + @topics + @users + @studio
 end
 
 

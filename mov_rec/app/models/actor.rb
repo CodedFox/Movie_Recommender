@@ -5,7 +5,8 @@ class Actor < ActiveRecord::Base
 	has_many :actor_roles
 
 def self.search(search)
-	Actor.where('first_name like :value OR last_name like :value', value: "%#{search}%" )
+
+	Actor.where("first_name like :value OR last_name like :value",value: "%#{search}%" )
 end
 
 end
