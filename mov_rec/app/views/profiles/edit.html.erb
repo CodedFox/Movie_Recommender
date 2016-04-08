@@ -50,6 +50,17 @@
     <%= f.label :picture %><br>
     <%= f.text_field :picture %>
   </div>
+
+  <div class="field">
+    <%= f.label :likes_topics %><br>
+    <%= hidden_field_tag "profile[topic_ids][]", nil %>
+
+    <% Topic.all.each do |topic| %>
+      <%= check_box_tag "profile[topic_ids][]", topic.id, @profile.topic_ids.include?(topic.id), id: dom_id(topic) %>
+      <%= label_tag dom_id(topic), topic.genre_name %><br>
+      <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
