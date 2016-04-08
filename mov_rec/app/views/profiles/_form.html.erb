@@ -50,6 +50,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :used_devices %><br>
+    <%= hidden_field_tag "profile[device_ids][]", nil %>
+
+    <% Device.all.each do |device| %>
+      <%= check_box_tag "profile[device_ids][]", device.id, @profile.device_ids.include?(device.id), id: dom_id(device) %>
+      <%= label_tag dom_id(device), device.device_name %><br>
+      <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :likes_topics %><br>
     <%= hidden_field_tag "profile[topic_ids][]", nil %>
 
@@ -58,7 +68,7 @@
       <%= label_tag dom_id(topic), topic.genre_name %><br>
       <% end %>
   </div>
-  
+
   <div class="actions">
     <%= f.hidden_field :user_id, value: params[:userid] %>
     <%= f.submit %>
