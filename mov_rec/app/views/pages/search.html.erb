@@ -99,6 +99,17 @@
      	<td><h3>Users</h3></td>
 	    <% @users.each do |item| %>
 	      <tr>
+
+	    <% @profile = Profile.find_by user_id: item.id %>
+ 		
+
+	      	<% if @profile.picture.blank? %>
+          		<td><img src="<%= @profile.picture %>" style="width: 75px; visibility: hidden"></td>
+        	<% else %>
+          		<td><img src="<%= @profile.picture %>" style="width: 75px"></td>
+        	<% end %>
+
+
 	        <td><%= link_to item.email, item %></td>
 	      </tr>
 	    <% end %>
