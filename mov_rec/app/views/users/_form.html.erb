@@ -19,7 +19,7 @@
     <%= f.label :password %><br>
     <%= f.password_field :password, class: 'form-control' %>
 
-    <%= f.label :password %><br>
+    <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
 
     <%= f.hidden_field :user_type_id, value: UserType.find_by(type_name: 'Member').id %>

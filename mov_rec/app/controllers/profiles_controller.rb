@@ -28,7 +28,8 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to "/users/#{@profile.user_id}", notice: 'Profile was successfully created.' }
+        flash[:success] = "Profile was successfully created!"
+        format.html { redirect_to "/users/#{@profile.user_id}" }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }
