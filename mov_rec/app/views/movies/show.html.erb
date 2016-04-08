@@ -145,10 +145,9 @@
 
   <tbody style="border: 1px solid black">
     <% @watches.each do |watch| %>
-      <% @user = User.joins(:profile).where(profiles: { id: watch.profile_id }).take %>
       <% @userreviews = MovieRating.where(movie_id: @movie.id, profile_id: watch.profile_id) %>
       <tr>
-        <td style="text-align: center"><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
+        <td style="text-align: center"><a href="/users/<%= watch.profile.user.id %>"><%= watch.profile.user.email %></a></td>
         <td style="text-align: center"><%= watch.avg %></td>
         <td style="text-align: center"><%= watch.count %></td>
         <td>
