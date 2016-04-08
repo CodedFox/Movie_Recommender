@@ -8,7 +8,6 @@ class Movie < ActiveRecord::Base
 	validates :movie_name, presence:true
 
 def self.search(search)
-	#byebug
 	Movie.where('lower(movie_name) like lower(:value)', value: "%#{search}%" )
 end
 

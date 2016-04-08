@@ -5,7 +5,6 @@ class Actor < ActiveRecord::Base
 	has_many :actor_roles
 
 def self.search(search)
-
 	Actor.where("lower(first_name)|| ' '|| lower(last_name) like lower(:value)",value: "%#{search}%" )
 end
 

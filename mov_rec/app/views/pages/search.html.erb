@@ -9,17 +9,7 @@
     </tr>
   </thead>
 
-<!-- 
-<%= debug @movies %>
-<%= debug @actors %>
-@directors
-@studio
-@topics
-@users 
---> 
-
   <tbody>
- <div>
   	<% unless @movies.blank? %>
   		<td><br></td>
   		<td><h3>Movies</h3></td>
@@ -35,7 +25,6 @@
 	      </tr>
 	    <% end %>
     <% end %>
-</div>
 
     <% unless @actors.blank? %>
     	<td><br></td>
@@ -47,8 +36,8 @@
         	<% else %>
           		<td><img src="<%= item.picture %>" style="width: 75px"></td>
         	<% end %>
-	        <td><%= link_to item.first_name + ' ' + item.last_name, item %></td>
 
+	        <td><%= link_to item.first_name + ' ' + item.last_name, item %></td>
 	      </tr>
 	    <% end %>
     <% end %>
@@ -85,7 +74,6 @@
 	    <% end %>
     <% end %>
 
-
     <% unless @topics.blank? %>
     <td><h3>Genres</h3></td>
 	    <% @topics.each do |item| %>
@@ -99,16 +87,12 @@
      	<td><h3>Users</h3></td>
 	    <% @users.each do |item| %>
 	      <tr>
-
-	    <% @profile = Profile.find_by user_id: item.id %>
- 		
-
+	    	<% @profile = Profile.find_by user_id: item.id %>
 	      	<% if @profile.picture.blank? %>
           		<td><img src="<%= @profile.picture %>" style="width: 75px; visibility: hidden"></td>
         	<% else %>
           		<td><img src="<%= @profile.picture %>" style="width: 75px"></td>
         	<% end %>
-
 
 	        <td><%= link_to item.email, item %></td>
 	      </tr>
