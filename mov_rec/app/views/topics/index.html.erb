@@ -16,9 +16,8 @@
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= topic.genre_name %></td>
+        <td><a href="/topics/<%= topic.id %>"><%= topic.genre_name %></a></td>
         <td></td>
-        <td><%= link_to 'Show', topic %></td>
 
         <% if current_user.user_type_id == @admin.id  %>
           <td><%= link_to 'Edit', edit_topic_path(topic) %></td>

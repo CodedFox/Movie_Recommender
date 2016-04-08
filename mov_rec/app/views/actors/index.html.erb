@@ -8,8 +8,7 @@
   <thead>
     <tr>
       <th></th>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>Name</th>
       <th>Date of birth</th>
       <th>Place of birth</th>
       <th>Gender</th>
@@ -25,12 +24,10 @@
         <% else %>
           <td><img src="<%= actor.picture %>" style="width: 75px"></td>
         <% end %>
-        <td><%= actor.first_name %></td>
-        <td><%= actor.last_name %></td>
+        <td><a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a></td>
         <td><%= actor.date_of_birth %></td>
         <td><%= actor.place_of_birth %></td>
         <td><%= actor.gender %></td>
-        <td><%= link_to 'Show', actor %></td>
 
         <% if current_user.user_type_id == @admin.id  %>
           <td><%= link_to 'Edit', edit_actor_path(actor) %></td>

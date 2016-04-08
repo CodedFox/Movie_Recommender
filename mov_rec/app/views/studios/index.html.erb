@@ -22,9 +22,8 @@
         <% else %>
           <td><img src="<%= studio.picture %>" style="width: 75px"></td>
         <% end %>
-        <td><%= studio.studio_name %></td>
+        <td><a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a></td>
         <td><%= studio.country %></td>
-        <td><%= link_to 'Show', studio %></td>
 
         <% if current_user.user_type_id == @admin.id  %>
           <td><%= link_to 'Edit', edit_studio_path(studio) %></td>

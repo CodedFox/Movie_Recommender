@@ -101,8 +101,8 @@
   <thead>
     <tr>
       <th></th>
-      <th>Character Name</th>
       <th>Actors</th>
+      <th>Character Name</th>
       <th>Type</th>
       <th colspan="3"></th>
     </tr>
@@ -115,7 +115,6 @@
         <% @actors.each do |actor| %>
           <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: actor.id }).take %>
           <td><img src="<%= actor.picture %>" style="width: 75px"></td>
-          <td><%= role.character_name %></td>
           <td>
             <% if actor == @actors.last %>
               <a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a>
@@ -123,11 +122,8 @@
               <a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a>,
             <% end %>
           </td>
-          <td>
-            <% if @type != nil %>
-              <%= @type.cast_type %>
-            <% end %>
-          </td>
+          <td><%= role.character_name %></td>
+          <td><%= @type.cast_type %></td>
         <% end %>
       </tr>
     <% end %>

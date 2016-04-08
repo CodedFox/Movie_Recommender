@@ -29,7 +29,7 @@
         <% else %>
           <td><img src="<%= movie.poster %>" style="width: 75px"></td>
         <% end %>
-        <td style="width: 200px"><%= movie.movie_name %></td>
+        <td style="width: 200px"><a href="/movies/<%= movie.id %>"><%= movie.movie_name %></a></td>
         <td id="td1"><%= movie.description %></td>
         <td><%= movie.date_released %></td>
         <td>
