@@ -55,7 +55,7 @@
   </div>
 
   <div class="field">
-
+    <%= f.label :genres %><br>
     <%= hidden_field_tag "movie[topic_ids][]", nil %>
 
     <% Topic.all.each do |topic| %>
