@@ -2,7 +2,7 @@ THINGS WE COULD IMPLEMENT IN PROJECT SPECIFCATION:
 
 FORMS FOR LIKES_TOPICS, MOVIE_RATINGS, ETC- ANYTHING WITH FOREIGN KEYS.
 RECOMMENDATIONS
-SEARCH BAR
+
 
 Trailers
 Validations for data
@@ -250,36 +250,49 @@ e) Display the information about the two actors that appeared the most often tog
 movies, as contained in your database.
 
 Display movie_casts in /home
-	SELECT actor_id
+	SELECT actor_id, count(actor_id) as count
 	FROM movie_casts
-	GROUP BY actor_id, movie_id
+	GROUP BY actor_id
+	ORDER BY count DESC
+	LIMIT 1
+	
+		SELECT *
+		FROM actors
+		WHERE actors.id = ^movie_cast.actor_id
+					
+	<% @factor = MovieCast.
+					select("actor_id, count(actor_id) as count").
+					group("actor_id").
+					order('count DESC').
+					take %>
 
-SELECT actor_id, count(actor_id) AS max
-FROM (
-	SELECT actor_id
-	FROM movie_casts
-	GROUP BY actor_id, movie_id
-) as distinctactorinmovie
-GROUP BY actor_id
-ORDER BY max DESC
-LIMIT 1
-		
-		INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
-		GROUP BY id
-		WHERE 
-	
-	SELECT first_name, last_name
-	FROM actors
-	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
-	WHERE movie_casts.movie_id = @movie.id
-	
-	SELECT max(user_rating) - min(user_rating) as d, max(R.user_rating) as ma, min(R.user_rating) as mi, profile_id
-	FROM movie_ratings
-	INNER JOIN movie_topics ON movie_ratings.movie_id = movie_topics.movie_id
-	WHERE movie_topics.topic_id = @topic.id
-	GROUP BY profile_id
-	ORDER BY diff DESC
-	LIMIT 3
+	<% @featuredactor = Actor.where(id: @factor.actor_id).take %>
+
+	<div>
+	<% unless @featuredactor.picture.blank? %>
+	  <img src="<%= @featuredactor.picture %>" style="width: 200px; float: left; padding: 5px">
+	<% end %>
+
+	<div style="padding: 5px">
+
+	<p>
+	  <h3><a href="/actors/<%= @featuredactor.id %>"><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></a></h3>
+	</p>
+
+	<p>
+	  <strong>Date of birth:</strong>
+	  <%= @featuredactor.date_of_birth %>
+	</p>
+
+	<p>
+	  <strong>Place of birth:</strong>
+	  <%= @featuredactor.place_of_birth %>
+	</p>
+
+	<p>
+	  <strong>Gender:</strong>
+	  <%= @featuredactor.gender %>
+	</p>
 
 Display directs in /home
 Display sponsors in /home
