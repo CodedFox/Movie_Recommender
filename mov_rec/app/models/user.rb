@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	validates :password, presence: true, length: {minimum: 6}
 
 def self.search(search)
-	User.where('email like :value', value: "%#{search}%" )
+	User.where('lower(email) like lower(:value)', value: "%#{search}%" )
 end
 
 end

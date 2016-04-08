@@ -9,7 +9,7 @@ class Movie < ActiveRecord::Base
 
 def self.search(search)
 	#byebug
-	Movie.where('movie_name like :value', value: "%#{search}%" )
+	Movie.where('lower(movie_name) like lower(:value)', value: "%#{search}%" )
 end
 
 end
