@@ -110,7 +110,7 @@
   <tbody>
     <% @actors.each do |actor| %>
       <% @roles = Role.joins(:actor_roles, :movie_roles).where(actor_roles: { actor_id: actor.id }, movie_roles: { movie_id: @movie.id}) %>
-      <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: actor.id }).order('casting_type_id ASC').take %>
+      <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: actor.id }).order('id ASC').take %>
       <tr>
           <td><img src="<%= actor.picture %>" style="width: 75px"></td>
           <td><a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a><br></td>

@@ -50,7 +50,7 @@ WHERE casting_types.id = movie_casts.casting_type_id
 	
 
 Display movie_casts in /movies/id
-	SELECT DISTINCT first_name, last_name
+	SELECT first_name, last_name
 	FROM actors
 	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
 	WHERE movie_casts.movie_id = @movie.id
@@ -84,7 +84,7 @@ Display movie_casts in /movies/id
 	  <tbody>
 		<% @actors.each do |actor| %>
 		  <% @roles = Role.joins(:actor_roles).where(actor_roles: { actor_id: actor.id }) %>
-		  <% @type = CastingType.joins(:movie_casts).where(movie_casts: movie_id: @movie.id, actor_id: actor.id }) %>
+		  <% @type = CastingType.joins(:movie_casts).where(movie_casts: movie_id: @movie.id, actor_id: actor.id }).order('id ASC').take %>
 		  <tr>
 			<td><%= actor.first_name %> <%= actor.last_name %></td>
 			<td>
@@ -193,6 +193,7 @@ Display movie_topics in /topics/id
 	FROM movies
 	INNER JOIN movie_topics ON movies.id = movie_topics.movie_id
 	WHERE movie_topics.topic_id = @topic.id
+	ORDER BY movie_name ASC
 	
 	<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }).order('movie_name ASC') %>
 
@@ -249,6 +250,37 @@ e) Display the information about the two actors that appeared the most often tog
 movies, as contained in your database.
 
 Display movie_casts in /home
+	SELECT actor_id
+	FROM movie_casts
+	GROUP BY actor_id, movie_id
+
+SELECT actor_id, count(actor_id) AS max
+FROM (
+	SELECT actor_id
+	FROM movie_casts
+	GROUP BY actor_id, movie_id
+) as distinctactorinmovie
+GROUP BY actor_id
+ORDER BY max DESC
+LIMIT 1
+		
+		INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
+		GROUP BY id
+		WHERE 
+	
+	SELECT first_name, last_name
+	FROM actors
+	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
+	WHERE movie_casts.movie_id = @movie.id
+	
+	SELECT max(user_rating) - min(user_rating) as d, max(R.user_rating) as ma, min(R.user_rating) as mi, profile_id
+	FROM movie_ratings
+	INNER JOIN movie_topics ON movie_ratings.movie_id = movie_topics.movie_id
+	WHERE movie_topics.topic_id = @topic.id
+	GROUP BY profile_id
+	ORDER BY diff DESC
+	LIMIT 3
+
 Display directs in /home
 Display sponsors in /home
 
@@ -545,8 +577,9 @@ IN /DIRECTORS/ID, DISPLAY:
 		FROM movies
 		INNER JOIN directs ON movies.id = directs.movie_id
 		WHERE directs.director_id = @director.id
+		ORDER BY movie_name ASC
 		
-		<% @movies = Movie.joins(:directs).where(directs: { director_id: @director.id }) %>
+		<% @movies = Movie.joins(:directs).where(directs: { director_id: @director.id }).order('movie_name ASC') %>
 
 		<table>
 		  <thead>
@@ -599,8 +632,9 @@ IN /STUDIOS/ID, DISPLAY:
 		FROM movies
 		INNER JOIN sponsors ON movies.id = sponsors.movie_id
 		WHERE sponsors.studio_id = @studio.id
+		ORDER BY movie_name ASC
 		
-		<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }) %>
+		<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }).order('movie_name ASC') %>
 
 		<table>
 		  <thead>
