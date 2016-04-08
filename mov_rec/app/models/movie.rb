@@ -7,8 +7,9 @@ class Movie < ActiveRecord::Base
 
 	validates :movie_name, presence:true
 
-def self.search(search)
-	Movie.where('movie_name like :value', value: "%#{search}%" )
+def self.search(s)
+	byebug
+	Movie.where('movie_name like :value', value: "%#{s}%" )
 end
 
 end
