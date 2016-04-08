@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
 	has_many :movie_topics
+	has_many :topics, through: :movie_topics
 	has_many :movie_ratings
 	has_many :sponsors
 	has_many :directs
