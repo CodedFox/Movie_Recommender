@@ -103,21 +103,23 @@
 
 <h2>Watched Movies</h2>
 
-<br>
-<br>
-
-
 <% @watched = MovieRating.where profile_id: @profile.id %>
 
 <table>
   <thead>
     <tr>
-      <th>Movie</th>
-      <th>Date Watched</th>
-      <th>Rating</th>
-      <th>Review</th>
-      <th>Rating Created</th>
-      <th colspan="3"></th>
+      <% if @watched.blank? %>
+        <p>You have no watched movies!</p>
+      <% else %>
+        <br>
+        <br>
+        <th>Movie</th>
+        <th>Date Watched</th>
+        <th>Rating</th>
+        <th>Review</th>
+        <th>Rating Created</th>
+        <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -138,6 +140,7 @@
         <td><%= link_to 'Destroy', watch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <%= link_to 'New Watched Movie', new_movie_rating_path %>
   </tbody>
 </table>
 

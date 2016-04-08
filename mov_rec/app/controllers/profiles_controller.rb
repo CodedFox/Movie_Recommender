@@ -14,7 +14,6 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
-    #byebug
     @profile = Profile.new(user_id: params[:userid])
   end
 
