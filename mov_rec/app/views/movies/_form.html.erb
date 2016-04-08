@@ -55,9 +55,12 @@
   </div>
 
   <div class="field">
+
+    <%= hidden_field_tag "movie[topic_ids][]", nil %>
+
     <% Topic.all.each do |topic| %>
-      <%= check_box_tag "movie[topic_ids][]", topic.id, @movie.topic_ids.include?(topic.id) %>
-      <%= topic.genre_name %><br>
+      <%= check_box_tag "movie[topic_ids][]", topic.id, @movie.topic_ids.include?(topic.id), id: dom_id(topic) %>
+      <%= label_tag dom_id(topic), topic.genre_name %><br>
       <% end %>
   </div>
 
