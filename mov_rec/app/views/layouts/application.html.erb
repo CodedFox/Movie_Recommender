@@ -9,13 +9,10 @@
 <body>
 
 <% if logged_in? %>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="position: fixed">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Movie Recommender</a>
-    </div>
     <ul class="nav navbar-nav">
-      	<li class="active"><a href="/home">Home</a></li>
+      	<li class="active"><a href="/home">Movie Recommender</a></li>
 
 	      	<li><a href="/users/<%= current_user.id %>">MY PROFILE</a></li>
 	      	<li><a href="/movies">MOVIES</a></li>
@@ -50,7 +47,7 @@
 			</ul>
 			</li>
 			<% end %>
-			
+
 				<div class="col-sm-3 col-md-3">
   					<%= form_tag search_path, method: 'get', class: 'navbar-form', role: 'search' do %>
     				<div class="input-group">
@@ -60,10 +57,10 @@
       					</span>
     				</div>
     			</div>
-    		
+
 
     			<li><%= link_to "LOG OUT", logout_path, method: "delete" %></li>
-    			
+
   			<% end %>
 			</div>
 		</li>
@@ -72,12 +69,15 @@
 </nav>
 <% end %>
 
+<div style="padding-top:40px">
+
+</div>
 
 	<div class="content">
 		 <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       	<% end %>
-  
+
 		<%= yield %>
 	</div>
 
