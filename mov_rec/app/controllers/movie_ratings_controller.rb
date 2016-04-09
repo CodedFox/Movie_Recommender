@@ -44,7 +44,7 @@ class MovieRatingsController < ApplicationController
   def update
     respond_to do |format|
       if @movie_rating.update(movie_rating_params)
-        format.html { redirect_to "/users/#{@movie_rating.user_id}", notice: 'Movie rating was successfully updated.' }
+        format.html { redirect_to "/users/#{@movie_rating.profile_id}", notice: 'Movie rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @movie_rating }
       else
         format.html { render :edit }
