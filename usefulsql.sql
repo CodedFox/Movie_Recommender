@@ -1,3 +1,50 @@
+------- TO DO ---------
+UPDATE movies SET trailer = 'V75dMMIW2B4' WHERE id = 1;
+UPDATE movies SET trailer = 'cvCktPUwkW0' WHERE id = 2;
+UPDATE movies SET trailer = 'r5X-hFf6Bwo' WHERE id = 3;
+UPDATE movies SET trailer = 'iwROgK94zcM' WHERE id = 4;
+UPDATE movies SET trailer = '4cOb3gfe4tQ' WHERE id = 5;
+UPDATE movies SET trailer = '4M7LIcH8C9U' WHERE id = 6;
+UPDATE movies SET trailer = 'EgdoQ8Oxu2E' WHERE id = 7;
+UPDATE movies SET trailer = 'wcra0-0Gu4U' WHERE id = 8;
+UPDATE movies SET trailer = '4RI0QvaGoiI' WHERE id = 9;
+UPDATE movies SET trailer = 'jvd3TjJaf3c' WHERE id = 10;
+UPDATE movies SET trailer = 'QeUnT3f7eAA' WHERE id = 11;
+UPDATE movies SET trailer = 'zCy5WQ9S4c0' WHERE id = 12;
+UPDATE movies SET trailer = 'CZzW6_hR068' WHERE id = 13;
+UPDATE movies SET trailer = 'oEr4rhfDKcQ' WHERE id = 14;
+UPDATE movies SET trailer = 'znTLzRJimeY' WHERE id = 15;
+UPDATE movies SET trailer = 'J4YV2_TcCoE' WHERE id = 16;
+UPDATE movies SET trailer = '-GLVaSYzAvg' WHERE id = 17;
+UPDATE movies SET trailer = 'srFhXDZhUZI' WHERE id = 18;
+UPDATE movies SET trailer = 'pd0bqLQrtdE' WHERE id = 19;
+UPDATE movies SET trailer = 'M2KkencnKKc' WHERE id = 20;
+UPDATE movies SET trailer = 'lHz95RYUbik' WHERE id = 21;
+UPDATE movies SET trailer = 'LjLamj-b0I8' WHERE id = 22;
+UPDATE movies SET trailer = 'sftuxbvGwiU' WHERE id = 23;
+UPDATE movies SET trailer = 'kozds_anirw' WHERE id = 24;
+UPDATE movies SET trailer = '1g3_CFmnU7k' WHERE id = 25;
+UPDATE movies SET trailer = 'vgqG3ITMv1Q' WHERE id = 26;
+UPDATE movies SET trailer = 'zQWEhPYwuY4' WHERE id = 27;
+UPDATE movies SET trailer = 'UGtS3CL-zpo' WHERE id = 28;
+UPDATE movies SET trailer = 'uPIEn0M8su0' WHERE id = 29;
+UPDATE movies SET trailer = 'YmvHzCLP6ug' WHERE id = 30;
+UPDATE movies SET trailer = 'hWjlUj7Czlk' WHERE id = 31;
+UPDATE movies SET trailer = '1UNtrqRG7GA' WHERE id = 32;
+UPDATE movies SET trailer = 'qas5lWp7_R0' WHERE id = 33;
+UPDATE movies SET trailer = 'KYz2wyBy3kc' WHERE id = 34;
+UPDATE movies SET trailer = 'QAEkuVgt6Aw' WHERE id = 35;
+UPDATE movies SET trailer = 'neY2xVmOfUM' WHERE id = 36;
+UPDATE movies SET trailer = 'mBBuzHrZBro' WHERE id = 37;
+UPDATE movies SET trailer = '5PSNL1qE6VY' WHERE id = 38;
+UPDATE movies SET trailer = 'ZIM1HydF9UA' WHERE id = 39;
+UPDATE movies SET trailer = '2UT5xaAfxWU' WHERE id = 40;
+UPDATE movies SET trailer = '71rDQ7z4eFg' WHERE id = 41;
+
+
+
+
+
 -- drop all tables
 DROP TABLE actor_roles;
 DROP TABLE directs;
