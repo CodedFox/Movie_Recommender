@@ -39,4 +39,78 @@
   <%= @featuredactor.gender %>
 </p>
 
-<h2>Couple Actors!</h2>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<% @couple = MovieCast.
+                select("movie_casts.actor_id as a1, m2.actor_id as a2, count(m2.movie_id) as m").
+                joins("JOIN movie_casts AS m2
+                            ON movie_casts.movie_id = m2.movie_id").
+                where("movie_casts.actor_id > m2.actor_id").
+                group(['a1', 'a2']).
+                order('m DESC').
+                take %>
+
+<h2>Couples - Together in <%= @couple.m %> movies!</h2>
+
+<% @couple1 = Actor.where(id: @couple.a1).take %>
+<% @couple2 = Actor.where(id: @couple.a2).take %>
+
+<% unless @couple1.picture.blank? %>
+  <img src="<%= @couple1.picture %>" style="width: 200px; float: left; padding: 5px">
+<% end %>
+
+<div style="padding: 5px">
+
+<p>
+  <h3><a href="/actors/<%= @couple1.id %>"><%= @couple1.first_name %> <%= @couple1.last_name %></a></h3>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @couple1.date_of_birth %>
+</p>
+
+<p>
+  <strong>Place of birth:</strong>
+  <%= @couple1.place_of_birth %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @couple1.gender %>
+</p>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<% unless @couple2.picture.blank? %>
+  <img src="<%= @couple2.picture %>" style="width: 200px; float: left; padding: 5px">
+<% end %>
+
+<div style="padding: 5px">
+
+<p>
+  <h3><a href="/actors/<%= @couple2.id %>"><%= @couple2.first_name %> <%= @couple2.last_name %></a></h3>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @couple2.date_of_birth %>
+</p>
+
+<p>
+  <strong>Place of birth:</strong>
+  <%= @couple2.place_of_birth %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @couple2.gender %>
+</p>
