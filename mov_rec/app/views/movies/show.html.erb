@@ -1,170 +1,190 @@
+
 <p id="notice"><%= notice %></p>
 
-<br>
-<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
-  <%= link_to 'Edit', edit_movie_path(@movie) %> |
-  <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid">
 
-<h2><%= @movie.movie_name %></h2>
-
-
-<br>
-<% unless @movie.poster.blank? %>
-  <img src="<%= @movie.poster %>" style="width: 350px; float: right">
-<% end %>
-
-
-<iframe width="560" height="315" src="//youtube.com/embed/<%= @movie.trailer %>" frameborder="0" allowfullscreen></iframe>
-
-
-<p>
-  <div><strong>Description:</strong></div>
-  <div style="width: 300px; text-align: justify"><%= @movie.description %></div>
-</p>
-
-<p>
-  <strong>Date released:</strong>
-  <%= @movie.date_released %>
-</p>
-
-<p>
-  <strong>Duration:</strong>
-  <% if @movie.duration.hour == 0 %>
-    <%= @movie.duration.strftime('%Mm') %>
-  <% else %>
-    <%= @movie.duration.strftime('%kh %Mm') %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Language:</strong>
-  <%= @movie.language %>
-</p>
-
-<p>
-  <strong>Subtitles:</strong>
-  <%= @movie.subtitles %>
-</p>
-
-<p>
-  <strong>Dubbed:</strong>
-  <%= @movie.dubbed %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @movie.country %>
-</p>
-
-<p>
-  <strong>Age rating:</strong>
-  <%= @movie.age_rating %>
-</p>
-
-<p>
-  <strong>Genres:</strong><br>
-
-  <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
-
-  <% @genres.each do |genre| %>
-    <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a><br>
+  <br>
+  <% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
+    <%= link_to 'Edit', edit_movie_path(@movie) %> |
+    <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 
-</p>
+  <h1 style="text-align: center"><%= @movie.movie_name %></h1>
 
-<p>
-  <strong>Directors:</strong><br>
+  <h5 style="text-align: center; border-top: 2px black solid; padding-top: 10px">
+    -
+    <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
+    <% @genres.each do |genre| %>
+      <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a>
+    -
+    <% end %>
+  </h5>
 
-  <% @directors = Director.joins(:directs).where(directs: { movie_id: @movie.id }) %>
+  <br>
 
-  <% @directors.each do |director| %>
-    <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
-  <% end %>
+  <div style="display: flex; padding-bottom: 20px">
+    <div style="float: left; display: inline-block; flex: 0; padding: 10px;">
+      <% unless @movie.poster.blank? %>
+        <img src="<%= @movie.poster %>" style="width: 350px; border: solid grey">
+      <% end %>
+    </div>
 
-</p>
+    <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+      <p>
+        <strong>Rated: </strong>
+        <%= @movie.age_rating %>
+      </p>
 
-<p>
-  <strong>Studios:</strong><br>
+      <p>
+        <strong>Description:</strong>
+        <p style="text-align: justify">
+          <%= @movie.description %>
+        </p>
+      </p>
 
-  <% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: @movie.id }) %>
+      <p>
+        <strong>Release Date: </strong>
+        <%= @movie.date_released %>
+      </p>
 
-  <% @studios.each do |studio| %>
-    <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
-  <% end %>
+      <p>
+        <strong>Duration: </strong>
+        <% if @movie.duration.hour == 0 %>
+          <%= @movie.duration.strftime('%Mm') %>
+        <% else %>
+          <%= @movie.duration.strftime('%kh %Mm') %>
+        <% end %>
+      </p>
 
-</p>
+      <p>
+        <strong>Language: </strong>
+        <%= @movie.language %>
+      </p>
 
-<br>
-<br>
+      <p>
+        <strong>Subtitles: </strong>
+         <% if @movie.subtitles == "Y" %>
+              Yes
+          <% else %>
+              No
+          <% end %>
+      </p>
 
-<h2>Roles</h2>
+      <p>
+        <strong>Dubbed: </strong>
+        <% if @movie.dubbed == "Y" %>
+             Yes
+         <% else %>
+             No
+         <% end %>
+      </p>
 
-<% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }).order('casting_type_id ASC') %>
+      <p>
+        <strong>Country: </strong>
+        <%= @movie.country %>
+      </p>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Actors</th>
-      <th>Character Name</th>
-      <th>Type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <p>
+        <strong style="padding-bottom: 0px">Studios:</strong>
 
-  <tbody>
+        <ul style="list-style-position:inside; padding-top: 0px">
+          <% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: @movie.id }) %>
+          <% @studios.each do |studio| %>
+            <li>
+              <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a>
+            </li>
+          <% end %>
+        </ul>
+
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align: center; padding: 30px; border-top: 2px black solid; border-bottom: 2px black solid">
+    <iframe width="800" height="450" src="//youtube.com/embed/<%= @movie.trailer %>" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div style="text-align: center">
+
+      <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Directors</span></h2>
+
+      <% @directors = Director.joins(:directs).where(directs: { movie_id: @movie.id }) %>
+      <% @directors.each do |director| %>
+      <div style="display: inline-block;">
+         <a href="/directors/<%= director.id %>">
+           <img src="<%= director.picture %>" style="width: 200px; padding:10px; padding-bottom: 0px">
+           <p><%= director.first_name %> <%= director.last_name %></p>
+         </a>
+      </div>
+      <% end %>
+  </div>
+
+  <div style="text-align: center; border-bottom: 2px black solid">
+
+        <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Roles</span></h2>
+
+    <% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }).order('casting_type_id ASC') %>
+
     <% @actors.each do |actor| %>
       <% @roles = Role.joins(:actor_roles, :movie_roles).where(actor_roles: { actor_id: actor.id }, movie_roles: { movie_id: @movie.id}) %>
       <% @type = CastingType.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id, actor_id: actor.id }).take %>
-      <tr>
-          <td><img src="<%= actor.picture %>" style="width: 75px"></td>
-          <td><a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a><br></td>
-          <td>
-            <% @roles.each do |role| %>
-              <%= role.character_name %><br>
-            <% end %>
-          </td>
-          <td><%= @type.cast_type %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-<br>
+        <div style="display: inline-block; padding: 10px">
+           <a href="/actors/<%= actor.id %>">
+             <img src="<%= actor.picture %>" style="width: 200px; padding:10px; padding-bottom: 0px">
+             <p><%= actor.first_name %> <%= actor.last_name %></p>
+           </a>
+           <p>
+             <b>Role: </b>
+             <% @roles.each do |role| %>
+               <%= role.character_name %><br>
+             <% end %>
+             <b>Type: </b><%= @type.cast_type %>
+           </p>
+        </div>
+        <% end %>
+    </div>
 
-<h2>Watched By</h2>
 
-<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, profile_id").group("profile_id").order(count: :desc).where movie_id: @movie.id %>
+  <div style="text-align: center; border-bottom: 2px black solid; padding-bottom: 20px; margin-bottom: 20px">
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Average<br>Rating</th>
-      <th>Times Seen</th>
-      <th>Reviews</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <h2 style="text-align: center">User Ratings</h2>
 
-  <tbody style="border: 1px solid black">
-    <% @watches.each do |watch| %>
-      <% @userreviews = MovieRating.where(movie_id: @movie.id, profile_id: watch.profile_id) %>
-      <tr>
-        <td style="text-align: center"><a href="/users/<%= watch.profile.user.id %>"><%= watch.profile.user.email %></a></td>
-        <td style="text-align: center"><%= watch.avg %></td>
-        <td style="text-align: center"><%= watch.count %></td>
-        <td>
-          <% @userreviews.each do |userreview| %>
-            <% if userreview.review != '' %>
-              <%= userreview.review %><br>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-  <%= link_to 'New Movie Rating', new_movie_rating_path(:movie_id => @movie.id) %>
-</table>
+        <h5><%= link_to '- New Movie Rating -', new_movie_rating_path(:movie_id => @movie.id) %></h5>
+
+    <% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, profile_id").group("profile_id").order(count: :desc).where movie_id: @movie.id %>
+
+    <table style="margin: auto; border-style: hidden">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Average<br>Rating</th>
+          <th>Times Seen</th>
+          <th>Reviews</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @watches.each do |watch| %>
+          <% @userreviews = MovieRating.where(movie_id: @movie.id, profile_id: watch.profile_id) %>
+          <tr style="align: justify">
+            <td style="text-align: center; width: 200px;"><a href="/users/<%= watch.profile.user.id %>"><%= watch.profile.user.email %></a></td>
+            <td style="text-align: center"><%= watch.avg %></td>
+            <td style="text-align: center; width: 150px"><%= watch.count %></td>
+            <td style="width: auto">
+              <% @userreviews.each do |userreview| %>
+                <ul style="list-style-position:inside">
+                  <% if userreview.review != '' %>
+                  <li><%= userreview.review %></li>
+                <% end %>
+                </ul>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
