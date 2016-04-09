@@ -13,6 +13,16 @@
 
 <% @featuredactor = Actor.where(id: @factor.actor_id).take %>
 
+<% @directors = Director.
+                  joins(:movie_casts).
+                  where(movie_casts: { actor_id: @featuredactor.id }).
+                  distinct %>
+
+<% @studios = Studio.
+                  joins(:movie_casts).
+                  where(movie_casts: { actor_id: @featuredactor.id }).
+                  distinct %>
+
 <div>
 <% unless @featuredactor.picture.blank? %>
   <img src="<%= @featuredactor.picture %>" style="width: 200px; float: left; padding: 5px">
@@ -38,6 +48,62 @@
   <strong>Gender:</strong>
   <%= @featuredactor.gender %>
 </p>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h4>Directors our actor has worked with!</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @directors.each do |director| %>
+      <tr>
+        <% if director.picture.blank? %>
+          <td><img src="<%= director.picture %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= director.picture %>" style="width: 75px"></td>
+        <% end %>
+        <td><%= director.first_name %> <%= director.last_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Studios our actor has worked with!</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @studios.each do |studio| %>
+      <tr>
+        <% if studio.picture.blank? %>
+          <td><img src="<%= studio.picture %>" style="width: 75px; visibility: hidden"></td>
+        <% else %>
+          <td><img src="<%= studio.picture %>" style="width: 75px"></td>
+        <% end %>
+        <td><%= studio.studio_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <br>
 <br>

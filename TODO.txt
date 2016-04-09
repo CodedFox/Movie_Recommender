@@ -250,15 +250,14 @@ e) Display the information about the two actors that appeared the most often tog
 movies, as contained in your database.
 
 Display movie_casts in /home
-
-SELECT actor1, actor2, count(*) as movies
-FROM (
-	SELECT m1.actor_id as actor1, m2.actor_id as actor2, m1.movie_id as m1
-	FROM movie_casts m1, movie_casts m2
-	WHERE m1.actor_id > m2.actor_id AND m1.movie_id = m2.movie_id
-) as t
-GROUP BY actor1, actor2
-ORDER BY movies DESC
+	SELECT actor1, actor2, count(*) as movies
+	FROM (
+		SELECT m1.actor_id as actor1, m2.actor_id as actor2, m1.movie_id as m1
+		FROM movie_casts m1, movie_casts m2
+		WHERE m1.actor_id > m2.actor_id AND m1.movie_id = m2.movie_id
+	) as t
+	GROUP BY actor1, actor2
+	ORDER BY movies DESC
 
 	SELECT actor_id, count(actor_id) as count
 	FROM movie_casts
@@ -305,6 +304,12 @@ ORDER BY movies DESC
 	</p>
 
 Display directs in /home
+	SELECT DISTINCT first_name, last_name, place_of_birth, picture, date_of_birth, gender
+	FROM directors
+	INNER JOIN directs ON directors.id = directs.director_id
+	INNER JOIN movie_casts ON directs.movie_id = movie_casts.movie_id
+	WHERE actor_id = 118
+
 Display sponsors in /home
 
 
