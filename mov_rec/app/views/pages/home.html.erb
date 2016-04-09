@@ -166,6 +166,8 @@
 <table>
   <thead>
     <tr>
+      <th>Rank</th>
+      <th>Avg Rating</th>
       <th></th>
       <th>Name</th>
       <th>Description</th>
@@ -180,10 +182,15 @@
     </tr>
   </thead>
 
+  <% i = 0 %>
+
   <tbody>
     <% @topmovies.each do |topmovie| %>
       <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: topmovie.movie_id }) %>
       <tr>
+        <% i = i + 1 %>
+        <td><%= i %></td>
+        <td><%= topmovie.score %></td>
         <% if topmovie.poster.blank? %>
           <td><img src="<%= topmovie.poster %>" style="width: 75px; visibility: hidden"></td>
         <% else %>
