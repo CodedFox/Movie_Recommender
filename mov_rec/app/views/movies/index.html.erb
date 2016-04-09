@@ -2,20 +2,32 @@
 
 <% @admin = UserType.find_by type_name: 'Admin' %>
 
+<body style="text-align: center">
+
 <h1>Listing Movies</h1>
 
 <% if current_user.user_type_id == @admin.id  %>
-<%= link_to 'New Movie', new_movie_path %>
+  <%= link_to 'New Movie', new_movie_path %>
 <% end %>
-<br />
+<br>
 
 <% @movies.each do |movie| %>
 
 <% if movie.poster.blank? %>
-  <a href="/movies/<%= movie.id %>" style="width:200px; padding:10px"><%= movie.movie_name %></a>
-<% else %>
-  <a href="/movies/<%= movie.id %>">
-    <img src="<%= movie.poster %>" style="width: 200px; padding:10px">
+<div style="padding:10px; text-align: center; display: inline-block">
+  <a href="/movies/<%= movie.id %>>">
+    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT-mdcsEga75HH8GKBRhiZUr2Fj0bWX3Rf9AUBttwauLEfUQH6w4Q" style="width: 190px; height: 265px">
   </a>
+  <p style="padding: 0px"><a href="/movies/<%= movie.id %>"><%= movie.movie_name %></a></p>
+</div>
+<% else %>
+<div style="display: inline-block">
+   <a href="/movies/<%= movie.id %>">
+     <img src="<%= movie.poster %>" style="width: 200px; padding:10px; padding-bottom: 0px">
+   </a>
+   <p style="padding: 0px; width: 190px"><a href="/movies/<%= movie.id %>"><%= movie.movie_name %></a></p>
+</div>
 <% end %>
 <% end %>
+
+</body>

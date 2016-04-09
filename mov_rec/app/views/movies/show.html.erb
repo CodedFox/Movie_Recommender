@@ -4,9 +4,9 @@
 
 <% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
   <%= link_to 'Edit', edit_movie_path(@movie) %> |
+  <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
-<%= link_to 'Back', movies_path %>
 
 <% unless @movie.poster.blank? %>
   <img src="<%= @movie.poster %>" style="width: 350px; float: right">

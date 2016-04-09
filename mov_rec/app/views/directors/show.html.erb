@@ -1,8 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<% unless @director.picture.blank? %>
-  <img src="<%= @director.picture %>" style="width: 200px; float: left; padding: 5px">
+<p>
+<br />
+<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
+  <%= link_to 'Edit', edit_director_path(@director) %> |
+  <%= link_to 'Destroy', @director, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+
+</p>
+<div>
+  <% if @director.picture.blank? %>
+      <img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 200px; float:left; padding: 5px">
+  <% else %>
+       <img src="<%= @director.picture %>" style="width: 200px; float:left; padding: 5px">
+  <% end %>
+
+<div style="padding: 5px">
 
 <p>
   <strong>First name:</strong>
@@ -29,11 +42,8 @@
   <%= @director.gender %>
 </p>
 
-<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
-  <%= link_to 'Edit', edit_director_path(@director) %> |
-<% end %>
-
-<%= link_to 'Back', directors_path %>
+</div>
+</div>
 
 <% @movies = Movie.joins(:directs).where(directs: { director_id: @director.id }).order('movie_name ASC') %>
 
