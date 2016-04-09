@@ -25,7 +25,10 @@
            <a href="/directors/<%= director.id %>">
              <img src="<%= director.picture %>" style="width: 200px; padding:10px; padding-bottom: 0px">
            </a>
-           <p style="padding: 0px"><a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a></p>
+             <p style="padding: 0px"><a href="/directors/<%= director.id %>">
+               <%= director.first_name %> <%= director.last_name %>
+             </p>
+           </a>
         </div>
         <% end %>
     <% end %>
