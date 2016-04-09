@@ -15,6 +15,8 @@ class MovieRatingsController < ApplicationController
   # GET /movie_ratings/new
   def new
     @movie_rating = MovieRating.new
+    @movie_rating.movie_id = params[:movie_id]
+
   end
 
   # GET /movie_ratings/1/edit

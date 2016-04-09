@@ -53,11 +53,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :movie_id %><br>
-    <%= f.collection_select :movie_id, Movie.order(:movie_name),:id,:movie_name, include_blank: true %>
+  
   </div>
   <div class="actions">
     <%= f.hidden_field :profile_id, value: current_user.profile.id %>
+    <%= f.hidden_field :movie_id%>
     <%= f.submit %>
   </div>
 <% end %>
