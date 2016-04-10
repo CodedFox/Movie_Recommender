@@ -63,11 +63,27 @@
   <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Genre Movies</span></h2>
 
 	<% @movies.each do |movie| %>
+		<% @directors = Director.joins(:directs).where(directs: { movie_id: movie.id }) %>
+		<% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: movie.id }) %>
+
   <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
     <a href="/movies/<%= movie.id %>">
       <img src="<%= movie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
-      <p><%= movie.movie_name %></p>
-    </a>
+      <p>
+      	<%= movie.movie_name %></a>
+      </p>
+      <p>
+      	<% @directors.each do |director| %>
+	   	 <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
+	 	 <% end %>
+	 </p>
+	 <p>
+	 	<% @studios.each do |studio| %>
+	    <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
+	  <% end %>
+
+	 </p>
+
   </div>
 	<% end %>
 </div>
