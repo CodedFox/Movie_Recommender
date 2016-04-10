@@ -14,8 +14,8 @@
   <tbody>
     <% @likes_topics.each do |likes_topic| %>
       <tr>
-        <td><%= likes_topic.profile %></td>
-        <td><%= likes_topic.topic %></td>
+        <td><%= likes_topic.profile.user.email %></td>
+        <td><%= likes_topic.topic.genre_name %></td>
         <td><%= link_to 'Show', likes_topic %></td>
         <td><%= link_to 'Edit', edit_likes_topic_path(likes_topic) %></td>
         <td><%= link_to 'Destroy', likes_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
