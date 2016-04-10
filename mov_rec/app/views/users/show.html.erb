@@ -1,116 +1,119 @@
 <p id="notice"><%= notice %></p>
 
-<% @profile = Profile.find_by user_id: @user.id %>
-
-<% if @profile == nil %>
-
-  <% controller.redirect_to "/profiles/new?userid=#{@user.id}" %>
-
-<% else %>
-
-  <h2>Profile</h2>
-
-  <%= link_to 'Edit Login', edit_user_path(@user) %> |
-  <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid">
 
   <br>
-  <br>
+  <% @profile = Profile.find_by user_id: @user.id %>
+    <%= link_to 'Edit Login', edit_user_path(@user) %> |
+    <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
 
- <p>
-    <% unless @profile.picture.blank? %>
-      <img src="<%= @profile.picture %>" style="width: 200px; float: center">
-    <% end %>
- </p>
- <br>
+  <% if @profile == nil %>
+    <% controller.redirect_to "/profiles/new?userid=#{@user.id}" %>
+  <% else %>
 
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
+  <h1 style="text-align: center">Profile</h1>
+
+  <h4 style="text-align: center; border-top: 2px black solid; padding-top: 10px">
+    <strong>Email: </strong><%= @user.email %> | <strong>Join Date: </strong><%= @user.created_at.strftime("%Y-%m-%d") %>
+  </h4>
+
+    <div style="display: flex; padding-bottom: 20px; border-bottom: 2px solid black">
+      <div style="float: right; display: inline-block; flex: 1; padding: 10px;">
+        <% if @profile.picture.blank? %>
+          <img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 350px; float: right; border: solid grey">
+        <% else %>
+          <img src="<%= @profile.picture %>" style="width: 350px; float: right; border: solid grey">
+        <% end %>
+      </div>
+
+      <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+        <br>
+        <p>
+          <strong>First Name:</strong>
+          <%= @profile.first_name %>
+        </p>
+
+        <p>
+          <strong>Last Name:</strong>
+          <%= @profile.last_name %>
+      </p>
+
+      <p>
+        <strong>Date of Birth:</strong>
+        <%= @profile.date_of_birth %>
+      </p>
+
+      <p>
+        <strong>Gender:</strong>
+        <% if @profile.gender == 'M' %>
+          Male
+        <% else %>
+          Female
+        <% end %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @profile.city %>
+      </p>
+
+      <p>
+        <strong>Province:</strong>
+        <%= @profile.province %>
+      </p>
+
+      <p>
+        <strong>Country:</strong>
+        <%= @profile.country %>
+      </p>
+
+      <p>
+        <strong>Occupation:</strong>
+        <%= @profile.occupation %>
+      </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Prefered Viewing Type</span></h2>
+
+    <% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
+    <h3>
+      -
+      <% @devices.each do |device| %>
+      <%= device.device_name %>
+      -
+      <% end %>
+    </h3>
   </p>
+</div>
 
-  <p>
-    <strong>Join Date:</strong>
-    <%= @user.created_at.strftime("%Y-%m-%d") %>
-  </p>
-
-  <p>
-    <strong>First Name:</strong>
-    <%= @profile.first_name %>
-  </p>
-
-  <p>
-    <strong>Last Name:</strong>
-    <%= @profile.last_name %>
-  </p>
-
-  <p>
-    <strong>Date of Birth:</strong>
-    <%= @profile.date_of_birth %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= @profile.gender %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= @profile.city %>
-  </p>
-
-  <p>
-    <strong>Province:</strong>
-    <%= @profile.province %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= @profile.country %>
-  </p>
-
-  <p>
-    <strong>Occupation:</strong>
-    <%= @profile.occupation %>
-  </p>
-
-<% end %>
-
-<p>
-  <strong>Devices:</strong><br>
-
-  <% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
-
-  <% @devices.each do |device| %>
-    <%= device.device_name %><br>
-  <% end %>
-
-</p>
-
-<p>
-  <strong>Liked Genres:</strong><br>
+<div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
+  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Favorite Genres</span></h2>
 
   <% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
-
-  <% @genres.each do |genre| %>
-    <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a><br>
-  <% end %>
-
+  <h3>
+    -
+    <% @genres.each do |genre| %>
+    <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a>
+    -
+    <% end %>
+  </h3>
 </p>
+</div>
 
-<br>
-<br>
+<div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 30px">
+  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Watched Movies</span></h2>
 
+  <% @watched = MovieRating.where profile_id: @profile.id %>
 
-<h2>Watched Movies</h2>
-
-<% @watched = MovieRating.where profile_id: @profile.id %>
-
-<table>
-  <thead>
-    <tr>
-      <% if @watched.blank? %>
+  <table style="border-style: hidden; margin: auto; margin-top: -60px">
+    <thead>
+      <tr>
+        <% if @watched.blank? %>
         <p>You have no watched movies!</p>
-      <% else %>
+        <% else %>
         <br>
         <br>
         <th>Movie</th>
@@ -119,12 +122,12 @@
         <th>Review</th>
         <th>Rating Created</th>
         <th colspan="3"></th>
-      <% end %>
-    </tr>
-  </thead>
+        <% end %>
+      </tr>
+    </thead>
 
-  <tbody style="border: 1px solid black">
-    <% @watched.each do |watch| %>
+    <tbody>
+      <% @watched.each do |watch| %>
       <% @movie = Movie.find_by id: watch.movie_id %>
       <tr>
         <td><a href="/movies/<%= @movie.id %>"><%= @movie.movie_name %></a></td>
@@ -133,14 +136,15 @@
         <td id="td1"><%= watch.review %></td>
         <td>
           <% if watch.user_rating != nil %>
-            <%= watch.updated_at.strftime("%Y-%m-%d") %>
+          <%= watch.updated_at.strftime("%Y-%m-%d") %>
           <% end %>
         </td>
         <td><%= link_to 'Edit', edit_movie_rating_path(watch) %></td>
         <td><%= link_to 'Destroy', watch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
-    <br><br>
-  </tbody>
-</table>
-
+      <% end %>
+      <br><br>
+    </tbody>
+  </table>
+</div>
+</div>

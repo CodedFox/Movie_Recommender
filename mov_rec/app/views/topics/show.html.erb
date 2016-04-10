@@ -4,86 +4,92 @@
 
   <br>
   <% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
-    <%= link_to 'Edit', edit_topic_path(@topic) %> |
-    <%= link_to 'Destroy', @actor, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_topic_path(@topic) %> |
+  <%= link_to 'Destroy', @actor, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 
-<h1 style="text-align: center; border-bottom: 2px black solid; padding-bottom: 10px"><%= @topic.genre_name %></h1>
+  <h1 style="text-align: center; border-bottom: 2px black solid; padding-bottom: 10px"><%= @topic.genre_name %></h1>
 
-<h3 style="text-align: center"><span style="border-bottom: .5px black solid">Diverse Raters</span></h3>
+  <h3 style="text-align: center"><span style="border-bottom: .5px black solid">Diverse Raters</span></h3>
 
-<div style="padding: 20px">
-  <% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }).order('movie_name ASC') %>
+  <div style="padding: 20px">
+    <% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }).order('movie_name ASC') %>
 
-  <% @dusers = MovieRating.
-  					select("max(user_rating) - min(user_rating) as d, max(user_rating) as ma, min(user_rating) as mi, profile_id").
-  					joins(:movie_topics).
-  					where(movie_topics: { topic_id: @topic.id }).
-  					group("profile_id").
-  					order('d DESC').
-  					take(3) %>
+    <% @dusers = MovieRating.
+    select("max(user_rating) - min(user_rating) as d, max(user_rating) as ma, min(user_rating) as mi, profile_id").
+    joins(:movie_topics).
+    where(movie_topics: { topic_id: @topic.id }).
+    group("profile_id").
+    order('d DESC').
+    take(3) %>
 
-  <table style="width: 900px; margin: auto; text-align: center">
-    <thead>
-  	<tr>
-  	  <th style="border-right: solid 1px black">user</th>
-  	  <th>Highest Rated Movie</th>
-  	  <th style="border-right: solid 1px black">Rating</th>
-  	  <th>Lowest Rated Movie</th>
-  	  <th style="border-right: solid 1px black">Rating</th>
-  	  <th>Difference</th>
-  	  <th colspan="3"></th>
-  	</tr>
-    </thead>
+    <table style="width: 900px; margin: auto; text-align: center">
+      <thead>
+        <tr>
+          <th style="border-right: solid 1px black">user</th>
+          <th>Highest Rated Movie</th>
+          <th style="border-right: solid 1px black">Rating</th>
+          <th>Lowest Rated Movie</th>
+          <th style="border-right: solid 1px black">Rating</th>
+          <th>Difference</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-    <tbody>
-  	<% @dusers.each do |duser| %>
-  	  <% @user = User.joins(:profile).where(profiles: { id: duser.profile_id }).take %>
-  	  <% @maxmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
-  	  <% @minmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+      <tbody>
+        <% @dusers.each do |duser| %>
+        <% @user = User.joins(:profile).where(profiles: { id: duser.profile_id }).take %>
+        <% @maxmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+        <% @minmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
 
-  	  <% if duser.d != 0 %>
-  		  <tr>
-  			<td style="border-right: solid 1px black"><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
-  			<td><a href="/movies/<%= @maxmovie.id %>"><%= @maxmovie.movie_name %></a></td>
-  			<td style="border-right: solid 1px black"><%= duser.ma %></td>
-  			<td><a href="/movies/<%= @minmovie.id %>"><%= @minmovie.movie_name %></a></td>
-  			<td style="border-right: solid 1px black"><%= duser.mi %></td>
-  			<td><%= duser.d %></td>
-  		  </tr>
-  	  <% end %>
-  	<% end %>
-    </tbody>
-  </table>
-</div>
-
-
-<div style="text-align: center; border-top: 2px black solid; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
-
-  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Genre Movies</span></h2>
-
-	<% @movies.each do |movie| %>
-		<% @directors = Director.joins(:directs).where(directs: { movie_id: movie.id }) %>
-		<% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: movie.id }) %>
-
-  <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
-    <a href="/movies/<%= movie.id %>">
-      <img src="<%= movie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
-      <p>
-      	<%= movie.movie_name %></a>
-      </p>
-      <p>
-      	<% @directors.each do |director| %>
-	   	 <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
-	 	 <% end %>
-	 </p>
-	 <p>
-	 	<% @studios.each do |studio| %>
-	    <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
-	  <% end %>
-
-	 </p>
-
+        <% if duser.d != 0 %>
+        <tr>
+          <td style="border-right: solid 1px black"><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
+          <td><a href="/movies/<%= @maxmovie.id %>"><%= @maxmovie.movie_name %></a></td>
+          <td style="border-right: solid 1px black"><%= duser.ma %></td>
+          <td><a href="/movies/<%= @minmovie.id %>"><%= @minmovie.movie_name %></a></td>
+          <td style="border-right: solid 1px black"><%= duser.mi %></td>
+          <td><%= duser.d %></td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-	<% end %>
-</div>
+
+
+  <div style="text-align: center; border-top: 2px black solid; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
+
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Genre Movies</span></h2>
+
+    <% @movies.each do |movie| %>
+    <% @directors = Director.joins(:directs).where(directs: { movie_id: movie.id }) %>
+    <% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: movie.id }) %>
+
+    <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
+      <a href="/movies/<%= movie.id %>">
+        <img src="<%= movie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+        <p>
+          <%= movie.movie_name %></a>
+        </p>
+        <p>
+          <b>Directors: </b><br>
+          <% @directors.each do |director| %>
+          <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
+          <% end %>
+        </p>
+        <p>
+          <b>Studios: </b>
+          <ul style="list-style-position: inside; margin-top: -15px; padding: 0px">
+              <% @studios.each do |studio| %>
+          <li>
+            <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
+          </li>
+          <% end %>
+          </ul>
+        </p>
+
+      </div>
+      <% end %>
+    </div>
+  </div>
