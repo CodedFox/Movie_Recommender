@@ -18,7 +18,7 @@
                             "INNER JOIN topics ON movie_topics.topic_id = topics.id",
                             "INNER JOIN likes_topics ON topics.id = likes_topics.topic_id",
                             "INNER JOIN profiles ON likes_topics.profile_id = profiles.id",
-                            "INNER JOIN users ON profiles.user_id = users.id", params[current_user.email]).
+                            "INNER JOIN users ON profiles.user_id = users.id").
                       where("watched.id2 IS NULL AND users.email = '#{current_user.email}'").
                       order('genre_name').
                       distinct %>
