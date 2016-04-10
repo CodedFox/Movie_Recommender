@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Profiles</h1>
+<div style="width: 1300px; margin: auto; position: center; border-top: 2px black solid; text-align: center">
 
-<table>
+  <h1 style="border-bottom: 2px solid black; padding-bottom: 10px">Listing - Profiles</h1>
+
+  <%= link_to '- New Profile -', new_profile_path %>
+
+<table style="text-align: center; margin: auto">
   <thead>
     <tr>
       <th>Picture</th>
@@ -44,6 +48,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Profile', new_profile_path %>
+</div>

@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Likes Topics</h1>
+<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid; text-align: center">
 
-<table>
+<h1 style="border-bottom: 2px solid black; padding-bottom: 10px">Listing - Likes Topics</h1>
+
+<%= link_to '- New Likes topic -', new_likes_topic_path %>
+
+<table style="margin: auto; width: 700px; text-align: center">
   <thead>
     <tr>
       <th>Profile</th>
@@ -24,6 +28,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Likes topic', new_likes_topic_path %>
+</div>

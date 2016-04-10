@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Movie Ratings</h1>
+<div style="width: 1300px; margin: auto; position: center; border-top: 2px black solid; text-align: center">
 
-<table>
+  <h1 style="border-bottom: 2px solid black; padding-bottom: 10px">Listing - Movie Ratings</h1>
+
+  <%= link_to '- New Movie rating -', new_movie_rating_path %>
+
+<table style="text-align: center; margin: auto">
   <thead>
     <tr>
       <th>Date watched</th>
@@ -30,6 +34,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Movie rating', new_movie_rating_path %>
+</div>
