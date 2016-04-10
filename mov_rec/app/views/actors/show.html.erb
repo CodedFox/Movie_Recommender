@@ -54,7 +54,7 @@
     <% @movies.each do |movie| %>
       <% @roles = Role.joins(:movie_roles, :actor_roles).where(movie_roles: { movie_id: movie.id }, actor_roles: { actor_id: @actor.id }) %>
 
-      <div style="display: inline-block; padding: 10px; width: 220px">
+      <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
         <a href="/movies/<%= movie.id %>">
           <img src="<%= movie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
           <p><%= movie.movie_name %></p>
