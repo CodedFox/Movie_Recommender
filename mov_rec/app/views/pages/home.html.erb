@@ -13,13 +13,13 @@
                               INNER JOIN movie_ratings ON m2.id = movie_ratings.movie_id
                               INNER JOIN profiles ON movie_ratings.profile_id = profiles.id
                               INNER JOIN users ON profiles.user_id = users.id
-                              WHERE users.email = 'user1@movie.com'
+                              WHERE users.email = '#{current_user.email}'
                             ) as watched ON movies.id = watched.id2", "INNER JOIN movie_topics ON movies.id = movie_topics.movie_id",
                             "INNER JOIN topics ON movie_topics.topic_id = topics.id",
                             "INNER JOIN likes_topics ON topics.id = likes_topics.topic_id",
                             "INNER JOIN profiles ON likes_topics.profile_id = profiles.id",
-                            "INNER JOIN users ON profiles.user_id = users.id").
-                      where("watched.id2 IS NULL AND users.email = 'user1@movie.com'").
+                            "INNER JOIN users ON profiles.user_id = users.id", params[current_user.email]).
+                      where("watched.id2 IS NULL AND users.email = '#{current_user.email}'").
                       order('genre_name').
                       distinct %>
 
