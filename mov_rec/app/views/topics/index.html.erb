@@ -2,9 +2,17 @@
 
 <% @admin = UserType.find_by type_name: 'Admin' %>
 
-<h1>Listing Genres</h1>
+<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid; text-align: center">
 
-<table>
+  <br>
+<h1 style="text-align: center; border-bottom: 2px black solid; padding-bottom: 10px">Listing Genres</h1>
+
+<% if current_user.user_type_id == @admin.id  %>
+  <%= link_to '- New Topic -', new_topic_path %>
+<% end %>
+
+
+<table style="margin: auto; margin-top: 20px">
   <thead>
     <tr>
       <th>Genre</th>
@@ -34,17 +42,9 @@
           <td></td>
         <% end %>
 
-        <% if current_user.user_type_id == @admin.id  %>
-          <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-          <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% if current_user.user_type_id == @admin.id  %>
-  <%= link_to 'New Topic', new_topic_path %>
-<% end %>
+</div>

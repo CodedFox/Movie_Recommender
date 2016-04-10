@@ -2,40 +2,26 @@
 
 <% @admin = UserType.find_by type_name: 'Admin' %>
 
-<h1>Listing Studios</h1>
+<body style="text-align: center">
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Studio name</th>
-      <th>Country</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @studios.each do |studio| %>
-      <tr>
-        <% if studio.picture.blank? %>
-        <td><img src="<%= studio.picture %>" style="width: 75px; visibility: hidden"></td>
-        <% else %>
-          <td><img src="<%= studio.picture %>" style="width: 75px"></td>
-        <% end %>
-        <td><a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a></td>
-        <td><%= studio.country %></td>
-
-        <% if current_user.user_type_id == @admin.id  %>
-          <td><%= link_to 'Edit', edit_studio_path(studio) %></td>
-          <td><%= link_to 'Destroy', studio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<h1 style="border-bottom: 2px solid black; padding-bottom: 10px">Listing Studios</h1>
 
 <% if current_user.user_type_id == @admin.id  %>
-  <%= link_to 'New Studio', new_studio_path %>
+  <%= link_to '- New Studio -', new_studio_path %>
 <% end %>
+<br>
+
+    <% @studios.each do |studio| %>
+
+      <div style="display: inline-block; padding: 5px">
+         <a href="/studios/<%= studio.id %>">
+           <img src="<%= studio.picture %>" style="width: 200px; padding:10px; padding-bottom: 0px">
+         </a>
+           <p style="padding: 5px"><a href="/studios/<%= studio.id %>">
+             <%= studio.studio_name %>
+           </p>
+         </a>
+      </div>
+    <% end %>
+
+</body>

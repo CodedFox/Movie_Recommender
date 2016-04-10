@@ -45,16 +45,16 @@
     </div>
   </div>
 
-<div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Movies</span></h2>
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Movies</span></h2>
 
-  <% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
+    <% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
 
-  <% @movies.each do |movie| %>
-    <% @roles = Role.joins(:movie_roles, :actor_roles).where(movie_roles: { movie_id: movie.id }, actor_roles: { actor_id: @actor.id }) %>
+    <% @movies.each do |movie| %>
+      <% @roles = Role.joins(:movie_roles, :actor_roles).where(movie_roles: { movie_id: movie.id }, actor_roles: { actor_id: @actor.id }) %>
 
-      <div style="display: inline-block; padding: 10px">
+      <div style="display: inline-block; padding: 10px; width: 220px">
         <a href="/movies/<%= movie.id %>">
           <img src="<%= movie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
           <p><%= movie.movie_name %></p>
