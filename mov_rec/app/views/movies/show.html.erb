@@ -30,6 +30,7 @@
     </div>
 
     <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+      <br>
       <p>
         <strong>Rated: </strong>
         <%= @movie.age_rating %>
@@ -121,7 +122,7 @@
 
   <div style="text-align: center; border-bottom: 2px black solid">
 
-        <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Roles</span></h2>
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Roles</span></h2>
 
     <% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }).order('casting_type_id ASC') %>
 
@@ -131,7 +132,7 @@
 
         <div style="display: inline-block; padding: 10px">
            <a href="/actors/<%= actor.id %>">
-             <img src="<%= actor.picture %>" style="width: 200px; padding:10px; padding-bottom: 0px">
+             <img src="<%= actor.picture %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
              <p><%= actor.first_name %> <%= actor.last_name %></p>
            </a>
            <p>
@@ -146,7 +147,7 @@
     </div>
 
 
-  <div style="text-align: center; border-bottom: 2px black solid; padding-bottom: 20px; margin-bottom: 20px">
+  <div style="text-align: center; border-bottom: 2px black solid; padding-bottom: 30px; margin-bottom: 20px">
 
     <h2 style="text-align: center">User Ratings</h2>
 
@@ -172,7 +173,7 @@
             <td style="text-align: center; width: 200px;"><a href="/users/<%= watch.profile.user.id %>"><%= watch.profile.user.email %></a></td>
             <td style="text-align: center"><%= watch.avg %></td>
             <td style="text-align: center; width: 150px"><%= watch.count %></td>
-            <td style="width: auto">
+            <td style="width: auto; text-align: left">
               <% @userreviews.each do |userreview| %>
                 <ul style="list-style-position:inside">
                   <% if userreview.review != '' %>

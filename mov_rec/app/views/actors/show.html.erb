@@ -1,78 +1,71 @@
+
 <p id="notice"><%= notice %></p>
 
-<p>
-<br />
-<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
-  <%= link_to 'Edit', edit_actor_path(@actor) %> |
-  <%= link_to 'Destroy', @actor, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid">
 
-</p>
-<div>
-  <% if @actor.picture.blank? %>
-      <img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 200px; float:left; padding: 5px">
-  <% else %>
-       <img src="<%= @actor.picture %>" style="width: 200px; float:left; padding: 5px">
+  <br>
+  <% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
+    <%= link_to 'Edit', edit_actor_path(@actor) %> |
+    <%= link_to 'Destroy', @actor, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 
-<div style="padding: 5px">
+  <h1 style="text-align: center; border-bottom: 2px black solid; padding-bottom: 10px"><%= @actor.first_name %> <%= @actor.last_name %></h1>
 
-<p>
-  <strong>First name:</strong>
-  <%= @actor.first_name %>
-</p>
+  <br>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @actor.last_name %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @actor.date_of_birth %>
-</p>
-
-<p>
-  <strong>Place of birth:</strong>
-  <%= @actor.place_of_birth %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @actor.gender %>
-</p>
-
-</div>
-</div>
-
-<% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Movie</th>
-      <th>Roles</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @movies.each do |movie| %>
-      <% @roles = Role.joins(:movie_roles, :actor_roles).where(movie_roles: { movie_id: movie.id }, actor_roles: { actor_id: @actor.id }) %>
-      <tr>
-        <% if movie.poster.blank? %>
-          <td><img src="<%= movie.poster %>" style="width: 75px; visibility: hidden"></td>
-        <% else %>
-          <td><img src="<%= movie.poster %>" style="width: 75px"></td>
-        <% end %>
-        <td><a href="/movies/<%= movie.id %>"><%= movie.movie_name %></a></td>
-        <td>
-          <% @roles.each do |role| %>
-            <%= role.character_name %><br>
-          <% end %>
-        </td>
-      </tr>
+  <div style="display: flex; padding-bottom: 20px; border-bottom: 2px solid black">
+    <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+      <% if @actor.picture.blank? %>
+        <img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 350px; float:right; border: solid grey">
+    <% else %>
+         <img src="<%= @actor.picture %>" style="width: 350px; float: right; border: solid grey">
     <% end %>
-  </tbody>
-</table>
+    </div>
+
+    <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+      <br>
+      <p>
+        <strong>Date of birth:</strong>
+        <%= @actor.date_of_birth %>
+      </p>
+
+      <p>
+        <strong>Place of birth:</strong>
+        <%= @actor.place_of_birth %>
+      </p>
+
+      <p>
+        <strong>Gender:</strong>
+        <% if @actor.gender == 'M' %>
+          Male
+        <% else %>
+          Female
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+<div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
+
+  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Movies</span></h2>
+
+  <% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
+
+  <% @movies.each do |movie| %>
+    <% @roles = Role.joins(:movie_roles, :actor_roles).where(movie_roles: { movie_id: movie.id }, actor_roles: { actor_id: @actor.id }) %>
+
+      <div style="display: inline-block; padding: 10px">
+        <a href="/movies/<%= movie.id %>">
+          <img src="<%= movie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+          <p><%= movie.movie_name %></p>
+        </a>
+          <p>
+            <b>Role: </b>
+            <% @roles.each do |role| %>
+              <%= role.character_name %>
+            <% end %>
+          </p>
+      </div>
+      <% end %>
+    </div>
+  </div>
