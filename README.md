@@ -1,6 +1,24 @@
 # Movie_Recommender
 CSI 2132 final group project.
 
+Group Members:
+--Diane Vu -
+--Jonathan Gratton -
+--Qufei Chen - 6771326
+
+Project Specifications: 
+--Language: Ruby
+--Framework: Ruby on Rails
+--Database: PostgreSQL
+
+Contained files:
+-- schema.sql: contains sql create table statements for all tables in our database
+-- data.sql: contains all insert statements for all data in our database (movie info, actor info, etc.)
+--mov_rec: contains the web application created using Ruby on Rails
+
+Note: although we included the sql statements to create the tables in our database in the schema.sql file, we used Active Record Migrations to evolve our database schema for our web-app. To run our project, it would be best to applied migrations to the database, i.e run the following command to apply all of the migrations:
+> rake db:migrate
+
 
 -Schema-
 

@@ -1,3 +1,8 @@
+--CSI2132 B - Group Project
+--Diane Vu 
+--Jonathan Gratton
+--Qufei Chen - 6771326
+
 --All the schema for the Movie Recommendation system
 
 CREATE TABLE users( -- view

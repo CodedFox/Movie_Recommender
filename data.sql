@@ -1,3 +1,8 @@
+--CSI2132 B - Group Project
+--Diane Vu 
+--Jonathan Gratton
+--Qufei Chen - 6771326
+
 --All data inputs for the Movie Recommendation system
 
 -- user_types
