@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :movie_casts
   resources :sponsors
   get 'sessions/new'
 

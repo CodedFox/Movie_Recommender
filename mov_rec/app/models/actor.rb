@@ -11,4 +11,8 @@ def self.search(search)
 	Actor.where("lower(first_name)|| ' '|| lower(last_name) like lower(:value)",value: "%#{search}%" )
 end
 
+def full_name
+    "#{first_name} #{last_name}"
+end
+
 end
