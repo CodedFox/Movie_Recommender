@@ -15,6 +15,10 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    if logged_in?
+      redirect_to "/home"
+    end
+    
     @user = User.new
   end
 
