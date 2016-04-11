@@ -1,5 +1,5 @@
 
-<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid">
+<div style="width: 1000px; margin: auto; position: center;">
   <br />
   <h1><img src="http://onin.london/assets/PressPlay-logo-copy.png" style="width: 200px"></h1>
 
@@ -111,7 +111,7 @@
         <h4>Directors our actor has worked with:</h4>
           <ul style="list-style-position:inside; padding-top: 0px">
             <% @directors.each do |director| %>
-            <li>  
+            <li>
                 <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
             </li>
             <% end %>

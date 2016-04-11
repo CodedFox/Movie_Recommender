@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid">
+<div style="width: 1000px; margin: auto; position: center;">
 
   <br>
 	<% if current_user.user_type_id == UserType.find_by(type_name: 'Admin').id  %>
