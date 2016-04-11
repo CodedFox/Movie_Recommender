@@ -65,10 +65,6 @@
   </div>
 
   <div class="field">
-  <%= link_to 'Add an Actor', new_movie_cast_path(:movie_id => @movie.id) %>
-  </div>
-
-  <div class="field">
     <%= f.label :genres %><br>
     <%= hidden_field_tag "movie[topic_ids][]", nil %>
 

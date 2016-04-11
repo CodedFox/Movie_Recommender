@@ -1,6 +1,110 @@
 <h1>Editing Movie</h1>
 
-<%= render 'form' %>
+<%= form_for(@movie) do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :movie_name %><br>
+    <%= f.text_field :movie_name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :date_released %><br>
+    <%= f.date_select :date_released, :start_year=>1800, :end_year=> Time.now.year %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.time_select :duration, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :language %><br>
+    <%= f.text_field :language %>
+  </div>
+  <div class="field">
+    <%= f.label :subtitles %><br>
+    <%= f.radio_button :subtitles, 'N' %>
+    <%= label :subtitles_N, "No" %>
+    <%= f.radio_button :subtitles, 'Y' %>
+    <%= label :subtitles_Y, "Yes" %>
+  </div>
+  <div class="field">
+    <%= f.label :dubbed %><br>
+    <%= f.radio_button :dubbed, 'N' %>
+    <%= label :dubbed_N, "No" %>
+    <%= f.radio_button :dubbed, 'Y' %>
+    <%= label :dubbed_Y, "Yes" %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :age_rating %><br>
+    <%= f.select :age_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :poster %><br>
+    <%= f.text_field :poster %>
+  </div>
+
+  <div class="field">
+    <%= f.label :trailer %><br>
+    <%= f.text_field :trailer %>
+  </div>
+
+  <div class="field">
+  <%= link_to 'Add an Actor', new_movie_cast_path(:movie_id => @movie.id) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :genres %><br>
+    <%= hidden_field_tag "movie[topic_ids][]", nil %>
+
+    <% Topic.all.each do |topic| %>
+      <%= check_box_tag "movie[topic_ids][]", topic.id, @movie.topic_ids.include?(topic.id), id: dom_id(topic) %>
+      <%= label_tag dom_id(topic), topic.genre_name %><br>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :directors %><br>
+    <%= hidden_field_tag "movie[directors_ids][]", nil %>
+
+    <% Director.all.each do |director| %>
+      <%= check_box_tag "movie[director_ids][]", director.id, @movie.director_ids.include?(director.id), id: dom_id(director) %>
+      <%= label_tag dom_id(director), director.first_name + ' ' + director.last_name %><br>
+      <% end %>
+  </div>
+
+   <div class="field">
+    <%= f.label :studios %><br>
+    <%= hidden_field_tag "movie[studio_ids][]", nil %>
+
+    <% Studio.all.each do |studio| %>
+      <%= check_box_tag "movie[studio_ids][]", studio.id, @movie.studio_ids.include?(studio.id), id: dom_id(studio) %>
+      <%= label_tag dom_id(studio), studio.studio_name %><br>
+      <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 
 <%= link_to 'Show', @movie %> |
 <%= link_to 'Back', movies_path %>
