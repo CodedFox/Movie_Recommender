@@ -75,6 +75,64 @@
 
   <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Featured Actor</span></h2>
+
+    <% @factor = MovieCast.
+                select("actor_id, count(actor_id) as count").
+                group("actor_id").
+                order('count DESC').
+                take %>
+
+    <% @featuredactor = Actor.where(id: @factor.actor_id).take %>
+
+    <% @directors = Director.
+                    joins(:movie_casts).
+                    where(movie_casts: { actor_id: @featuredactor.id }).
+                    distinct %>
+
+    <% @studios = Studio.
+                  joins(:movie_casts).
+                  where(movie_casts: { actor_id: @featuredactor.id }).
+                  distinct %>
+
+    <div style="display: flex; padding-bottom: 20px;">
+      <div style="float: left; display: inline-block; flex: 1; padding: 15px; padding-top: 20px">
+        <% if @featuredactor.picture.blank? %>
+          <a href="/actors/<%= @featuredactor.id %>"><img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 250px; float:right; border: solid grey"></a>
+      <% else %>
+          <a href="/actors/<%= @featuredactor.id %>"><img src="<%= @featuredactor.picture %>" style="width: 250px; float: right; border: solid grey"></a>
+      <% end %>
+      </div>
+
+      <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+        <br>
+        <h3><a href="/actors/<%= @featuredactor.id %>"><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></a></h3>
+        <br />
+        <h4>Directors our actor has worked with:</h4>
+          <ul style="list-style-position:inside; padding-top: 0px">
+            <% @directors.each do |director| %>
+            <li>  
+                <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
+            </li>
+            <% end %>
+          </ul>
+
+        <h4>Studios our actor has worked with:</h4>
+
+        <ul style="list-style-position:inside; padding-top: 0px">
+          <% @studios.each do |studio| %>
+          <li>
+              <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
+
     <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Current Couple Actors</span></h2>
 
     <% @couple = MovieCast.
@@ -118,69 +176,11 @@
 
   <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Featured Actor</span></h2>
-
-    <% @factor = MovieCast.
-                select("actor_id, count(actor_id) as count").
-                group("actor_id").
-                order('count DESC').
-                take %>
-
-    <% @featuredactor = Actor.where(id: @factor.actor_id).take %>
-
-    <% @directors = Director.
-                    joins(:movie_casts).
-                    where(movie_casts: { actor_id: @featuredactor.id }).
-                    distinct %>
-
-    <% @studios = Studio.
-                  joins(:movie_casts).
-                  where(movie_casts: { actor_id: @featuredactor.id }).
-                  distinct %>
-
-    <div style="display: flex; padding-bottom: 20px;">
-      <div style="float: left; display: inline-block; flex: 1; padding: 15px; padding-top: 20px">
-        <% if @featuredactor.picture.blank? %>
-          <a href="/actors/<%= @featuredactor.id %>"><img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 250px; float:right; border: solid grey"></a>
-      <% else %>
-          <a href="/actors/<%= @featuredactor.id %>"><img src="<%= @featuredactor.picture %>" style="width: 250px; float: right; border: solid grey"></a>
-      <% end %>
-      </div>
-
-      <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
-        <br>
-        <h3><a href="/actors/<%= @featuredactor.id %>"><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></a></h3>
-        <br />
-        <h4>Directors our actor has worked with:</h4>
-          <ul style="list-style-position:inside; padding-top: 0px">
-            <li>
-              <% @directors.each do |director| %>
-                <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
-              <% end %>
-            </li>
-          </ul>
-
-        <h4>Studios our actor has worked with:</h4>
-
-        <ul style="list-style-position:inside; padding-top: 0px">
-          <li>
-            <% @studios.each do |studio| %>
-              <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
-  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
-
     <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Unwatched Movies This Year</span></h2>
 
     <% @unwatchedmovies = Movie.
                           joins("LEFT JOIN movie_ratings on movies.id = movie_ratings.movie_id").
-                          where("movie_ratings.updated_at < '2016-01-01' OR movie_ratings.movie_id is null") %>
+                          where("movie_ratings.updated_at < '2016-01-01' OR movie_ratings.movie_id is null").distinct %>
 
         <% @unwatchedmovies.each do |unwatchedmovie| %>
 
