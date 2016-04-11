@@ -8,7 +8,7 @@
   <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
     <% @suggestedmovies = Movie.
-                          select("movies.id as id1, movies.movie_name as name, movies.poster as poster, topics.id as genre_id, genre_name, email").
+                          select("movies.id as id1, movies.movie_name as name, movies.poster as poster, email").
                           joins("LEFT JOIN (
                           SELECT m2.id as id2, m2.movie_name
                           FROM movies m2
@@ -22,24 +22,29 @@
                           "INNER JOIN profiles ON likes_topics.profile_id = profiles.id",
                           "INNER JOIN users ON profiles.user_id = users.id").
                           where("watched.id2 IS NULL AND users.email = '#{current_user.email}'").
-                          order('genre_name').
                           distinct %>
 
+
     <% @suggestedmovies.each do |suggestedmovie| %>
+      <% @genres = Topic.
+                    joins(:users, :movie_topics).
+                    where(users: {email: current_user.email}, movie_topics: {movie_id: suggestedmovie.id1}) %>
 
     <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
       <a href="/movies/<%= suggestedmovie.id1 %>">
         <img src="<%= suggestedmovie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
         <p><%= suggestedmovie.name %></p>
         <p style="margin-top: -15px">
-          <a href="/topics/<%= suggestedmovie.genre_id %>">
-            <b>Genre: </b><%= suggestedmovie.genre_name %>
-          </a>
+          <b>Genre: </b><br>
+          <% @genres.each do |genre| %>
+            <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a><br>
+          <% end %>
         </p>
       </a>
     </div>
     <% end %>
   </div>
+
 
 
   <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
