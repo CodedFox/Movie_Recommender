@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
+
   # GET /movies
   # GET /movies.json
   def index
@@ -71,5 +72,4 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:movie_name, :description, :date_released, :duration, :language, :subtitles, :dubbed, :country, :age_rating, :poster, :trailer, topic_ids: [], studio_ids: [], director_ids: [])
     end
-
 end

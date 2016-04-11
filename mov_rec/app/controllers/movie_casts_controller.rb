@@ -59,7 +59,7 @@ class MovieCastsController < ApplicationController
   def destroy
     @movie_cast.destroy
     respond_to do |format|
-      format.html { redirect_to movie_casts_url, notice: 'Movie cast was successfully destroyed.' }
+      format.html { redirect_to "/movies/#{@movie_cast.movie_id}", notice: 'Movie cast was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
