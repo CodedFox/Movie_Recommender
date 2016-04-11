@@ -17,7 +17,7 @@ def search
 end
 
 def authenticate
-    if session['user'].nil?
+    if current_user.nil?
       redirect_to "/login" 
     end
   end
