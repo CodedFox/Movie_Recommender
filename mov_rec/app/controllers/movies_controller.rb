@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_filter :authenticate
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
 

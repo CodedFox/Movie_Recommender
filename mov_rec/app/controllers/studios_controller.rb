@@ -1,4 +1,5 @@
 class StudiosController < ApplicationController
+  before_filter :authenticate
   before_action :set_studio, only: [:show, :edit, :update, :destroy]
 
   # GET /studios

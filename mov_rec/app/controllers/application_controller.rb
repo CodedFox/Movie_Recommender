@@ -16,5 +16,11 @@ def search
 	@results = @movies + @actors + @directors + @topics + @users + @studios
 end
 
+def authenticate
+    if session['user'].nil?
+      redirect_to "/login" 
+    end
+  end
+
 
 end

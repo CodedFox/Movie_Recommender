@@ -1,4 +1,5 @@
 class MovieCastsController < ApplicationController
+  before_filter :authenticate
   before_action :set_movie_cast, only: [:show, :edit, :update, :destroy]
 
   # GET /movie_casts

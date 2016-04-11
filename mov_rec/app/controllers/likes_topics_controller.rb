@@ -1,4 +1,5 @@
 class LikesTopicsController < ApplicationController
+  before_filter :authenticate
   before_action :set_likes_topic, only: [:show, :edit, :update, :destroy]
 
   # GET /likes_topics

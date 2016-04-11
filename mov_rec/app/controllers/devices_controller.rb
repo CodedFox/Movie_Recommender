@@ -1,4 +1,5 @@
 class DevicesController < ApplicationController
+  before_filter :authenticate
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   # GET /devices

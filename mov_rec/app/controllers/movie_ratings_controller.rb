@@ -1,4 +1,5 @@
 class MovieRatingsController < ApplicationController
+  before_filter :authenticate
   before_action :set_movie_rating, only: [:show, :edit, :update, :destroy]
 
   # GET /movie_ratings
