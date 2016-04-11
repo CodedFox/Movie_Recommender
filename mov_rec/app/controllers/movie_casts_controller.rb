@@ -29,7 +29,7 @@ class MovieCastsController < ApplicationController
 
     respond_to do |format|
       if @movie_cast.save
-        format.html { redirect_to @movie_cast, notice: 'Movie cast was successfully created.' }
+        format.html { redirect_to "/movies/#{@movie_cast.movie_id}", notice: 'Movie cast was successfully created.' }
         format.json { render :show, status: :created, location: @movie_cast }
       else
         format.html { render :new }
