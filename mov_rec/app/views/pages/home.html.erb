@@ -141,15 +141,15 @@
     <div style="display: flex; padding-bottom: 20px;">
       <div style="float: left; display: inline-block; flex: 1; padding: 15px; padding-top: 20px">
         <% if @featuredactor.picture.blank? %>
-          <img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 250px; float:right; border: solid grey">
+          <a href="/actors/<%= @featuredactor.id %>"><img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 250px; float:right; border: solid grey"></a>
       <% else %>
-           <img src="<%= @featuredactor.picture %>" style="width: 250px; float: right; border: solid grey">
+          <a href="/actors/<%= @featuredactor.id %>"><img src="<%= @featuredactor.picture %>" style="width: 250px; float: right; border: solid grey"></a>
       <% end %>
       </div>
 
       <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
         <br>
-        <h3><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></h3>
+        <h3><a href="/actors/<%= @featuredactor.id %>"><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></a></h3>
         <br />
         <h4>Directors our actor has worked with:</h4>
           <ul style="list-style-position:inside; padding-top: 0px">
