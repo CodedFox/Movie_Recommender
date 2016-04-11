@@ -3,7 +3,7 @@
   <br />
   <h1><img src="http://onin.london/assets/PressPlay-logo-copy.png" style="width: 200px"></h1>
 
-  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Recommendations for <%= current_user.profile.first_name %> <%= current_user.profile.last_name %></span></h2>
+  <h2 style="text-align: center"><span>Hey <a href="/users/<%= current_user.id %>"><%= current_user.profile.first_name %> <%= current_user.profile.last_name %></a>! <br />Here are your recommendations!</span></h2>
 
   <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
