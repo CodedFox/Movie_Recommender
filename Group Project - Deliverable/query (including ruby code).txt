@@ -1,0 +1,728 @@
+--CSI2132 B - Group Project
+--Diane Vu - 6904022
+--Jonathan Gratton - 5751439
+--Qufei Chen - 6771326
+
+a) Display all the information about a user-specified movie. That is, the user should select
+ the name of the movie from a list, and the information as contained in the movie table
+ should then be displayed on the screen.
+
+b) Display the full list of actors, and their roles, of a specific movie. That is, the user should select
+the name of the movie from a list, and all the details of the actors, together with their roles,
+should be displayed on the screen.
+
+h) Find the total number of rating for each movie, for each user. That is, the data should be
+grouped by the movie, the specific users and the numeric ratings they have received.
+
+n) Find the names, join-date and profiling information (age-range, gender, and so on) of the users
+that rated a specific movie (say movie Z) the most frequently. Display this information together
+with their comments, if any. (Here movie Z refers to a movie of your own choice, e.g. The
+Hundred Foot Journey).
+
+Display directs in /movies/id
+	SELECT first_name, last_name
+	FROM directors
+	INNER JOIN directs ON directors.id = directs.director_id
+	WHERE directs.movie_id = @movie.id
+
+	<% @directors = Director.joins(:directs).where(directs: { movie_id: @movie.id }) %>
+
+	<% @directors.each do |director| %>
+	  <%= director.first_name %>
+	  <%= director.last_name %>
+	<% end %>
+	
+SELECT cast_type
+FROM casting_types
+WHERE casting_types.id = movie_casts.casting_type_id
+	AND movie_casts.movie_id = @movie.id
+	
+
+Display movie_casts in /movies/id
+	SELECT first_name, last_name
+	FROM actors
+	INNER JOIN movie_casts ON actors.id = movie_casts.actor_id
+	WHERE movie_casts.movie_id = @movie.id
+	ORDER BY casting_type_id ASC
+	
+		SELECT character_name
+		FROM roles
+		INNER JOIN actor_roles ON roles.id = actor_roles.role_id
+		INNER JOIN movie_roles ON roles.id = movie_roles.role_id
+		WHERE actor_roles.actor_id = ^actor.id
+		
+		SELECT cast_type
+		FROM casting_types
+		INNER JOIN movie_casts ON casting_types.id = movie_casts.casting_type_id
+		WHERE movie_casts.movie_id = @movie.id AND movie_casts.actor_id = ^actor.id
+		ORDER BY id ASC
+		LIMIT 1
+	
+	<% @actors = Actor.joins(:movie_casts).where(movie_casts: { movie_id: @movie.id }).order('casting_type_id ASC') %>
+	
+	<table>
+	  <thead>
+		<tr>
+		  <th>Actors</th>
+		  <th>Character Name</th>
+		  <th>Type</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<% @actors.each do |actor| %>
+		  <% @roles = Role.joins(:actor_roles).where(actor_roles: { actor_id: actor.id }) %>
+		  <% @type = CastingType.joins(:movie_casts).where(movie_casts: movie_id: @movie.id, actor_id: actor.id }).order('id ASC').take %>
+		  <tr>
+			<td><%= actor.first_name %> <%= actor.last_name %></td>
+			<td>
+			  <% @roles.each do |role| %>
+				<%= role.character_name %><br>
+			  <% end %>
+			</td>
+			<td><%= @type.cast_type %></td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
+
+NOT USED!	Display movie_roles in /movies/id
+				SELECT character_name
+				FROM roles
+				INNER JOIN movie_roles ON roles.id = movie_roles.role_id
+				WHERE movie_roles.movie_id = @movie.id
+
+Display sponsors in /movies/id
+	SELECT studio_name
+	FROM studios
+	INNER JOIN sponsors ON studios.id = sponsors.studio_id
+	WHERE sponsors.movie_id = @movie.id
+
+	<% @studios = Studio.joins(:sponsors).where(sponsors: { movie_id: @movie.id }) %>
+
+	<% @studios.each do |studio| %>
+	  <%= studio.studio_name %>
+	<% end %>
+
+Display movie_ratings in /movies/id
+	SELECT avg(user_rating) as avg, count(id) as count, profile_id
+	FROM movie_ratings
+	GROUP BY profile_id
+	ORDER BY count DESC
+	WHERE movie_ratings.movie_id = @movie.id
+		
+		SELECT email, id
+		FROM users
+		INNER JOIN profiles ON users.id = profiles.user_id
+		WHERE profiles.id = ^movie_rating.profile_id
+		LIMIT 1
+		
+		SELECT review
+		FROM movie_ratings
+		WHERE movie_ratings.profile_id = ^movie_rating.profile_id AND movie_ratings.movie_id = @movie.id
+		
+	
+	<% @watches =  MovieRating.select("avg(user_rating) as avg, count(id) as count, profile_id").group("profile_id").order(count: :desc).where movie_id: @movie.id %>
+
+	<table>
+	  <thead>
+		<tr>
+		  <th>User</th>
+		  <th>Average<br>Rating</th>
+		  <th>Times Seen</th>
+		  <th>Reviews</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<% @watches.each do |watch| %>
+		  <% @user = User.joins(:profile).where(profiles: { id: watch.profile_id }).take %>
+		  <% @userreviews = MovieRating.where(movie_id: @movie.id, profile_id: watch.profile_id) %>
+		  <tr>
+			<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
+			<td><%= watch.avg %></td>
+			<td><%= watch.count %></td>
+			<td>
+			  <% @userreviews.each do |userreview| %>
+				<% if userreview.review != '' %>
+				  <%= userreview.review %><br>
+				<% end %>
+			  <% end %>
+			</td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
+
+Display movie_topics in /movies/id
+	SELECT genre_name 
+	FROM topics
+	INNER JOIN movie_topics ON topics.id = movie_topics.topic_id
+	WHERE movie_topics.movie_id = @movie.id
+
+	<% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: @movie.id }) %>
+
+	<% @genres.each do |genre| %>
+	  <%= genre.genre_name %>
+	<% end %>
+
+
+
+c) For each user-specified category of movie, list the details of the director(s) and studio(s),
+together with the date that the movie has been released. The user should be able to select the
+category (e.g. Horror or Nature) from a list.
+
+Display directs in /topics/id
+Display sponsors in /topics/id
+
+Display movie_topics in /topics/id
+	SELECT *
+	FROM movies
+	INNER JOIN movie_topics ON movies.id = movie_topics.movie_id
+	WHERE movie_topics.topic_id = @topic.id
+	ORDER BY movie_name ASC
+	
+	<% @movies = Movie.joins(:movie_topics).where(movie_topics: { topic_id: @topic.id }).order('movie_name ASC') %>
+
+	<table>
+	  <thead>
+		<tr>
+		  <th></th>
+		  <th>Movie Name</th>
+		  <th>Description</th>
+		  <th>Date released</th>
+		  <th>Duration</th>
+		  <th>Language</th>
+		  <th>Subtitles</th>
+		  <th>Dubbed</th>
+		  <th>Country</th>
+		  <th>Age rating</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<% @movies.each do |movie| %>
+		  <tr>
+			<td><img src="<%= movie.poster %>" style="width: 75px"></td>
+			<td><%= movie.movie_name %></td>
+			<td><%= movie.description %></td>
+			<td><%= movie.date_released %></td>
+			<td>
+			  <% if movie.duration.hour == 0 %>
+				<%= movie.duration.strftime('%Mm') %>
+			  <% else %>
+				<%= movie.duration.strftime('%kh %Mm') %>
+			  <% end %>
+			</td>
+			<td><%= movie.language %></td>
+			<td><%= movie.subtitles %></td>
+			<td><%= movie.dubbed %></td>
+			<td><%= movie.country %></td>
+			<td><%= movie.age_rating %></td>
+
+			<td><%= link_to 'Show', movie %></td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
+
+	
+	
+d) Display the information about the actor that appeared the most often in the movies, as
+contained in your database. Display this information together with the details of the director(s)
+and the studio(s) that s(he) worked with.
+
+e) Display the information about the two actors that appeared the most often together in the
+movies, as contained in your database.
+
+Display movie_casts in /home
+	SELECT actor1, actor2, count(*) as movies
+	FROM (
+		SELECT m1.actor_id as actor1, m2.actor_id as actor2, m1.movie_id as m1
+		FROM movie_casts m1, movie_casts m2
+		WHERE m1.actor_id > m2.actor_id AND m1.movie_id = m2.movie_id
+	) as t
+	GROUP BY actor1, actor2
+	ORDER BY movies DESC
+
+	SELECT actor_id, count(actor_id) as count
+	FROM movie_casts
+	GROUP BY actor_id
+	ORDER BY count DESC
+	LIMIT 1
+	
+		SELECT *
+		FROM actors
+		WHERE actors.id = ^movie_cast.actor_id
+					
+	<% @factor = MovieCast.
+					select("actor_id, count(actor_id) as count").
+					group("actor_id").
+					order('count DESC').
+					take %>
+
+	<% @featuredactor = Actor.where(id: @factor.actor_id).take %>
+
+	<div>
+	<% unless @featuredactor.picture.blank? %>
+	  <img src="<%= @featuredactor.picture %>" style="width: 200px; float: left; padding: 5px">
+	<% end %>
+
+	<div style="padding: 5px">
+
+	<p>
+	  <h3><a href="/actors/<%= @featuredactor.id %>"><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></a></h3>
+	</p>
+
+	<p>
+	  <strong>Date of birth:</strong>
+	  <%= @featuredactor.date_of_birth %>
+	</p>
+
+	<p>
+	  <strong>Place of birth:</strong>
+	  <%= @featuredactor.place_of_birth %>
+	</p>
+
+	<p>
+	  <strong>Gender:</strong>
+	  <%= @featuredactor.gender %>
+	</p>
+
+Display directs in /home
+	SELECT DISTINCT first_name, last_name, place_of_birth, picture, date_of_birth, gender
+	FROM directors
+	INNER JOIN directs ON directors.id = directs.director_id
+	INNER JOIN movie_casts ON directs.movie_id = movie_casts.movie_id
+	WHERE actor_id = 118
+
+Display sponsors in /home
+
+
+
+f) Find the names of the ten movies with the highest overall ratings in your database.
+
+g) Find the movie(s) with the highest overall rating in your database. Display all the movie details,
+together with the topics (tags) associated with it.
+
+i) Display the details of the movies that have not been rated since January 2016.
+
+m) Find the names, join-date and profiling information (age-range, gender, and so on) of the users
+that give the highest overall ratings. Display this information together with the names of the
+movies and the dates the ratings were done.
+
+Display movie_ratings in /home
+Display movie_topics in /home
+
+
+
+j) Find the names, release dates and the names of the directors of the movies that obtained rating
+that is lower than any rating given by user X. Order your results by the dates of the ratings.
+(Here, X refers to any user of your choice.)
+
+DO THIS LAST
+
+
+
+k) List the details of the Type Y movie that obtained the highest rating. Display the movie name
+together with the name(s) of the rater(s) who gave these ratings. (Here, Type Y refers to any
+movie type of your choice, e.g. Horror or Romance.)
+
+Display movie_ratings in /topics
+	SELECT movie_name, avg(user_rating) as score
+	FROM movies
+	INNER JOIN movie_ratings ON movies.id = movie_ratings.movie_id
+	INNER JOIN movie_topics ON movies.id = movie_topics.movie_id
+	INNER JOIN topics ON movie_topics.topic_id = topics.id
+	WHERE genre_name = 'Action'
+	GROUP BY movie_name
+	ORDER BY score DESC
+
+
+
+l) Provide a query to determine whether Type Y movies are “more popular” than other movies.
+(Here, Type Y refers to any movie type of your choice, e.g. Nature.) Yes, this query is open to
+your own interpretation!
+
+DO THIS LAST
+
+
+
+o) Find the names and emails of all users who gave ratings that are lower than that of a rater with
+a name called John Smith. (Note that there may be more than one rater with this name).
+
+DO THIS LAST
+
+
+
+p) Find the names and emails of the users that provide the most diverse ratings within a specific
+genre. Display this information together with the movie names and the ratings. For example,
+Jane Doe may have rated terminator 1 as a 1, Terminator 2 as a 10 and Terminator 3 as a 3.
+Clearly, she changes her mind quite often!
+
+Display movie_ratings in /topics/id
+	SELECT max(user_rating) - min(user_rating) as d, max(R.user_rating) as ma, min(R.user_rating) as mi, profile_id
+	FROM movie_ratings
+	INNER JOIN movie_topics ON movie_ratings.movie_id = movie_topics.movie_id
+	WHERE movie_topics.topic_id = @topic.id
+	GROUP BY profile_id
+	ORDER BY diff DESC
+	LIMIT 3
+	
+		SELECT email, id
+		FROM users
+		INNER JOIN profiles ON users.id = profiles.user_id
+		WHERE profiles.id = ^movie_rating.profile_id
+		LIMIT 1
+		
+		SELECT name
+		FROM movies
+		INNER JOIN movie_ratings ON movie.id = movie_ratings.movie_id
+		INNER JOIN movie_topics ON movie.id = movie_topics.movie_id
+		WHERE movie_ratings.rating = ^movie_rating.ma AND movie_ratings.user_id = ^movie_rating.user_id AND movie_topics.topic_id = @topic.id
+		
+		SELECT name
+		FROM movies
+		INNER JOIN movie_ratings ON movie.id = movie_ratings.movie_id
+		INNER JOIN movie_topics	ON movie.id = movie_topics.movie_id
+		WHERE movie_ratings.rating = ^movie_rating.mi AND movie_ratings.user_id = ^movie_rating.user_id AND movie_topics.topic_id = @topic.id
+
+	<% @dusers = MovieRating.
+					select("max(user_rating) - min(user_rating) as d, max(user_rating) as ma, min(user_rating) as mi, profile_id").
+					joins(:movie_topics).
+					where(movie_topics: { topic_id: @topic.id }).
+					group("profile_id").
+					order('d DESC').
+					take(3) %>
+
+	<table>
+	  <thead>
+		<tr>
+		  <th>Diverse Raters</th>
+		  <th>Max Movie</th>
+		  <th>Rating</th>
+		  <th>Min Movie</th>
+		  <th>Rating</th>
+		  <th>Difference</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+
+	  <tbody>
+		<% @dusers.each do |duser| %>
+		  <% @user = User.joins(:profile).where(profiles: { id: duser.profile_id }).take %>
+		  <% @maxmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.ma, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+		  <% @minmovie = Movie.joins(:movie_ratings, :movie_topics).where(movie_ratings: { user_rating: duser.mi, profile_id: duser.profile_id }, movie_topics: { topic_id: @topic.id }).take %>
+			<tr>
+				<td><a href="/users/<%= @user.id %>"><%= @user.email %></a></td>
+				<td><%= @maxmovie.movie_name %></td>
+				<td><%= duser.ma %></td>
+				<td><%= @minmovie.movie_name %></td>
+				<td><%= duser.mi %></td>
+				<td><%= duser.d %></td>
+			</tr>
+		<% end %>
+	  </tbody>
+	</table>
+
+
+
+=========================================================================================
+	
+IN /USERS/ID, DISPLAY:
+	profiles
+		SELECT *
+		FROM profiles
+		WHERE profile.user_id = @user.id
+		
+		<% @profile = Profile.find_by user_id: @user.id %>
+		
+		<%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+		
+		<p>
+		  <strong>First Name:</strong>
+		  <%= @profile.first_name %>
+		</p>
+
+		<p>
+		  <strong>Last Name:</strong>
+		  <%= @profile.last_name %>
+		</p>
+
+		<p>
+		  <strong>Date of Birth:</strong>
+		  <%= @profile.date_of_birth %>
+		</p>
+
+		<p>
+		  <strong>Gender:</strong>
+		  <%= @profile.gender %>
+		</p>
+
+		<p>
+		  <strong>City:</strong>
+		  <%= @profile.city %>
+		</p>
+
+		<p>
+		  <strong>Province:</strong>
+		  <%= @profile.province %>
+		</p>
+
+		<p>
+		  <strong>Country:</strong>
+		  <%= @profile.country %>
+		</p>
+
+		<p>
+		  <strong>Occupation:</strong>
+		  <%= @profile.occupation %>
+		</p>
+
+		<p>
+		  <strong>Picture:</strong>
+		  <%= @profile.picture %>
+		</p>
+		
+	likes_topics
+		SELECT genre_name
+		FROM topics
+		INNER JOIN likes_topics ON topics.id = likes_topics.topic_id
+		WHERE likes_topics.profile_id = @profile.id
+		
+		<% @genres = Topic.joins(:likes_topics).where(likes_topics: { profile_id: @profile.id }) %>
+
+		<% @genres.each do |genre| %>
+		  <%= genre.genre_name %>
+		<% end %>
+		
+	used_devices
+		SELECT device_name
+		FROM devices
+		INNER JOIN used_devices ON devices.id = used_devices.devices_id
+		WHERE used_devices.profile_id = @profile.id
+		
+		<% @devices = Device.joins(:used_devices).where(used_devices: { profile_id: @profile.id }) %>
+
+		<% @devices.each do |device| %>
+		  <%= devices.device_name %>
+		<% end %>
+	
+	movie_ratings
+		SELECT *
+		FROM movie_rating
+		WHERE movie_rating.profile_id = @profile.id
+		
+			SELECT name
+			FROM movies
+			WHERE movies.id = ^movie_rating.movie_id
+
+		<% @watched = MovieRating.where profile_id: @profile.id %>
+
+		<table>
+		  <thead>
+			<tr>
+			  <th>Movie</th>
+			  <th>Date Watched</th>
+			  <th>Rating</th>
+			  <th>Review</th>
+			  <th>Rating Created</th>
+			  <th colspan="3"></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% @watched.each do |watch| %>
+			  <% @movie = Movie.find_by id: watch.movie_id %>
+			  <tr>
+				<td><%= @movie.movie_name %></a></td>
+				<td><%= watch.date_watched %></td>
+				<td><%= watch.user_rating %></td>
+				<td><%= watch.review %></td>
+				<td><%= watch.updated_at %></td>
+				<td><%= link_to 'Edit', edit_movie_rating_path(watch) %></td>
+				<td><%= link_to 'Destroy', watch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+
+
+
+IN /TOPICS/ID, DISPLAY:
+	movie_topics
+		c)
+
+
+
+IN /MOVIES/ID, DISPLAY:
+	movie_topics
+		a), b), h), n)
+	directs
+		a), b), h), n)
+	movie_roles
+		a), b), h), n)
+	movie_casts
+		a), b), h), n)
+	sponsors
+		a), b), h), n)
+	movie_ratings
+		a), b), h), n)
+
+
+
+IN /ACTORS/ID, DISPLAY:
+	movie_casts
+		SELECT movie_name
+		FROM movies
+		INNER JOIN movie_casts ON movies.id = movie_casts.movie_id
+		WHERE movie_casts.actor_id = @actor.id
+		ORDER BY movie_name ASC
+		
+		<% @movies = Movie.joins(:movie_casts).where(movie_casts: { actor_id: @actor.id }).order('movie_name ASC') %>
+		
+		<% @movies.each do |movie| %>
+		  <%= movie.movie_name %>
+		<% end %>
+	
+	actor_roles
+		SELECT character_name
+		FROM roles
+		INNER JOIN actor_roles ON roles.id = actor_roles.movie_id
+		WHERE actor_roles.actor_id = @actor.id
+
+
+
+IN /DIRECTORS/ID, DISPLAY:
+	directs
+		SELECT *
+		FROM movies
+		INNER JOIN directs ON movies.id = directs.movie_id
+		WHERE directs.director_id = @director.id
+		ORDER BY movie_name ASC
+		
+		<% @movies = Movie.joins(:directs).where(directs: { director_id: @director.id }).order('movie_name ASC') %>
+
+		<table>
+		  <thead>
+			<tr>
+			  <th></th>
+			  <th>Movie Name</th>
+			  <th>Description</th>
+			  <th>Date released</th>
+			  <th>Duration</th>
+			  <th>Language</th>
+			  <th>Subtitles</th>
+			  <th>Dubbed</th>
+			  <th>Country</th>
+			  <th>Age rating</th>
+			  <th colspan="3"></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% @movies.each do |movie| %>
+			  <tr>
+				<td><img src="<%= movie.poster %>" style="width: 75px"></td>
+				<td><%= movie.movie_name %></td>
+				<td><%= movie.description %></td>
+				<td><%= movie.date_released %></td>
+				<td>
+				  <% if movie.duration.hour == 0 %>
+					<%= movie.duration.strftime('%Mm') %>
+				  <% else %>
+					<%= movie.duration.strftime('%kh %Mm') %>
+				  <% end %>
+				</td>
+				<td><%= movie.language %></td>
+				<td><%= movie.subtitles %></td>
+				<td><%= movie.dubbed %></td>
+				<td><%= movie.country %></td>
+				<td><%= movie.age_rating %></td>
+
+				<td><%= link_to 'Show', movie %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+
+
+
+IN /STUDIOS/ID, DISPLAY:
+	sponsors
+		SELECT *
+		FROM movies
+		INNER JOIN sponsors ON movies.id = sponsors.movie_id
+		WHERE sponsors.studio_id = @studio.id
+		ORDER BY movie_name ASC
+		
+		<% @movies = Movie.joins(:sponsors).where(sponsors: { studio_id: @studio.id }).order('movie_name ASC') %>
+
+		<table>
+		  <thead>
+			<tr>
+			  <th></th>
+			  <th>Movie Name</th>
+			  <th>Description</th>
+			  <th>Date released</th>
+			  <th>Duration</th>
+			  <th>Language</th>
+			  <th>Subtitles</th>
+			  <th>Dubbed</th>
+			  <th>Country</th>
+			  <th>Age rating</th>
+			  <th colspan="3"></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% @movies.each do |movie| %>
+			  <tr>
+				<td><img src="<%= movie.poster %>" style="width: 75px"></td>
+				<td><%= movie.movie_name %></td>
+				<td><%= movie.description %></td>
+				<td><%= movie.date_released %></td>
+				<td>
+				  <% if movie.duration.hour == 0 %>
+					<%= movie.duration.strftime('%Mm') %>
+				  <% else %>
+					<%= movie.duration.strftime('%kh %Mm') %>
+				  <% end %>
+				</td>
+				<td><%= movie.language %></td>
+				<td><%= movie.subtitles %></td>
+				<td><%= movie.dubbed %></td>
+				<td><%= movie.country %></td>
+				<td><%= movie.age_rating %></td>
+
+				<td><%= link_to 'Show', movie %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+
+
+
+SELECT movie_name, date_released, r1.created_at, r1.user_rating, r2.user_rating, u1.email, u2.email
+FROM movies
+INNER JOIN movie_ratings AS r1 ON r1.movie_id = movies.id
+INNER JOIN movie_ratings AS r2 ON r1.movie_id = r2.movie_id
+INNER JOIN profiles as p1 ON p1.id = r1.profile_id
+INNER JOIN users AS u1 ON u1.id = p1.user_id
+INNER JOIN profiles as p2 ON p2.id = r2.profile_id
+INNER JOIN users AS u2 ON u2.id = p2.user_id
+WHERE u1.email = 'user1@movie.com' AND r2.user_rating < r1.user_rating
+ORDER BY r1.created_at
+
+SELECT p2.first_name, p2.last_name, u2.email, r1.user_rating, r2.user_rating, m1.movie_name
+FROM users u1
+INNER JOIN users as u2 ON u2.id <> u1.id
+INNER JOIN profiles as p1 ON p1.user_id = u1.id
+INNER JOIN profiles as p2 ON p2.user_id = u2.id
+INNER JOIN movie_ratings as r1 ON r1.profile_id = p1.id
+INNER JOIN movie_ratings as r2 ON r2.profile_id = p2.id
+INNER JOIN movies m1 ON r1.movie_id = m1.id
+WHERE p1.first_name = 'John' AND p1.last_name = 'Smith' AND r2.user_rating < r1.user_rating AND r1.movie_id = r2.movie_id
