@@ -1,6 +1,6 @@
 --CSI2132 B - Group Project
---Diane Vu 
---Jonathan Gratton
+--Diane Vu - 6904022
+--Jonathan Gratton - 5751439
 --Qufei Chen - 6771326
 
 --All tables for the Movie Recommendation system
