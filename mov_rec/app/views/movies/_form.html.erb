@@ -64,6 +64,16 @@
       <% end %>
   </div>
 
+  <div class="field">
+    <%= f.label :directors %><br>
+    <%= hidden_field_tag "movie[directors_ids][]", nil %>
+
+    <% Director.all.each do |director| %>
+      <%= check_box_tag "movie[director_ids][]", director.id, @movie.director_ids.include?(director.id), id: dom_id(director) %>
+      <%= label_tag dom_id(director), director.first_name + ' ' + director.last_name %><br>
+      <% end %>
+  </div>
+
    <div class="field">
     <%= f.label :studios %><br>
     <%= hidden_field_tag "movie[studio_ids][]", nil %>
