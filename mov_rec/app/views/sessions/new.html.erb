@@ -1,7 +1,12 @@
+<body class="background">
+
 <%= form_for(:session, url: login_path) do |f| %>
+<br />
+<br />
+<br />
+<img src="http://onin.london/assets/PressPlay-logo-copy.png" style="position: relative; top: 50%; left: 50%; margin-top: -50px; margin-left: -100px; width: 200px">
 
 <% provide(:title, "Log in") %>
-<h1>Log in</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -12,11 +17,13 @@
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <br />
+      <%= f.submit "Log in", class: "btn btn-primary" %>  <%= link_to "Create User", signup_path, :class => "btn btn-primary" %>
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+
   </div>
 </div>
 <% end %>
+
+</body>

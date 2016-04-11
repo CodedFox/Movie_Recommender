@@ -4,13 +4,13 @@
 
 <div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid; text-align: center">
 
-  <br>
-<h1 style="text-align: center; border-bottom: 2px black solid; padding-bottom: 10px">Listing Genres</h1>
+<h1 style="text-align: center; border-bottom: 2px black solid; padding-bottom: 10px">Genres</h1>
 
 <% if current_user.user_type_id == @admin.id  %>
   <%= link_to '- New Topic -', new_topic_path %>
 <% end %>
 
+  <br>
 <table style="margin: auto; margin-top: 20px; width: 850px; align: center">
   <thead>
     <tr>

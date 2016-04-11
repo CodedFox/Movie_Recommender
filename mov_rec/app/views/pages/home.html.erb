@@ -1,411 +1,279 @@
-<h1>Welcome to Movie Rec!!</h1>
-<p>
-  
-</p>
 
-<h2>Recommended Movies Based on Genres You Like!</h2>
+<div style="width: 1000px; margin: auto; position: center; border-top: 2px black solid">
+  <br />
+  <h1><img src="http://onin.london/assets/PressPlay-logo-copy.png" style="width: 200px"></h1>
 
-<% @suggestedmovies = Movie.
-                      select("movies.id as id1, movies.movie_name as name, topics.id as genre_id, genre_name, email").
-                      joins("LEFT JOIN (
-                              SELECT m2.id as id2, m2.movie_name
-                              FROM movies m2
-                              INNER JOIN movie_ratings ON m2.id = movie_ratings.movie_id
-                              INNER JOIN profiles ON movie_ratings.profile_id = profiles.id
-                              INNER JOIN users ON profiles.user_id = users.id
-                              WHERE users.email = '#{current_user.email}'
-                            ) as watched ON movies.id = watched.id2", "INNER JOIN movie_topics ON movies.id = movie_topics.movie_id",
-                            "INNER JOIN topics ON movie_topics.topic_id = topics.id",
-                            "INNER JOIN likes_topics ON topics.id = likes_topics.topic_id",
-                            "INNER JOIN profiles ON likes_topics.profile_id = profiles.id",
-                            "INNER JOIN users ON profiles.user_id = users.id").
-                      where("watched.id2 IS NULL AND users.email = '#{current_user.email}'").
-                      order('genre_name').
-                      distinct %>
+  <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Recommendations For <%= current_user.profile.first_name %> <%= current_user.profile.last_name %></span></h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Movie</th>
-      <th>Because You like</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-  <tbody>
+    <% @suggestedmovies = Movie.
+                          select("movies.id as id1, movies.movie_name as name, movies.poster as poster, topics.id as genre_id, genre_name, email").
+                          joins("LEFT JOIN (
+                          SELECT m2.id as id2, m2.movie_name
+                          FROM movies m2
+                          INNER JOIN movie_ratings ON m2.id = movie_ratings.movie_id
+                          INNER JOIN profiles ON movie_ratings.profile_id = profiles.id
+                          INNER JOIN users ON profiles.user_id = users.id
+                          WHERE users.email = '#{current_user.email}'
+                          ) as watched ON movies.id = watched.id2", "INNER JOIN movie_topics ON movies.id = movie_topics.movie_id",
+                          "INNER JOIN topics ON movie_topics.topic_id = topics.id",
+                          "INNER JOIN likes_topics ON topics.id = likes_topics.topic_id",
+                          "INNER JOIN profiles ON likes_topics.profile_id = profiles.id",
+                          "INNER JOIN users ON profiles.user_id = users.id").
+                          where("watched.id2 IS NULL AND users.email = '#{current_user.email}'").
+                          order('genre_name').
+                          distinct %>
+
     <% @suggestedmovies.each do |suggestedmovie| %>
-      <tr>
-        <td><a href="/movies/<%= suggestedmovie.id1 %>"><%= suggestedmovie.name %></td>
-        <td><a href="/topics/<%= suggestedmovie.genre_id %>"><%= suggestedmovie.genre_name %></a></td>
-      </tr>
+
+    <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
+      <a href="/movies/<%= suggestedmovie.id1 %>">
+        <img src="<%= suggestedmovie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+        <p><%= suggestedmovie.name %></p>
+        <p style="margin-top: -15px">
+          <a href="/topics/<%= suggestedmovie.genre_id %>">
+            <b>Genre: </b><%= suggestedmovie.genre_name %>
+          </a>
+        </p>
+      </a>
+    </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<h2>Feature Actor!</h2>
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-<% @factor = MovieCast.
-					select("actor_id, count(actor_id) as count").
-					group("actor_id").
-					order('count DESC').
-					take %>
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Top Ten Movies</span></h2>
 
-<% @featuredactor = Actor.where(id: @factor.actor_id).take %>
+    <% @topmovies = Movie.
+                    select("movie_id, movie_name, poster, description, country, date_released, language, subtitles, dubbed, age_rating, round(avg(user_rating), 1) as score").
+                    joins(:movie_ratings).
+                    group(['movie_name', 'poster', 'movie_id', 'description', 'country', 'date_released', 'language', 'subtitles', 'dubbed', 'age_rating']).
+                    order('score DESC').
+                    take(10) %>
 
-<% @directors = Director.
-                  joins(:movie_casts).
-                  where(movie_casts: { actor_id: @featuredactor.id }).
-                  distinct %>
 
-<% @studios = Studio.
-                  joins(:movie_casts).
-                  where(movie_casts: { actor_id: @featuredactor.id }).
-                  distinct %>
 
-<div>
-<% unless @featuredactor.picture.blank? %>
-  <img src="<%= @featuredactor.picture %>" style="width: 200px; float: left; padding: 5px">
-<% end %>
+        <% i = 0 %>
+        <% @topmovies.each do |topmovie| %>
+        <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: topmovie.movie_id }) %>
+          <% i = i + 1 %>
+          <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
+            <b>- <%= i %> -</b>
+            <a href="/movies/<%= topmovie.movie_id %>">
+              <img src="<%= topmovie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+              <p><%= topmovie.movie_name %></p>
+            </a>
+              <p style="margin-top: -15px">
+                  <b>Average Rating: </b><%= topmovie.score %>
+              </p>
+          </div>
+          <% end %>
+  </div>
 
-<div style="padding: 5px">
 
-<p>
-  <h3><a href="/actors/<%= @featuredactor.id %>"><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></a></h3>
-</p>
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-<p>
-  <strong>Date of birth:</strong>
-  <%= @featuredactor.date_of_birth %>
-</p>
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Current Couple Actors</span></h2>
 
-<p>
-  <strong>Place of birth:</strong>
-  <%= @featuredactor.place_of_birth %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @featuredactor.gender %>
-</p>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<h4>Directors our actor has worked with!</h4>
-
-<% @directors.each do |director| %>
-  <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
-<% end %>
-
-<h4>Studios our actor has worked with!</h4>
-
-<% @studios.each do |studio| %>
-  <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
-<% end %>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<% @couple = MovieCast.
+    <% @couple = MovieCast.
                 select("movie_casts.actor_id as a1, m2.actor_id as a2, count(m2.movie_id) as m").
                 joins("JOIN movie_casts AS m2
-                            ON movie_casts.movie_id = m2.movie_id").
+                ON movie_casts.movie_id = m2.movie_id").
                 where("movie_casts.actor_id > m2.actor_id").
                 group(['a1', 'a2']).
                 order('m DESC').
                 take %>
 
-<h2>Couples - Together in <%= @couple.m %> movies!</h2>
+<div style="vertical-align: middle">
+      <% @couple1 = Actor.where(id: @couple.a1).take %>
 
-<% @couple1 = Actor.where(id: @couple.a1).take %>
-<% @couple2 = Actor.where(id: @couple.a2).take %>
+    <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top;">
+      <a href="/actors/<%= @couple1.id %>">
+        <img src="<%= @couple1.picture %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+        <p><%= @couple1.first_name %> <%= @couple1.last_name %></p>
+      </a>
+    </div>
 
-<% unless @couple1.picture.blank? %>
-  <img src="<%= @couple1.picture %>" style="width: 200px; float: left; padding: 5px">
-<% end %>
+    <div style="display: inline-block;">
+      <p>
+        <br /><br /><br /><br /><b style="font-size: 20px"><%= @couple.m %></b><br />
+        <img src="http://cliparwolf.com/cliparts/files2/pink-heart-clipart-my-pink-heart.svg.svg" style="width: 100px; display: absolute">
+        <br /><b style="font-size: 20px">Movies</b>
+      </p>
+    </div>
 
-<div style="padding: 5px">
+    <% @couple2 = Actor.where(id: @couple.a2).take %>
 
-<p>
-  <h3><a href="/actors/<%= @couple1.id %>"><%= @couple1.first_name %> <%= @couple1.last_name %></a></h3>
-</p>
+    <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top;">
+      <a href="/actors/<%= @couple2.id %>">
+        <img src="<%= @couple2.picture %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+        <p><%= @couple2.first_name %> <%= @couple2.last_name %></p>
+      </a>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Date of birth:</strong>
-  <%= @couple1.date_of_birth %>
-</p>
 
-<p>
-  <strong>Place of birth:</strong>
-  <%= @couple1.place_of_birth %>
-</p>
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-<p>
-  <strong>Gender:</strong>
-  <%= @couple1.gender %>
-</p>
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Featured Actor</span></h2>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+    <% @factor = MovieCast.
+                select("actor_id, count(actor_id) as count").
+                group("actor_id").
+                order('count DESC').
+                take %>
 
-<% unless @couple2.picture.blank? %>
-  <img src="<%= @couple2.picture %>" style="width: 200px; float: left; padding: 5px">
-<% end %>
+    <% @featuredactor = Actor.where(id: @factor.actor_id).take %>
 
-<div style="padding: 5px">
+    <% @directors = Director.
+                    joins(:movie_casts).
+                    where(movie_casts: { actor_id: @featuredactor.id }).
+                    distinct %>
 
-<p>
-  <h3><a href="/actors/<%= @couple2.id %>"><%= @couple2.first_name %> <%= @couple2.last_name %></a></h3>
-</p>
+    <% @studios = Studio.
+                  joins(:movie_casts).
+                  where(movie_casts: { actor_id: @featuredactor.id }).
+                  distinct %>
 
-<p>
-  <strong>Date of birth:</strong>
-  <%= @couple2.date_of_birth %>
-</p>
+    <div style="display: flex; padding-bottom: 20px;">
+      <div style="float: left; display: inline-block; flex: 1; padding: 15px; padding-top: 20px">
+        <% if @featuredactor.picture.blank? %>
+          <img src="https://images-na.ssl-images-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_SY215_CR34,0,146,215_.png" style="width: 250px; float:right; border: solid grey">
+      <% else %>
+           <img src="<%= @featuredactor.picture %>" style="width: 250px; float: right; border: solid grey">
+      <% end %>
+      </div>
 
-<p>
-  <strong>Place of birth:</strong>
-  <%= @couple2.place_of_birth %>
-</p>
+      <div style="float: left; display: inline-block; flex: 1; padding: 10px;">
+        <br>
+        <h3><%= @featuredactor.first_name %> <%= @featuredactor.last_name %></h3>
+        <br />
+        <h4>Directors our actor has worked with:</h4>
+          <ul style="list-style-position:inside; padding-top: 0px">
+            <li>
+              <% @directors.each do |director| %>
+                <a href="/directors/<%= director.id %>"><%= director.first_name %> <%= director.last_name %></a><br>
+              <% end %>
+            </li>
+          </ul>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @couple2.gender %>
-</p>
+        <h4>Studios our actor has worked with:</h4>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+        <ul style="list-style-position:inside; padding-top: 0px">
+          <li>
+            <% @studios.each do |studio| %>
+              <a href="/studios/<%= studio.id %>"><%= studio.studio_name %></a><br>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<h2>Top Ten Movies!</h2>
 
-<% @topmovies = Movie.
-                  select("movie_id, movie_name, poster, description, country, date_released, language, subtitles, dubbed, age_rating, round(avg(user_rating), 1) as score").
-                  joins(:movie_ratings).
-                  group(['movie_name', 'poster', 'movie_id', 'description', 'country', 'date_released', 'language', 'subtitles', 'dubbed', 'age_rating']).
-                  order('score DESC').
-                  take(10) %>
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 10px">
 
-<table>
-  <thead>
-    <tr>
-      <th>Rank</th>
-      <th>Avg Rating</th>
-      <th></th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Country</th>
-      <th>Date Released</th>
-      <th>Language</th>
-      <th>Subtitles</th>
-      <th>Dubbed</th>
-      <th>Age Rating</th>
-      <th>Genres</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Unwatched Movies This Year</span></h2>
 
-  <% i = 0 %>
+    <% @unwatchedmovies = Movie.
+                          joins("LEFT JOIN movie_ratings on movies.id = movie_ratings.movie_id").
+                          where("movie_ratings.updated_at < '2016-01-01' OR movie_ratings.movie_id is null") %>
 
-  <tbody>
-    <% @topmovies.each do |topmovie| %>
-      <% @genres = Topic.joins(:movie_topics).where(movie_topics: { movie_id: topmovie.movie_id }) %>
-      <tr>
-        <% i = i + 1 %>
-        <td><%= i %></td>
-        <td><%= topmovie.score %></td>
-        <% if topmovie.poster.blank? %>
-          <td><img src="<%= topmovie.poster %>" style="width: 75px; visibility: hidden"></td>
-        <% else %>
-          <td><img src="<%= topmovie.poster %>" style="width: 75px"></td>
+        <% @unwatchedmovies.each do |unwatchedmovie| %>
+
+        <div style="display: inline-block; padding: 10px; width: 220px; vertical-align: top">
+          <a href="/movies/<%= unwatchedmovie.id %>">
+            <img src="<%= unwatchedmovie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
+            <p><%= unwatchedmovie.movie_name %></p>
+            <p style="margin-top: -15px">
+              <a href="/topics/<%= suggestedmovie.genre_id %>">
+                <b>Genre: </b><%= suggestedmovie.genre_name %>
+              </a>
+            </p>
+          </a>
+        </div>
         <% end %>
-        <td><a href="/movies/<%= topmovie.movie_id %>"><%= topmovie.movie_name %></a></td>
-        <td><%= topmovie.description %></td>
-        <td><%= topmovie.country %></td>
-        <td><%= topmovie.date_released %></td>
-        <td><%= topmovie.language %></td>
-        <td><%= topmovie.subtitles %></td>
-        <td><%= topmovie.dubbed %></td>
-        <td><%= topmovie.age_rating %></td>
-        <td>
-          <% @genres.each do |genre| %>
-            <a href="/topics/<%= genre.id %>"><%= genre.genre_name %></a><br>
-          <% end %>
-        <td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <div style="text-align: center; border-bottom: 2px black solid; margin-bottom: 20px; padding-bottom: 30px">
 
-<h2>Unwatched movies since last year!</h2>
+    <div style="display: inline-block; padding-right: 50px">
 
-<% @unwatchedmovies = Movie.
-                        joins("LEFT JOIN movie_ratings on movies.id = movie_ratings.movie_id").
-                        where("movie_ratings.updated_at < '2016-01-01' OR movie_ratings.movie_id is null") %>
+        <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Popular Genres</span></h2>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Country</th>
-      <th>Date Released</th>
-      <th>Language</th>
-      <th>Subtitles</th>
-      <th>Dubbed</th>
-      <th>Age Rating</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <% @popgenres = Topic.
+                        select("topics.id as id, genre_name, count(movie_ratings.id) as popular").
+                        joins("LEFT JOIN movie_topics ON topics.id = movie_topics.topic_id", "LEFT JOIN movie_ratings ON movie_topics.movie_id = movie_ratings.movie_id").
+                        group(['genre_name', 'id']).
+                        order('popular DESC') %>
 
-  <% i = 0 %>
+        <table style="margin: auto;">
+          <thead>
+            <tr>
+              <th>Times Watched</th>
+              <th>Genres</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-  <tbody>
-    <% @unwatchedmovies.each do |unwatchedmovie| %>
-      <tr>
-        <% if unwatchedmovie.poster.blank? %>
-          <td><img src="<%= unwatchedmovie.poster %>" style="width: 75px; visibility: hidden"></td>
-        <% else %>
-          <td><img src="<%= unwatchedmovie.poster %>" style="width: 75px"></td>
-        <% end %>
-        <td><a href="/movies/<%= unwatchedmovie.id %>"><%= unwatchedmovie.movie_name %></a></td>
-        <td><%= unwatchedmovie.description %></td>
-        <td><%= unwatchedmovie.country %></td>
-        <td><%= unwatchedmovie.date_released %></td>
-        <td><%= unwatchedmovie.language %></td>
-        <td><%= unwatchedmovie.subtitles %></td>
-        <td><%= unwatchedmovie.dubbed %></td>
-        <td><%= unwatchedmovie.age_rating %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% i = 0 %>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+          <tbody>
+            <% @popgenres.each do |popgenre| %>
+            <tr>
+              <% i = i + 1 %>
+              <td><%= popgenre.popular %></td>
+              <td><a href="/topics/<%= popgenre.id %>"><%= popgenre.genre_name %></a></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-<h2>List of Genres in Order of Popularity!</h2>
+      </div>
 
-<% @popgenres = Topic.
-                select("topics.id as id, genre_name, count(movie_ratings.id) as popular").
-                joins("LEFT JOIN movie_topics ON topics.id = movie_topics.topic_id", "LEFT JOIN movie_ratings ON movie_topics.movie_id = movie_ratings.movie_id").
-                group(['genre_name', 'id']).
-                order('popular DESC') %>
+    <div style="display: inline-block; margin-left: 50px">
 
-<table>
-  <thead>
-    <tr>
-      <th>Times Watched</th>
-      <th>Genres</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <h2 style="text-align: center"><span style="border-bottom: .5px black solid">Top Ten Users</span></h2>
 
-  <% i = 0 %>
+        <% @topusers = User.
+                      select("user_id, email, picture, round(avg(user_rating), 1) as avg").
+                      joins(:movie_ratings).
+                      group(['email', 'user_id', 'picture']).
+                      order('avg DESC').
+                      take(10) %>
 
-  <tbody>
-    <% @popgenres.each do |popgenre| %>
-      <tr>
-        <% i = i + 1 %>
-        <td><%= popgenre.popular %></td>
-        <td><a href="/topics/<%= popgenre.id %>"><%= popgenre.genre_name %></a></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <table style="margin: auto; text-align: center">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Avg Rating</th>
+              <th></th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+          <% i = 0 %>
 
-<h2>Top Ten Users!</h2>
+          <tbody>
+            <% @topusers.each do |topuser| %>
+            <tr>
+              <% i = i + 1 %>
+              <td><%= i %></td>
+              <td><%= topuser.avg %></td>
+              <% if topuser.picture.blank? %>
+              <td><img src="<%= topuser.picture %>" style="width: 75px; visibility: hidden"></td>
+              <% else %>
+              <td><img src="<%= topuser.picture %>" style="width: 75px"></td>
+              <% end %>
+              <td><a href="/users/<%= topuser.user_id %>"><%= topuser.email %></a></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<% @topusers = User.
-                select("user_id, email, picture, round(avg(user_rating), 1) as avg").
-                joins(:movie_ratings).
-                group(['email', 'user_id', 'picture']).
-                order('avg DESC').
-                take(10) %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Rank</th>
-      <th>Avg Rating</th>
-      <th></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <% i = 0 %>
-
-  <tbody>
-    <% @topusers.each do |topuser| %>
-      <tr>
-        <% i = i + 1 %>
-        <td><%= i %></td>
-        <td><%= topuser.avg %></td>
-        <% if topuser.picture.blank? %>
-          <td><img src="<%= topuser.picture %>" style="width: 75px; visibility: hidden"></td>
-        <% else %>
-          <td><img src="<%= topuser.picture %>" style="width: 75px"></td>
-        <% end %>
-        <td><a href="/users/<%= topuser.user_id %>"><%= topuser.email %></a></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div>
