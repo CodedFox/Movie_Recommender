@@ -10,6 +10,7 @@ class Movie < ActiveRecord::Base
 	has_many :sponsors
 	has_many :studios, through: :sponsors
 	has_many :directs
+	has_many :directors, through: :directs
 
 	has_many :actors, through: :movie_casts
 

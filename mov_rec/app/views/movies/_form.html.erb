@@ -55,12 +55,32 @@
   </div>
 
   <div class="field">
+    <%= f.label :poster %><br>
+    <%= f.text_field :poster %>
+  </div>
+
+  <div class="field">
+    <%= f.label :trailer %><br>
+    <%= f.text_field :trailer %>
+  </div>
+
+  <div class="field">
     <%= f.label :genres %><br>
     <%= hidden_field_tag "movie[topic_ids][]", nil %>
 
     <% Topic.all.each do |topic| %>
       <%= check_box_tag "movie[topic_ids][]", topic.id, @movie.topic_ids.include?(topic.id), id: dom_id(topic) %>
       <%= label_tag dom_id(topic), topic.genre_name %><br>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :directors %><br>
+    <%= hidden_field_tag "movie[directors_ids][]", nil %>
+
+    <% Director.all.each do |director| %>
+      <%= check_box_tag "movie[director_ids][]", director.id, @movie.director_ids.include?(director.id), id: dom_id(director) %>
+      <%= label_tag dom_id(director), director.first_name + ' ' + director.last_name %><br>
       <% end %>
   </div>
 
