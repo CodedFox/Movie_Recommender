@@ -16,7 +16,7 @@ Contained files:
 -- data.sql: contains all insert statements for all data in our database (movie info, actor info, etc.)
 --mov_rec: contains the web application created using Ruby on Rails
 
-Note: although we included the sql statements to create the tables in our database in the schema.sql file, we used Active Record Migrations to evolve our database schema for our web-app. To run our project, it would be best to applied migrations to the database, i.e run the following command to apply all of the migrations:
+Note: although we included the sql statements to create the tables in our database in the schema.sql file, we used Active Record Migrations to evolve our database schema for our web-app. To run our project, it would be best to create the database by applying the migrations, i.e run the following command to apply all of the migrations:
 > rake db:migrate
 
 
