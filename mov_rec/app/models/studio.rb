@@ -1,6 +1,5 @@
 class Studio < ActiveRecord::Base
 	has_many :sponsors
-
 	has_many :movies, through: :sponsors
 	has_many :movie_casts, through: :movies
 

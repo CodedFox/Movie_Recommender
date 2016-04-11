@@ -64,6 +64,16 @@
       <% end %>
   </div>
 
+   <div class="field">
+    <%= f.label :studios %><br>
+    <%= hidden_field_tag "movie[studio_ids][]", nil %>
+
+    <% Studio.all.each do |studio| %>
+      <%= check_box_tag "movie[studio_ids][]", studio.id, @movie.studio_ids.include?(studio.id), id: dom_id(studio) %>
+      <%= label_tag dom_id(studio), studio.studio_name %><br>
+      <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

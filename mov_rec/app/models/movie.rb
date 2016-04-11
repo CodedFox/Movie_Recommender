@@ -8,6 +8,7 @@ class Movie < ActiveRecord::Base
 
 	has_many :movie_ratings
 	has_many :sponsors
+	has_many :studios, through: :sponsors
 	has_many :directs
 
 	has_many :actors, through: :movie_casts

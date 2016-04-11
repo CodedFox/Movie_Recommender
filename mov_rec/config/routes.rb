@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :sponsors
   get 'sessions/new'
 
   resources :likes_topics
