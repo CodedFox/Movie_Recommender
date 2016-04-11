@@ -188,11 +188,6 @@
           <a href="/movies/<%= unwatchedmovie.id %>">
             <img src="<%= unwatchedmovie.poster %>" style="width: 200px; padding: 10px; padding-bottom: 0px">
             <p><%= unwatchedmovie.movie_name %></p>
-            <p style="margin-top: -15px">
-              <a href="/topics/<%= suggestedmovie.genre_id %>">
-                <b>Genre: </b><%= suggestedmovie.genre_name %>
-              </a>
-            </p>
           </a>
         </div>
         <% end %>
