@@ -14,12 +14,14 @@ class MovieCastsController < ApplicationController
 
   # GET /movie_casts/new
   def new
+    @movie_casts = MovieCast.where(movie_id: params[:movie_id])
     @movie_cast = MovieCast.new
     @movie_cast.movie_id = params[:movie_id]
   end
 
   # GET /movie_casts/1/edit
   def edit
+    @movie_casts = MovieCast.where(movie_id: params[:movie_id])
   end
 
   # POST /movie_casts
